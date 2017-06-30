@@ -1,0 +1,19 @@
+1. repository(저장소) 생성
+   > github.com에 회원 가입 후 사용하라
+   > 비회원: 저장소를 만들 수 없다. 그러나 남의 저장소를 이용할 수 있다.
+   > 회원: 저장소를 만들 수 있다.
+
+2. git 저장소 복제하기
+   > git clone [저장소 URL]
+   > git clone https://github.com/eomjinyoung/bigdata3.git
+
+3. git 저장소에서 최근에 변경된 파일 받기
+   > git pull
+
+4. 로컬 저장소에 등록할 파일
+   > 로컬 저장소에 등록된 파일은 변경 내역이 관리되고 서버에 업로드할 수 있다.
+   > git add [파일 또는 경로]
+   > git add .     <== 현재 폴더 및 모든 하위 폴더에서 변경된 파일
+
+5. 로컬 저장소에 있는 파일을 서버 저장소에 업로드 하기
+   > git push
