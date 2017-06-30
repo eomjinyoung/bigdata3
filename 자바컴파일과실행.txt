@@ -1,0 +1,11 @@
+﻿1. 자바 컴파일과 실행
+  > Hello.java 
+     - 자바 언어로 작성한 명령어 파일.
+     - "자바 소스파일(source)"이라 부른다.
+  > javac.exe Hello.java
+     - 자바 명령어 파일(자바 소스 파일)을 JVM이 이해하는 가상의 기계어로 변환한다. 
+     - Hello.java 파일을 컴파일하여 바이트코드(bytecode; p-code; 유사기계어)를 생성한다.
+     - Hello.class
+  > java.exe Hello
+     - 바이트코드를 실행시킨다.
+     - 파일명을 지정할 때 ".class" 확장자를 붙이지 말아야 한다.
