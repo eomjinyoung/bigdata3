@@ -27,11 +27,11 @@
  *    > java -cp bin/a/b/c/d Hello    <==== 실행오류!
  *     
  */
-package step01;
+package step01.a.b.c;
 
 public class Test01 {
   public static void main(String[] args) {
-    System.out.println("Hello!");
+    System.out.println("step01.a.b.c.Hello!");
 
   }
 
