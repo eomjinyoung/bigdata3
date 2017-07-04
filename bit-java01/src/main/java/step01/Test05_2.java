@@ -8,8 +8,8 @@ public class Test05_2 {
   public static void main(String[] args) {
     // 문자의 코드 값을 출력해보자!
     // 자바는 2바이트 유니코드(UTF-8이 아니다)를 사용한다.
-    System.out.println(Integer.toHexString('A'));
-    System.out.println(Integer.toHexString('가'));
+    System.out.println(Integer.toHexString('A')); // 41 => 앞이 00은 출력하지 않는다.
+    System.out.println(Integer.toHexString('가'));// ac00 => 2byte 유니코드
   }
 
 }
