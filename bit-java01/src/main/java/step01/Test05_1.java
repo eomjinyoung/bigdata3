@@ -20,6 +20,11 @@ public class Test05_1 {
     // 2진수로 문자 코드 값을 표현하는 것은 매우 번거롭다.
     System.out.println((char)0x0041); // 16진수를 사용하라!
     System.out.println((char)0x41); // 앞에 있는 0은 생략해도 된다.
+
+    // 작은 따옴표 안에 유니코드를 작성할 수 있다.
+    System.out.println('\u0041'); // OK!
+    // 이 방식으로 유니코드 값을 지정할 때는 0을 생략할 수 없다.
+
   }
 
 }
