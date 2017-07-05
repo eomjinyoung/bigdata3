@@ -7,7 +7,7 @@
  */
 package step02;
 
-public class Test01 {
+public class Test02 {
   public static void main(String[] args) {
     // 1) 변수를 선언한 후 값 저장
     int a; // 정수 값을 저장할 4바이트 메모리를 만들고, 그 메모리의 이름을 a라 하자!
@@ -34,6 +34,9 @@ public class Test01 {
     System.out.println(m);
     System.out.println(j);
 
+    // 자바에서는 값을 넣지 않은 변수를 사용하려 할 때
+    // 컴파일 하지 않는다. 컴파일 오류가 발생한다.
+    //System.out.println(n); //컴파일 오류!
   }
 
 }
