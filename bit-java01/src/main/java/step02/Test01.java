@@ -2,7 +2,7 @@
  * => 자바는 크게 정수, 부동소수점, 논리값, 문자, 객체 주소를 
  *    저장하는 메모리를 준비할 수 있다.
  */
-package step01;
+package step02;
 
 public class Test01 {
   public static void main(String[] args) {
