@@ -7,7 +7,18 @@ package step02;
 public class Test01 {
   public static void main(String[] args) {
     // 값을 저장하는 메모리를 가리키는 이름을 
-    // "변수(variable)"라고 부른다.
+    // "변수(variable)"라고 부른다. 
+    // 메모리에 저장하기 위해 직접 작성하는 값을
+    // "상수값" 또는 "리터럴(literal)"이라 부른다.
+    // 어떤 종류의 값인지 가리키는 것을 
+    // "데이터 타입(data type)" 이라 부른다.
+    int var = 100;
+    // 데이터 타입: int
+    // 변수: var
+    // 리터럴(상수값): 100
+
+
+
     int i = 10; // 정수 값을 저장할 변수
     float f = 3.14f; // 변수 값을 저장할 변수
     boolean bool = true; // 논리 값을 저장할 변수 
