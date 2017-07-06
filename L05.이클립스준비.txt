@@ -1,0 +1,52 @@
+# 이클립스 IDE 준비
+자바 애플리케이션을 제작할 때 사용하는 통합 개발 도구 
+
+1. 이클립스 IDE 다운로드 
+- www.eclipse.org 에서 Eclipse Java EE 버전 다운로드 및 설치
+
+2. 이클립스 워크스페이스 설정
+- 메뉴바 > Window > Preferences 띄운다.
+- General 노드 > Editors > Text Editors 선택
+  - tab width = 2 칸
+  - Insert spaces for tabs: 탭 대신 공백을 삽입
+  - Show print margin = 80
+  - Show whitespace characters : 공백, 탭, 줄바꿈 등을 화면에 표시
+- General 노드 > workspace 선택
+  - Text file encoding = UTF-8
+- Java 노드 > Code Style > Formatter 선택
+  - New 버튼 선택
+  - profile name으로 "my" 입력 > OK
+  - tap policy: Spaces only
+  - indentation size(들여쓰기 크기) = 2 칸
+  - tab size(탭 크기) = 2 칸 
+- Java 노드 > Installed JRE 확인
+  - jdk가 선택되어 있는지 확인
+- Web 노드 > CSS Files 선택
+  - Encoding = UTF-8
+- Web 노드 > HTML Files 선택
+  - Encoding = UTF-8
+- Web 노드 > JSP Files 선택
+  - Encoding = UTF-8
+
+3. GIT 저장소 등록
+- GIT 저장소 관리 View를 추가한다.
+  - 메뉴바 > Window > Show View > Others... > Git 노드 > Git Repositories 선택
+- GIT 저장소 추가
+  - PC에 깃 저장소를 복제해두었다면, "Add an existing local GIT repositories" 선택
+  - PC에 깃 저장소가 없다면, "Clone a GIT repositories" 선택
+
+4. java01 프로젝트를 이클립스 작업대(workbench)로 가져오기
+- 메뉴바 > File > import... > General 노드 선택 > Existing Projects into Workspace 선택
+  - 가져올 프로젝트 폴더를 선택한다.
+- 참고
+  - 이클립스로 프로젝트를 가져오려면, 
+    해당 프로젝트 폴더 안에 이클립스 IDE가 사용할 설정파일이 있어야 한다.
+  - 이클립스 설정 파일
+    .project 파일 : 모든 이클립스 프로젝트의 기본 설정 파일이다.
+    .classpath 파일 : 이클립스 자바 프로젝트의 기본 설정 파일이다.
+    .settings 폴더 : 이클립스 프로젝트 관련 기타 설정 파일들이 들어있는 폴더이다.
+  - 이런 설정 파일들이 있어야만 이클립스 IDE에서 해당 프로젝트를 
+    workbench(IDE 에디터)로 가져와 관리할 수 있다.
+  - 물론 이클립스가 아닌 다른 IDE 도구를 사용할 경우,
+    이클립스와 마찬가지로 그 도구를 위한 설정파일이 필요하다. 
+  - 설정 파일은 Gradle 빌드 도구를 사용하여 생성한다.

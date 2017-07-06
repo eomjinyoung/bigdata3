@@ -1,0 +1,6 @@
+//파일명: build.gradle
+//=> Gradle 빌드 도구의 설정 파일
+
+// 1) 빌드에 필요한 플러그인 장착
+apply plugin: "java"  // 자바 관련 작업을 수행할 Gradle 플러그인
+apply plugin: "eclipse" // 이클립스 관련 작업을 수행할 Gradle 플러그인
