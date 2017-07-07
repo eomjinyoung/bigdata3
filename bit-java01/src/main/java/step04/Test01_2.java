@@ -18,7 +18,7 @@ public class Test01_2 {
     System.out.println(s3); // 문자열에 대한 + 연산은 그냥 두 문자열을 연결하여 새 문자열을 만든다.
     
     // 문자열 + 숫자 = 문자열 + (숫자-->문자열) = 문자열 + 문자열
-    // 즉 문자열이 아닌 것을 문자열로 바꿔서 두 문자열을 붙인다.
+    // 즉 문자열이 아닌 것을 문자열로 만들어서 두 문자열을 붙인다.
     System.out.println("10" + 3);
     System.out.println(3 + "10");
     System.out.println("10" + 3.14);
