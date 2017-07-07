@@ -7,8 +7,8 @@ package step04;
 
 public class Test04_1 {
   public static void main(String[] args) {
-    int a = 0b0110_1010, // 0000_0000_0000_0000_0000_0000_0110_1010 = 
-        b = 0b0011_0011;
+    int a = 0b0110_1010, // 0000_0000_0000_0000_0000_0000_0110_1010
+        b = 0b0011_0011; // 0000_0000_0000_0000_0000_0000_0011_0011
     
     System.out.println(a);
     System.out.println(b);
