@@ -13,12 +13,12 @@ public class Test06_1 {
         b1 = 10, b2 = 10;
     
     a1++;
-    ++a1;
+    ++a2;
     System.out.println(a1);
     System.out.println(a2);
     
     b1--;
-    --b1;
+    --b2;
     System.out.println(b1);
     System.out.println(b2);
     
