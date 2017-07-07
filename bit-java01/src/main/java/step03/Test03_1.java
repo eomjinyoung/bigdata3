@@ -28,6 +28,13 @@
  *   메모리 종류...
  *   메모리를 다루는 기능들....
  * }
+ * 
+ * 메모리 준비
+ * 예) StudentScore score = new StudentScore();
+ * => score : StudentScore의 메모리 주소를 저장하는 변수. "reference"라고 부른다.
+ * => new StudentScore() : 이 명령을 통해 만든 메모리를 "인스턴스(instance)"라고 부른다. 
+ *                         개발자들이 일반적으로 "객체(object)"라고도 부른다.
+ * => StudentScore : 메모리를 만들 때 사용하는 설계도. "클래스(class)"라 부른다.
  */
 package step03;
 
@@ -44,14 +51,14 @@ public class Test03_1 {
       int sum;
       float aver;
     }
-    
+
     // 2) 새로 만든 메모리를 사용하려면 그 주소를 보관해야 한다.
     //    주소를 보관할 레퍼런스 변수(줄여서 그냥 레퍼런스라고 한다)를 선언한다.
     StudentScore score;  // score 주소를 담는 레퍼런스이다.
 
     // 3) 새 타입(사용자 정의 데이터 타입)에 맞춰 메모리를 만든다.
     // => new 새데이터타입();
-    // => 이렇게 만든 메모리의 주소를 레퍼런스에 보관해 두어야 한다.
+    // => 이렇게 만든 메모리(인스턴스)의 주소를 레퍼런스에 보관해 두어야 한다.
     score = new StudentScore();
     
     // 4) 메모리에 값을 넣는다.
