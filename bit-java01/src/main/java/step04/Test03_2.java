@@ -25,6 +25,12 @@ public class Test03_2 {
     b = false;
     result = a || (b = true); // a 값이 false이기 때문에 뒤의 식까지 수행해봐야 결과를 알 수 있다.
     System.out.printf("a=%b, b=%b, result=%b\n", a, b, result);
+    
+    a = true;
+    b = false;
+    result = a || (b = true); // a 값이 true이기 때문에 결과는 true이다. 
+                              // 따라서 뒤의 식은 수행하지 않는다.
+    System.out.printf("a=%b, b=%b, result=%b\n", a, b, result);
   }
 }
 
