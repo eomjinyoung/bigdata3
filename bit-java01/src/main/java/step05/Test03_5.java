@@ -8,10 +8,13 @@ public class Test03_5 {
   public static void main(String[] args) {
     int a = 2;
 
-    while (a <= 9) {
+    loop1: while (a <= 9) {
       int b = 1;
       while (b <= 9) {
         System.out.printf("%d * %d = %d\n", a, b, a * b);
+        if (a == 5 && b == 5)
+          break loop1; // 라벨을 지정하면 그 라벨이 붙은 문장을 나간다.
+
         b++;
       }
       a++;
