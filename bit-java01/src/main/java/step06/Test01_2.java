@@ -5,7 +5,7 @@
  */
 package step06;
 
-public class Test01_1 {
+public class Test01_2 {
 
   public static void main(String[] args) {
     int dan = 3;
