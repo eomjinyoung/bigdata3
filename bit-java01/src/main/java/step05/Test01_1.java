@@ -13,7 +13,7 @@ package step05;
 public class Test01_1 {
 
   public static void main(String[] args) {
-    int a = 70;
+    int a = 10;
 
     if (a < 19) 
       System.out.println("미성년이다!");

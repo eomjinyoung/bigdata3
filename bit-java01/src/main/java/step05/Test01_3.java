@@ -11,7 +11,7 @@ package step05;
 public class Test01_3 {
 
   public static void main(String[] args) {
-    int a = 50;
+    int a = 10;
 
     if (a < 19) 
       System.out.println("미성년이다!");
