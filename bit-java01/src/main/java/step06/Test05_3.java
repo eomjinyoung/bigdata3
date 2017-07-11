@@ -18,7 +18,7 @@ public class Test05_3 {
     float aver;
   }
   
-  static void computer(Score s) {
+  static void compute(Score s) {
     s.sum = s.kor + s.eng + s.math;
     s.aver = s.sum / 3f;
   }
@@ -29,10 +29,17 @@ public class Test05_3 {
   }
 
   public static void main(String[] args) {
-    int[] arr = {90, 80, 70, 0};
-    callByReference(arr); // 메서드를 호출할 때 배열의 주소를 넘긴다.
+    Score obj; // Score 설계도에 따라 준비한 메모리의 주소를 보관하는 변수 선언
+    obj = new Score(); // Score 설계도에 따라 메모리를 준비하고, 그 준비된 메모리의 주소를 obj에 저장.
     
-    System.out.printf("%d, %d, %d, %d\n", arr[0], arr[1], arr[2], arr[3]);
+    // 준비한 메모리에 값을 넣기 => 메모리 주소를 이용하여 특정 메모리에 값을 저장한다.
+    obj.name = "홍길동";
+    obj.kor = 90;
+    obj.eng = 80;
+    obj.math = 70;
+    
+    compute(obj); // 메서드를 호출할 때 Score 인스턴스의 주소를 넘긴다. = call by reference
+    print(obj); // 메서드를 호출할 때 Score 인스턴스의 주소를 넘긴다. = call by reference
   }
 
 }
