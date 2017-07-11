@@ -5,7 +5,7 @@
  * => 인스턴스 변수: new 명령을 이용하여 메모리를 만들 때 Heap 영역에 만드는 변수
  *    
  */
-package step07.ex4;
+package step07.ex5;
 
 public class CalculatorTest {
 
