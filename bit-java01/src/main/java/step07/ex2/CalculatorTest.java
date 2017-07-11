@@ -32,12 +32,13 @@ public class CalculatorTest {
     
     // 계산식: 2 + 3 - 6 * 2 + 7 / 2 = 2.5
     // 단 연산자 우선순위는 무시하고 앞에서 부터 계속 계산하라!
-    result += 2;
-    result += 3;
-    result -= 6;
-    result *= 2;
-    result += 7;
-    result /= 2;
+    
+    result = plus(result, 2);
+    result = plus(result, 3);
+    result = minus(result, 6);
+    result = multiple(result, 2);
+    result = plus(result, 7);
+    result = divide(result, 2);
     
     System.out.println(result);
     
