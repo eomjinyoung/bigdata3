@@ -9,17 +9,21 @@ public class ScoreTest {
     Score s2 = new Score();
     Score s3 = new Score();
     
-    Score.init(s1, "홍길동", 100, 90, 80);
-    Score.init(s2, "임꺽정", 80, 70, 60);
-    Score.init(s3, "유관순", 70, 50, 40);
+    // 인스턴스 메서드를 호출할 때는 
+    // 메서드 호출 앞 부분에 클래스명 대신으로 인스턴스 주소를 지정한다.
+    // 메서드 앞에 지정한 인스턴스 변수의 주소 값은 
+    // 호출하는 메서드의 내장 변수 this에 저장된다. 
+    s1.init("홍길동", 100, 90, 80);
+    s2.init("임꺽정", 80, 70, 60);
+    s3.init("유관순", 70, 50, 40);
     
-    Score.compute(s1);
-    Score.compute(s2);
-    Score.compute(s3);
+    s1.compute();
+    s2.compute();
+    s3.compute();
     
-    Score.print(s1);
-    Score.print(s2);
-    Score.print(s3);
+    s1.print();
+    s2.print();
+    s3.print();
     
   }
 
