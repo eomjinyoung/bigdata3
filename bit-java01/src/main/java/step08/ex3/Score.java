@@ -3,6 +3,8 @@ package step08.ex3;
 public class Score {
   
   // 인스턴스 변수 선언
+  // => 인스턴스 변수는 클래스 변수와 달리 클래스가 로딩될 때 자동으로 생성되지 않는다.
+  // => 반드시 new 명령을 사용하여 메모리(인스턴스 변수들)를 생성해야 한다.
   String name;
   int kor;
   int eng;
