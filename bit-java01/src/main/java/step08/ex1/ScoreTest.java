@@ -1,51 +1,43 @@
-/* 메서드 : 힙(heap) 메모리와 스택(stack) 메모리 IV - 클래스 인스턴스 
- * => 힙에 생성된 메모리는 JVM이 종료될 때까지 유지된다.
- * => 스택에 생성된 로컬 변수는 메서드 호출이 끝나면 제거된다.
+/* 1단계: 클래스 변수와 클래스 메서드 
  */
 package step08.ex1;
 
 public class ScoreTest {
   
-  static class Score {
-    String name;
-    int kor;
-    int eng;
-    int math;
-    int sum;
-    float aver;
+  // 클래스 변수 선언
+  static String name;
+  static int kor;
+  static int eng;
+  static int math;
+  static int sum;
+  static float aver;
+  
+  // static이 붙은 메서드는 "클래스 메서드"이다. "스태틱 메서드"라고도 부른다.
+  static void init(String name, int kor, int eng, int math) {
+    // 로컬 변수의 이름과 클래스 변수의 이름이 같을 경우,
+    // 클래스 변수 이름 앞에 클래스명을 붙여라!
+    ScoreTest.name = name;
+    ScoreTest.kor = kor;
+    ScoreTest.eng = eng;
+    ScoreTest.math = math;
   }
   
-  static Score create(String name, int kor, int eng, int math) {
-    Score obj = new Score();
-    obj.name = name;
-    obj.kor = kor;
-    obj.eng = eng;
-    obj.math = math;
-    return obj;
-  }
-  
-  static void compute(Score obj) {
-    obj.sum = obj.kor + obj.eng + obj.math;
-    obj.aver = obj.sum / 3f;
+  static void compute() {
+    // 클래스 변수와 이름이 같은 로컬 변수가 없다면,
+    // 클래스 변수 이름 앞에 클래스명을 생략해도 된다.
+    sum = kor + eng + math;
+    aver = sum / 3f;
   }
 
-  static void print(Score obj) {
+  static void print() {
     System.out.printf("%s: %d, %d, %d, %d, %f\n", 
-        obj.name, obj.kor, obj.eng, obj.math, obj.sum, obj.aver);
+        name, kor, eng, math, sum, aver);
   }
   
   public static void main(String[] args) {
-    Score s1 = create("홍길동", 100, 90, 80);
-    Score s2 = create("임꺽정", 90, 80, 70);
-    Score s3 = create("유관순", 80, 70, 60);
-    
-    compute(s1);
-    compute(s2);
-    compute(s3);
-    
-    print(s1);
-    print(s2);
-    print(s3);
+    init("홍길동", 100, 90, 80);
+    compute();
+    print();
   }
 
 }
