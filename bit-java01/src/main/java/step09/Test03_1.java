@@ -11,14 +11,30 @@ package step09;
 
 
 public class Test03_1 {
+  // 스태틱 변수는 값을 주지 않으면 기본이 0이다.
+  // => byte,short,char,int,long = 0
+  // => boolean = false
+  // => float, double = 0.0
   static int a;
-  static int b = 10;
+  static int b;
+  static int c = 10;
+  
+  // 스태틱 블록
+  static {
+    System.out.println("스태틱 블록 실행");
+    a = 100;
+    b = 200;
+    c = 300;
+  }
+  
   
   public static void main(String[] args) {
-    a = 20;
+    b = 20;
     System.out.println("main()...");
     System.out.printf("a=%d\n", a);
     System.out.printf("b=%d\n", b);
+    System.out.printf("c=%d\n", c);
+    
   }
 }
 
