@@ -1,8 +1,10 @@
-/* 
+/* 메서드 : 힙(heap) 메모리와 스택(stack) 메모리 IV - 클래스 인스턴스 
+ * => 힙에 생성된 메모리는 JVM이 종료될 때까지 유지된다.
+ * => 스택에 생성된 로컬 변수는 메서드 호출이 끝나면 제거된다.
  */
-package step06;
+package step08.ex1;
 
-public class Test06_4 {
+public class ScoreTest {
   
   static class Score {
     String name;
