@@ -9,7 +9,7 @@
  *    2) 새 클래스를 정의하는 방법.
  *       - 기존 코드에 영향을 끼치지 않기 때문에 시스템 안정성이 좋다.
  *       - 다만 기존 코드를 복사/붙여넣기 해야 한다는 점이 불편하다.
- *       - 새 데이터 타입으로 Vehicle 클래스의 기능을 포함한 Car를 정의하여 사용한다. 
+ *       - 새 데이터 타입으로 Vehicle 클래스의 기능을 포함한 Motor를 정의하여 사용한다. 
  */
 package step11.ex1;
 
@@ -17,27 +17,27 @@ public class Test02 {
 
   public static void main(String[] args) {
     // 승용차의 운송 인원 저장하기 
-    Car sedan = new Car();
+    Motor sedan = new Motor();
     sedan.capacity = 5;
     sedan.fuelType = 1;
     
     // 승합차의 운송 인원 저장하기 
-    Car bonggo = new Car();
+    Motor bonggo = new Motor();
     bonggo.capacity = 9;
     bonggo.fuelType = 2;
     
     // 오토바이 운송 인원 저장하기
-    Car bike = new Car();
+    Motor bike = new Motor();
     bike.capacity = 2;
     bike.fuelType = 1;
     
     // 트럭의 운송 인원 저장하기
-    Car truck = new Car();
+    Motor truck = new Motor();
     truck.capacity = 3;
     truck.fuelType = 2;
     
     // 덤프트럭의 운송 인원 저장하기
-    Car dumpTruck = new Car();
+    Motor dumpTruck = new Motor();
     dumpTruck.capacity = 3;
     dumpTruck.fuelType = 2;
     
