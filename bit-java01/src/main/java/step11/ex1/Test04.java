@@ -48,6 +48,7 @@ public class Test04 {
     dumpTruck.fuelType = 2;
     dumpTruck.liter = 200;
     dumpTruck.ton = 20;
+    dumpTruck.dump = true;
     
     // 전기차 운송 인원 저장하기
     Vehicle elecCar = new Vehicle();
