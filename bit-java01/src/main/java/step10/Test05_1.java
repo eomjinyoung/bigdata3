@@ -59,10 +59,16 @@ class Student7 {
 
 public class Test05_1 {
   public static void main(String[] args) {
-    
+    // 1) 값을 넣지 않은 클래스 변수의 값을 출력한다면?
+    Student7.printStaticVars();
     
     System.out.println("---------------------------");
     
+    // 2) 값을 넣지 않은 인스턴스 변수의 값을 출력한다면?
+    Student7 obj = new Student7();
+    obj.printInstanceVars();
+    
+    System.out.println("---------------------------");
     
   }
 }
