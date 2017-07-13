@@ -44,6 +44,8 @@ class MyClass7 {
 
 public class Test02_4 {
   public static void main(String[] args) {
+    // 인스턴스를 생성한 후 어떤 생성자를 호출할 지 결정하는 방법
+    // => 아규먼트 값으로 결정한다.
     new MyClass7(); // 기본 생성자를 호출한다.
     new MyClass7("홍길동", 20); // MyClass7(String, int) 생성자를 호출한다.
     new MyClass7(30, "임꺽정"); // MyClass7(int, String) 생성자를 호출한다.
