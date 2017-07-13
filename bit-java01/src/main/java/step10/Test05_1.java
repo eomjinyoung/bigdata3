@@ -43,6 +43,18 @@ class Student7 {
     System.out.println(Student7.sbool);
     System.out.println(Student7.sstr);
   }
+  
+  void printInstanceVars() {
+    System.out.println(this.ib);
+    System.out.println(this.is);
+    System.out.println(this.ic);
+    System.out.println(this.ii);
+    System.out.println(this.il);
+    System.out.println(this.ifloat);
+    System.out.println(this.id);
+    System.out.println(this.ibool);
+    System.out.println(this.istr);
+  }
 }
 
 public class Test05_1 {
@@ -50,15 +62,7 @@ public class Test05_1 {
     
     
     System.out.println("---------------------------");
-    System.out.println(sb);
-    System.out.println(sb);
-    System.out.println(sb);
-    System.out.println(sb);
-    System.out.println(sb);
-    System.out.println(sb);
-    System.out.println(sb);
-    System.out.println(sb);
-    System.out.println(sb);
+    
     
   }
 }
