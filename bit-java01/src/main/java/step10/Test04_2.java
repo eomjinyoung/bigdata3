@@ -18,6 +18,11 @@ class Student5 {
   void printAge() {
     System.out.printf("age=%d\n", /*this.*/age);
   }
+  
+  void printAll() {
+    /*this.*/printName(); // 인스턴스 메서드 호출 시 this를 붙이지 않으면 컴파일러가 자동으로 붙인다.
+    /*this.*/printAge();
+  }
 }
 
 public class Test04_2 {
@@ -26,8 +31,9 @@ public class Test04_2 {
     obj.name = "홍길동";
     obj.age = 20;
     
-    obj.printName();
-    obj.printAge();
+    //obj.printName();
+    //obj.printAge();
+    obj.printAll();
   }
 }
 
