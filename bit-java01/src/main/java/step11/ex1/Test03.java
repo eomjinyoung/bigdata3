@@ -13,7 +13,7 @@
  */
 package step11.ex1;
 
-public class Test02 {
+public class Test03 {
 
   public static void main(String[] args) {
     // 승용차의 운송 인원 저장하기 
