@@ -38,7 +38,8 @@ public class Test04_1 {
     obj = new Student4();
     obj.setNameAndAge("임꺽정", 30);
     
-    
+    System.out.println(obj.getName());
+    System.out.println(obj.getAge());
   }
 }
 
