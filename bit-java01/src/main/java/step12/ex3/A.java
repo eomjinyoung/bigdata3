@@ -8,4 +8,8 @@ public class A {
   void m2() {
     System.out.println("A.m2()");
   }
+  
+  void m3() {
+    System.out.println("A.m3()");
+  }
 }
