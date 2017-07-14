@@ -1,4 +1,4 @@
-package step11.ex5;
+package step11.ex6;
 
 public class A {
   int v1;

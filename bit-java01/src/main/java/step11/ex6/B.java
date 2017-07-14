@@ -1,4 +1,4 @@
-package step11.ex5;
+package step11.ex6;
 
 // B 클래스는 A 클래스를 상속한다.
 // 부모(수퍼) 클래스: A
