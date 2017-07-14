@@ -19,6 +19,7 @@ public class C extends B {
      
     this.m2(); // C 클래스부터 m2()을 찾는다.
     super.m2(); // B 클래스부터 m2()을 찾는다.
+    //super.super.m2(); // A클래스의 m2()를 호출하는 건 아닐까? 아니다! 컴파일 오류다!
     
     this.m3(); // C 클래스부터 m3()을 찾는다.
     super.m3(); // B 클래스부터 m3()을 찾는다.
