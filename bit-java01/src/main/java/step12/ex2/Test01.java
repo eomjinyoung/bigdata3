@@ -7,7 +7,7 @@
  * => 오버라이딩이 없다면, 
  *    서브 클래스에서 같은 기능을 수행하는 메서드를 만들 때 마다 이름을 달리해야 한다.    
  */
-package step11.ex9;
+package step12.ex2;
 
 public class Test01 /* extends Object */{
 

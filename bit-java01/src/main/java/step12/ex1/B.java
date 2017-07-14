@@ -1,4 +1,4 @@
-package step11.ex8;
+package step12.ex1;
 
 public class B extends A {
   int v2;
