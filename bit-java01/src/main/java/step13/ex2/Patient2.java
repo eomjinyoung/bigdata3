@@ -6,30 +6,54 @@ public class Patient2 {
   private int age;
   private float weight;
   private float height;
-  private boolean gender;
+  private boolean woman;
   
   // 보통 인스턴스 변수의 값을 설정하기 위해 만든 메서드 이름은 set으로 시작한다.
-  // 그래서 이런 메서드를 "세터(setter)"라 부른다.
+  // 그래서 이런 메서드를 "셋터(setter)"라 부른다.
   void setName(String name) {
     this.name = name;
   }
+  
+  // 보통 인스턴스 변수의 값을 꺼내주기 위해 만든 메서드 이름은 get으로 시작한다.
+  // 그래서 이런 메서드를 "겟터(getter)"라 부른다.
+  String getName() {
+    return this.name;
+  }
+  
   void setAge(int age) {
     if (age < 1 || age > 150)
       return;
     this.age = age;
   }
+  int getAge() {
+    return this.age;
+  }
+  
   void setWeight(float weight) {
     if (weight < 1 || weight > 500f)
       return;
     this.weight = weight;
   }
+  float getWeight() {
+    return this.weight;
+  }
+  
   void setHeight(float height) {
     if (height < 1 || height > 300f)
       return;
     this.height = height;
   }
-  void setGender(boolean gender) {
-    this.gender = gender;
+  float getHeight() {
+    return this.height;
+  }
+  
+  void setWoman(boolean woman) {
+    this.woman = woman;
+  }
+  
+  // 리턴 값이 boolean인 겟터 메서드 만들 때 그 이름을 "get" 대신에 "is"를 주로 사용한다.
+  boolean isWoman() {
+    return this.woman;
   }
 }
 
