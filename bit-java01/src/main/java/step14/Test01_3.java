@@ -29,12 +29,20 @@ public class Test01_3 {
   
   public static void main(String[] args) {
     Student s1 = new Student("홍길동", 20);
-    Student s2 = new Student("임꺽정", 30);
+    Student s2 = new Student("홍길동", 20);
 
+    System.out.println(s1);
+    System.out.println(s2);
+    
     if (s1 == s2) 
       System.out.println("s1 == s2");
     else 
       System.out.println("s1 != s2");
+    
+    if (s1.equals(s2)) 
+      System.out.println("OK");
+    else 
+      System.out.println("NO");
   }
 
 }
