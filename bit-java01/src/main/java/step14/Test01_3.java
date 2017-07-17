@@ -24,6 +24,22 @@ public class Test01_3 {
       return "Student [name=" + name + ", age=" + age + "]";
     }
     
+    // 인스턴스 주소를 비교하는 대신에 각각의 인스턴스 변수의 값이 같은지를 비교해보자!
+    public boolean equals(Object obj) {
+      if (!(obj instanceof Student)) return false;
+      
+      // 파라미터로 넘어온 주소가 Student의 인스턴스가 맞다면, 타입 캐스팅한다.
+      Student other = (Student)obj;
+      
+      // String 값을 비교할 때는 == 대신 equals()를 사용해야 한다!
+      if (!this.name.equals(other.name)) return false;
+      
+      // 자바 원시 타입(byte, short, char, int, long, float, double, boolean)의 값을 
+      // 비교할 때는 그냥 관계 연산자(예: ==, != 등)를 사용한다.
+      if (this.age != other.age) return false;
+      
+      return true;
+    }
     
   }
   
