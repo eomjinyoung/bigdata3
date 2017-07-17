@@ -15,6 +15,7 @@ public class Score {
     this.kor = kor;
     this.eng = eng;
     this.math = math;
+    compute();
   }
 
   public String getName() {
@@ -66,7 +67,10 @@ public class Score {
     return aver;
   }
   
-  void compute() {
+  // compute() 메서드처럼 내부에서만 사용하는 메서드라면,
+  // private을 붙이고, 공개하지 말라!
+  // 만약 상속 받은 클래스에서도 사용해야 한다면, protected를 붙여라. 
+  protected void compute() {
     this.sum = this.kor + this.eng + this.math;
     this.aver = this.sum / 3f;
   }
