@@ -15,4 +15,11 @@ public class Calculator2 {
   float getResult() {
     return this.result;
   }
+  void reset() {
+    this.result = 0f;
+  }
 }
+
+
+
+

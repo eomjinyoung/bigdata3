@@ -1,3 +1,8 @@
+/* 캡슐화 적용 후
+ * => 직접 접근해서는 안되는 변수나 메서드는 
+ *    특별한 modifier를 붙여 접근을 제한하면 된다.
+ * => 직접 접근을 막음으로써 잘못된 값이 설정되는 것을 막을 수 있다.
+ */
 package step13.ex1;
 
 public class Test02 {
@@ -21,7 +26,8 @@ public class Test02 {
     // result 변수의 값을 직접 바꾸지 못하게 막은 것은 좋은데,
     // 문제는 result 변수의 값을 꺼낼 수도 없다.
     // 해결채? 값을 꺼내는 수단/방법(method)을 제공하면 된다.
-    System.out.println(calc.result);
+    //System.out.println(calc.result); // 직접 result 변수의 값을 꺼낼 수 없다.
+    System.out.println(calc.getResult()); // 대신 메서드를 호출하여 알아낸다.
 
   }
 
