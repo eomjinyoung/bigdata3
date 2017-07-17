@@ -10,8 +10,8 @@ public class Test04 {
   public static void main(String[] args) {
     Patient3 p = new Patient3();
     
-    // 메서드의 잘못된 사용에 대해 알림을 받을 때 
-    // 교정 작업 수행하기
+    // 메서드의 잘못된 사용에 대해 알림을 받을 수 있고, 
+    // 교정 작업을 수행할 수도 있다.
     p.setName("홍길동"); // OK!
     try {
       p.setAge(200);
