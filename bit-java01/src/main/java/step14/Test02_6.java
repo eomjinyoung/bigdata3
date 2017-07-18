@@ -87,8 +87,9 @@ public class Test02_6 {
     if (str1 == str3) System.out.println("str1 == str3");
     System.out.println("-------------------------");
     
-    String x10 = "bit";
+    String x10 = new String("bit");
     if ("bit".equals(x10)) System.out.println("맞다!");
+    System.out.println("abcdefghij".substring(3));
     System.out.println("-------------------------");
   }
 
