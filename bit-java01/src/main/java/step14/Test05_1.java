@@ -53,7 +53,8 @@ public class Test05_1 {
     students[1] = new Student("임꺽정", 30, true);
     students[2] = new Student("유관순", 16, false);
     
-    
+    for (int i = 0; i < 3; i++) 
+      System.out.println(students[i]);
     
     
   }
