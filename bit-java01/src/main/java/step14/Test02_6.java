@@ -1,9 +1,12 @@
-/* String 클래스 - chatAt(), indexOf(), lastIndexOf(), startsWith(), endsWith()
+/* String 클래스 - chatAt(), indexOf(), lastIndexOf(), startsWith(), endsWith(),
+ *               toLowerCase(), toUpperCase()
  * => charAt(): 특정 위치의 문자를 추출하기
  * => indexOf(): 문자의 인덱스, 문자열의 시작 인덱스 
  *    lastIndexOf(): indexOf()랑 같다. 다만 문자열의 뒤쪽에서부터 찾는다.
  * => startsWith(): 문자열이 특정 문자열로 시작하는지 여부를 조사한다.
  * => endsWith(): 문자열이 특정 문자열로 끝나는지 여부를 조사한다.
+ * => toLowerCase(): 모든 문자를 소문자로 만든 새 String 인스턴스를 리턴한다.
+ * => toUpplerCase(): 모든 문자를 대문자로 만든 새 String 인스턴스를 리턴한다.
  */
 package step14;
 
@@ -24,6 +27,13 @@ public class Test02_6 {
     String name = "James Dean";
     if (name.startsWith("James")) System.out.println("OK!");
     if (name.endsWith("Dean")) System.out.println("OK!");
+    System.out.println("-------------------------");
+    
+    // 대소문자를 구분하지 않고 비교하는 방법
+    String name2 = name.toLowerCase();
+    if (name2.startsWith("james")) System.out.println("OK!");
+    if (name2.endsWith("dean")) System.out.println("OK!");
+    System.out.println("-------------------------");
   }
 
 }
