@@ -40,7 +40,6 @@ public class Test01_3 {
       
       return true;
     }
-    
   }
   
   public static void main(String[] args) {
