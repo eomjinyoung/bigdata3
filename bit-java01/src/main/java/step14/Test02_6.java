@@ -1,6 +1,6 @@
 /* String 클래스 - chatAt(), indexOf(), lastIndexOf(), startsWith(), endsWith(),
  *               toLowerCase(), toUpperCase(), trim(), valueOf(),
- *               contains(), split(), getBytes()
+ *               contains(), split(), getBytes(), length(), 
  * => charAt(): 특정 위치의 문자를 추출하기
  * => indexOf(): 문자의 인덱스, 문자열의 시작 인덱스 
  *    lastIndexOf(): indexOf()랑 같다. 다만 문자열의 뒤쪽에서부터 찾는다.
@@ -13,6 +13,7 @@
  * => contains(): 특정 문자열을 포함하고 있는지 확인하고 싶을 때.
  * => split(): 특정 문자열을 구분자로 하여 전체 문자열을 나눈다. 
  * => getBytes(): String 인스턴스로부터 바이트 배열을 추출하기.
+ * => length(): 문자열의 개수를 리턴한다.
  */
 package step14;
 
@@ -65,10 +66,22 @@ public class Test02_6 {
     System.out.println("-------------------------");
     
     String x6 = "ABCabc123가각간";
-    byte[] bytes = x6.getBytes("UTF-8");
+    byte[] bytes = x6.getBytes("UTF-8"); // 인코딩 문자집합을 지정하지 않으면, JVM 기본 인코딩이 선택된다.
     for (i = 0; i < bytes.length; i++) {
-      System.out.println(Integer.toHexString(bytes[i]));
+      System.out.printf("%x\n", bytes[i]);
     }
+    System.out.println("-------------------------");
+    
+    System.out.println(x6.length()); // 영어, 한글, 숫자 상관없이 한 문자로 취급한다. 
+                                     // 즉 문자 단위로 개수를 계산한다. 바이트 개수가 아니다!
+    System.out.println("-------------------------");
+    
+    String str1 = "Hello";
+    String str2 = new String("Hello");
+    String str3 = str2.intern();
+    
+    if (str1 == str2) System.out.println("str1 == str2");
+    if (str1 == str3) System.out.println("str1 == str3");
     System.out.println("-------------------------");
   }
 
