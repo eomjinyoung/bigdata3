@@ -54,6 +54,13 @@ public class Test02_6 {
     String x4 = "I am studying Java programming.";
     System.out.println(x4.contains("Java"));
     System.out.println("-------------------------");
+    
+    String x5 = "홍길동,임꺽정,유관순,안중근,윤봉길";
+    String[] names = x5.split(",");
+    for (i = 0; i < names.length; i++) {
+      System.out.println(names[i]);
+    }
+    
   }
 
 }
