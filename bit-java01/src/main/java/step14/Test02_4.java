@@ -15,8 +15,8 @@ public class Test02_4 {
     
     String s3 = "Hello, {name}!\n{name}님 안녕하세요!";
     String s4 = s3.replace("{name}", "임꺽정");
-    System.out.println(s1);
-    System.out.println(s2);
+    System.out.println(s3);
+    System.out.println(s4);
   }
 
 }
