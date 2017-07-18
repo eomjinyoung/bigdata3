@@ -1,6 +1,6 @@
 /* String 클래스 - chatAt(), indexOf(), lastIndexOf(), startsWith(), endsWith(),
  *               toLowerCase(), toUpperCase(), trim(), valueOf(),
- *               contains(), split(), getBytes(), length(), 
+ *               contains(), split(), getBytes(), length(), intern()
  * => charAt(): 특정 위치의 문자를 추출하기
  * => indexOf(): 문자의 인덱스, 문자열의 시작 인덱스 
  *    lastIndexOf(): indexOf()랑 같다. 다만 문자열의 뒤쪽에서부터 찾는다.
@@ -14,6 +14,7 @@
  * => split(): 특정 문자열을 구분자로 하여 전체 문자열을 나눈다. 
  * => getBytes(): String 인스턴스로부터 바이트 배열을 추출하기.
  * => length(): 문자열의 개수를 리턴한다.
+ * => intern(): 문자열을 "상수풀"에서 찾는다. 없으면 상수풀에 만들고, 있으면 기존의 String 인스턴스를 리턴.
  */
 package step14;
 
@@ -78,10 +79,16 @@ public class Test02_6 {
     
     String str1 = "Hello";
     String str2 = new String("Hello");
-    String str3 = str2.intern();
+    String str3 = str2.intern(); // str2의 문자열을 "상수풀"에서 찾는다.
+                                 // 있다면, 그 String 인스턴스의 주소를 리턴하고
+                                 // 없다면, 상수풀에 String 인스턴스를 만들어 리턴한다.
     
     if (str1 == str2) System.out.println("str1 == str2");
     if (str1 == str3) System.out.println("str1 == str3");
+    System.out.println("-------------------------");
+    
+    String x10 = "bit";
+    if ("bit".equals(x10)) System.out.println("맞다!");
     System.out.println("-------------------------");
   }
 
