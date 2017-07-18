@@ -11,6 +11,13 @@ public class Test02_5 {
     System.out.println(s1);
     System.out.println(s2);
     
+    System.out.println("-----------------------");
+    
+    String s3 = s1.substring(4, 8); // 시작인덱스부터 끝 인덱스 전까지 문자열을 추출한다.
+                                    // 즉 8번 문자는 포함하지 않는다.
+    System.out.println(s1);
+    System.out.println(s3);
+    
   }
 
 }
