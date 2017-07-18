@@ -1,5 +1,5 @@
 /* String 클래스 - chatAt(), indexOf(), lastIndexOf(), startsWith(), endsWith(),
- *               toLowerCase(), toUpperCase(), trim()
+ *               toLowerCase(), toUpperCase(), trim(), valueOf()
  * => charAt(): 특정 위치의 문자를 추출하기
  * => indexOf(): 문자의 인덱스, 문자열의 시작 인덱스 
  *    lastIndexOf(): indexOf()랑 같다. 다만 문자열의 뒤쪽에서부터 찾는다.
@@ -8,6 +8,7 @@
  * => toLowerCase(): 모든 문자를 소문자로 만든 새 String 인스턴스를 리턴한다.
  * => toUpplerCase(): 모든 문자를 대문자로 만든 새 String 인스턴스를 리턴한다.
  * => trim(): 문자열의 시작과 끝에 있는 공백을 제거한다.
+ * => valueOf(): 주어진 값을 문자열로 만든다. static이 붙은 클래스 메서드이다.
  */
 package step14;
 
@@ -39,6 +40,13 @@ public class Test02_6 {
     
     String str = "    Hello,    홍길동!     ";
     System.out.printf(">%s<\n", str.trim());
+    System.out.println("-------------------------");
+    
+    String x1 = String.valueOf(3.14f);
+    String x2 = String.valueOf(2017);
+    String x3 = String.valueOf(true);
+    
+    System.out.printf("%s, %s, %s\n", x1, x2, x3);
     System.out.println("-------------------------");
   }
 
