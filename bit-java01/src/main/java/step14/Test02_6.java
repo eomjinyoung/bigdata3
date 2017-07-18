@@ -1,5 +1,6 @@
-/* String 클래스 - chatAt(), 
- * => 특정 위치의 문자를 추출하기
+/* String 클래스 - chatAt(), indexOf(), 
+ * => charAt(): 특정 위치의 문자를 추출하기
+ * => indexOf(): 문자의 인덱스, 문자열의 시작 인덱스 
  */
 package step14;
 
@@ -14,6 +15,9 @@ public class Test02_6 {
     int i = s1.indexOf('f'); // 5
     int i2 = s1.indexOf("cde"); // 2
     System.out.printf("%d, %d\n", i, i2);
+    System.out.println("-------------------------");
+    
+    
   }
 
 }
