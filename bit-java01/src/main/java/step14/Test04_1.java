@@ -23,7 +23,12 @@ public class Test04_1 {
     byte b = obj.byteValue(); // 다른 타입의 값을 리턴하는 기능
     System.out.println(Integer.MAX_VALUE); // int의 최대 값과 최소값을 리턴하는 기능
     System.out.println(Integer.MIN_VALUE);
-    
+    int value = Integer.parseInt("2345"); // 문자열을 int로 바꿔주는 기능
+    System.out.println(value);
+    value = Integer.decode("0x7fdd"); // 특정 진수로 표현된 문자열을 분석하여 숫자로 바꿔주는 기능 
+    System.out.println(value);
+    str = Integer.toHexString(44032); // 숫자를 특정 진수로 표현한 문장을 리턴하는 기능
+    System.out.println(str);
   }
 }
 
