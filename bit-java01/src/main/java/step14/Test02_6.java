@@ -1,6 +1,6 @@
 /* String 클래스 - chatAt(), indexOf(), lastIndexOf(), startsWith(), endsWith(),
  *               toLowerCase(), toUpperCase(), trim(), valueOf(),
- *               contains()
+ *               contains(), split(), getBytes()
  * => charAt(): 특정 위치의 문자를 추출하기
  * => indexOf(): 문자의 인덱스, 문자열의 시작 인덱스 
  *    lastIndexOf(): indexOf()랑 같다. 다만 문자열의 뒤쪽에서부터 찾는다.
@@ -11,12 +11,14 @@
  * => trim(): 문자열의 시작과 끝에 있는 공백을 제거한다.
  * => valueOf(): 주어진 값을 문자열로 만든다. static이 붙은 클래스 메서드이다.
  * => contains(): 특정 문자열을 포함하고 있는지 확인하고 싶을 때.
+ * => split(): 특정 문자열을 구분자로 하여 전체 문자열을 나눈다. 
+ * => getBytes(): String 인스턴스로부터 바이트 배열을 추출하기.
  */
 package step14;
 
 public class Test02_6 {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     String s1 = "abcdefghicdefg";
     char ch = s1.charAt(4); // 인덱스는 0부터 시작한다.
     System.out.println(ch);
@@ -60,7 +62,14 @@ public class Test02_6 {
     for (i = 0; i < names.length; i++) {
       System.out.println(names[i]);
     }
+    System.out.println("-------------------------");
     
+    String x6 = "ABCabc123가각간";
+    byte[] bytes = x6.getBytes("UTF-8");
+    for (i = 0; i < bytes.length; i++) {
+      System.out.println(Integer.toHexString(bytes[i]));
+    }
+    System.out.println("-------------------------");
   }
 
 }
