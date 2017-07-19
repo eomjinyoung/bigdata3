@@ -15,8 +15,6 @@ package step14;
 // 컴파일러에게 ArrayList 클래스가 어느 패키지에 있는지 알려준다.
 import java.util.ArrayList;
 
-
-
 public class Test05_2 {
   static class Student {
     String name;
@@ -56,7 +54,23 @@ public class Test05_2 {
     //    => 프로그래밍 할 때 편리하다.
     ArrayList studentList = new ArrayList();
     
+    // ArrayList에 객체 주소 저장하기
+    Student s = new Student("홍길동", 20, false);
+    studentList.add(s);
+    studentList.add(new Student("임꺽정", 30, true));
+    studentList.add(new Student("유관순", 16, false));
     
+    // 현재 저장된 개수 알아내기
+    System.out.println(studentList.size());
+    
+    // 목록에서 값을 꺼내기
+    s = (Student)studentList.get(0);
+    System.out.println(s);
+    System.out.println(studentList.get(1));
+    System.out.println(studentList.get(2));
+    
+    // 만약 값이 저장되지 않은 index를 지정한다면? IndexOutOfBoundsException 오류!
+    System.out.println(studentList.get(3));
   }
 }
 

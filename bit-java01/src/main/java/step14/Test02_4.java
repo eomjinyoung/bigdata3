@@ -17,6 +17,14 @@ public class Test02_4 {
     String s4 = s3.replace("{name}", "임꺽정");
     System.out.println(s3);
     System.out.println(s4);
+    
+    System.out.println("----------------");
+    
+    String s5 = "abcdeakcijaucn";
+    String s6 = s5.replaceAll("a.c", "x");
+    System.out.println(s5);
+    System.out.println(s6);
+    
   }
 
 }
