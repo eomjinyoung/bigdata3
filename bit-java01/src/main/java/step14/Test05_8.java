@@ -7,8 +7,8 @@
  * => Map의 특징?
  *    1) 값을 저장하거나 꺼낼 때 key를 사용한다.
  *       그래서 값을 꺼내는 속도가 빠르다.
- *    2) HashMap은 key와 value에 null을 사용할 수 없고,
- *       Hashtable은 key와 value에 null을 사용할 수 있다.
+ *    2) HashMap은 key와 value에 null을 사용할 수 있고,
+ *       Hashtable은 key와 value에 null을 사용할 수 없다.
  *       
  */
 package step14;
@@ -81,7 +81,11 @@ public class Test05_8 {
     studentMap.put("s02", new Student("임꺽정", 30, true));
     studentMap.put("s03", new Student("유관순", 16, false));
     
+    // HashMap은 value에 null을 저장할 수 있다.
     studentMap.put("s04", null);
+    
+    // HashMap은 null을 key로 사용할 수 있다.
+    studentMap.put(null, new Student("안중근", 20, true));
     
     // 현재 저장된 개수 알아내기
     System.out.println(studentMap.size());
@@ -92,6 +96,8 @@ public class Test05_8 {
     System.out.println(studentMap.get("s01"));
     System.out.println(studentMap.get("s02"));
     System.out.println(studentMap.get("s03"));
+    System.out.println(studentMap.get("s04"));
+    System.out.println(studentMap.get(null));
   }
 }
 
