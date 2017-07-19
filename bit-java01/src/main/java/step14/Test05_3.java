@@ -55,6 +55,10 @@ public class Test05_3 {
     for (int i = 0; i < studentList.size(); i++) {
       System.out.println(studentList.get(i));
     }
+    
+    // 같은 주소가 저장되었음을 증명!
+    if (studentList.get(1) == studentList.get(5))
+      System.out.println("같은 주소를 중복하여 저장할 수 있다!");
   }
 }
 
