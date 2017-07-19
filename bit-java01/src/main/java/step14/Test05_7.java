@@ -67,7 +67,7 @@ public class Test05_7 {
     studentSet.add(new Student("유관순", 16, false));
     
     // 같은 값을 갖는 인스턴스를 저장한다면?
-    // => hashCode()와 equals()의 리턴 값을 통하여 같은 값을 갖는지 검사한다.
+    // => hashCode()와 equals()의 리턴 값을 통하여 같은 값을 갖는지 판단한다.
     // => Student 클래스에서 같은 값인 경우 
     //    같은 해시 값을 갖도록 hashCode()를 오버라이딩 했기 때문에,
     //    true를 리턴하도록 equals()를 오버라이딩 했기 때문에
