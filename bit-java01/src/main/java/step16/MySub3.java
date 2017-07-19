@@ -3,9 +3,9 @@
  */
 package step16;
 
-import step16.ex1.MyClass3;
+import step16.other.MyClass3;
 
-public class Test03 extends MyClass3 {
+public class MySub3 extends MyClass3 {
   // final이 붙은 메서드는 오버라이딩 할 수 없다.
   /*
   public void m1() { 

@@ -1,5 +1,5 @@
 // 오버라이딩 불가 메서드 만들기
-package step16.ex1;
+package step16.other;
 
 // 메서드 앞에 final을 붙이면 오버라이딩 할 수 없다.
 public class MyClass3 {
