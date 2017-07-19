@@ -51,7 +51,10 @@ public class Test05_4 {
     System.out.println("----------------------------");
     
     // 목록에서 값을 꺼내기
-    
+    Object[] list = studentSet.toArray();
+    for (int i = 0; i < list.length; i++) {
+      System.out.println(list[i]);
+    }
   }
 }
 
