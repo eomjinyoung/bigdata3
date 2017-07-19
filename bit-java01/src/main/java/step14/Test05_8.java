@@ -87,6 +87,10 @@ public class Test05_8 {
     // HashMap은 null을 key로 사용할 수 있다.
     studentMap.put(null, new Student("안중근", 20, true));
     
+    // 같은 key를 사용해서 값을 저장하면, 기존에 저장된 값이 바뀐다.
+    studentMap.put("s02", new Student("신채호", 40, false));
+    studentMap.put(null, new Student("윤봉길", 30, false));
+    
     // 현재 저장된 개수 알아내기
     System.out.println(studentMap.size());
     System.out.println("----------------------------");
