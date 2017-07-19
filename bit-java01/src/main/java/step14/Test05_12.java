@@ -26,7 +26,6 @@ public class Test05_12 {
       this.no = no;
     }
 
-    @Override
     public String toString() {
       return "MyKey [name=" + name + ", no=" + no + "]";
     }
@@ -41,6 +40,17 @@ public class Test05_12 {
     map.put(k1, "홍길동");
     
     System.out.println(map.get(k1));
+    
+    // 원본 key가 아니라 같은 값을 갖는 다른 key를 사용하여 값을 꺼내려 한다면?
+    // => 안타깝게도 값을 찾지 못한다.
+    // => 이유? HashMap은 k1과 k2가 같은 값을 갖고 있다고 판단하지 않는다.
+    // => HashMap은 k1과 k2가 같은 값인지 아닌지 어떻게 판단하는가?
+    //    hashCode()의 리턴 값과 equals()의 리턴값을 가지고 판단한다.
+    //    MyKey 클래스는 hashCode()와 equals()를 오버라이딩 하지 않았기 때문에
+    //    Object로부터 상속 받은 hashCode()와 equals()를 사용한다.
+    //    그래서 같은 값을 갖고 있음에도 불구하고 다른 값을 갖고 있다고 평가되는 것이다.
+    // = 해결책? Test05_13.java를 확인하라!
+    System.out.println(map.get(k2)); // null
     
   }
 }
