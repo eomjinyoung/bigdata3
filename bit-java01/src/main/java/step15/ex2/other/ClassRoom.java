@@ -1,4 +1,4 @@
-package step15.ex2;
+package step15.ex2.other;
 
 public class ClassRoom {
   String name;
