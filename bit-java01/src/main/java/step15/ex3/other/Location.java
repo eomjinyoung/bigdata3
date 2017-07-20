@@ -14,6 +14,33 @@ public class Location {
     this.rooms = new ArrayList();
   }
   
+  public void addRoom(String name, int capacity) {
+    
+  }
   
+  
+  class Room {
+    String name;
+    int capacity;
+    
+    public Room(String name, int capacity) {
+      super();
+      this.name = name;
+      this.capacity = capacity;
+    }
+    
+    public void print() {
+      System.out.printf("%s(%d명)\n", this.name, this.capacity);
+    }
+  }
   
 }
+
+
+
+
+
+
+
+
+
