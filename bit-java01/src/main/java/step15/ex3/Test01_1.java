@@ -8,7 +8,7 @@
  */
 package step15.ex3;
 
-public class Test03_1 {
+public class Test01_1 {
   
   // non-static nested class = member inner class 
   class MyClass {
