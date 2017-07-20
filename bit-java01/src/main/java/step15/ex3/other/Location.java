@@ -15,9 +15,19 @@ public class Location {
   }
   
   public void addRoom(String name, int capacity) {
-    
+    this.rooms.add(new Room(name, capacity));
   }
   
+  public void print() {
+    System.out.printf("지역: %s\n", this.name);
+    System.out.printf("전화: %s\n", this.tel);
+    System.out.println("교실:");
+    
+    for (int i = 0; i < rooms.size(); i++) {
+      Room room = (Room)rooms.get(i);
+      room.print();
+    }
+  }
   
   class Room {
     String name;
