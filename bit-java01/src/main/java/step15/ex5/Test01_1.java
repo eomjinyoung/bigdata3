@@ -1,4 +1,4 @@
-/* anonymous inner class
+/* anonymous class
  * => 인스턴스를 딱 한 개만 만들어 사용할 경우 적합한 문법이다.
  * => 클래스를 정의하자마자 즉시 인스턴스를 생성한다.
  * => 문법
@@ -11,7 +11,7 @@
  */
 package step15.ex5;
 
-public class Test05_1 {
+public class Test01_1 {
   public static void main(String[] args) {
     // anonymous(익명) inner class
     // => 클래스의 이름이 없기 때문에 클래스를 정의하는 동시에 인스턴스를 생성해야 한다.
