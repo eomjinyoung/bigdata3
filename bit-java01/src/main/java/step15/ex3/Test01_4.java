@@ -22,10 +22,7 @@ public class Test01_4 {
     loc2.addRoom("403", 25);
     loc2.addRoom("701", 25);
     loc2.addRoom("702", 25);
-    loc2.addRoom("703", 25);
-    loc2.addRoom("704", 25);
-    loc2.addRoom("705", 35);
-    loc2.addRoom("706", 35);
+
     
     loc1.print();
     System.out.println("-------------------");
