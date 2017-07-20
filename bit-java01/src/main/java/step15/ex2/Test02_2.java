@@ -1,11 +1,18 @@
-/* static nested class 응용 I - 상수를 사용하기 전
+/* static nested class 응용 I - 상수를 사용 
  */
 package step15.ex2;
 
 public class Test02_2 {
+  // 분류코드를 쉽게 이해할 수 있도록 상수 변수로 정의한다.
+  public static final int COMPUTER_PERI_MOUSE = 1001;
+  public static final int COMPUTER_PERI_KEYBOARD = 1002;
+  public static final int COMPUTER_ACC_MOUSEPAD = 2001;
+  public static final int COMPUTER_ACC_KEYBOARDPAD = 2002;
+  public static final int COMPUTER_ACC_KEYBOARDSKIN = 2003;
+  public static final int COMPUTER_MAIN_CPU = 3001;
+  public static final int COMPUTER_MAIN_RAM= 3002;
+  public static final int COMPUTER_MAIN_VGA = 3003;
   
-  // 제품의 정보를 저장할 static nested class
-  // => 주로 Test02_2 클래스에서만 사용할 것이라 가정하자! 
   static class Product {
     String title;
     String maker;
@@ -22,21 +29,21 @@ public class Test02_2 {
   }
   
   public static void main(String[] args) {
-    Product p1 = new Product("마우스1", "비트", 1001, 20000);
-    Product p2 = new Product("마우스2", "비트", 1001, 25000);
-    Product p3 = new Product("키보드", "비트", 1002, 20000);
-    Product p4 = new Product("마우스패드", "비트", 2001, 20000);
-    Product p5 = new Product("키보드손받침대", "비트", 2002, 20000);
-    Product p6 = new Product("인텔CPU1", "비트", 3001, 20000);
-    Product p7 = new Product("삼성램4G", "비트", 3002, 20000);
-    Product p8 = new Product("AMD그래픽1", "비트", 3003, 20000);
-    Product p9 = new Product("키보드스킨", "비트", 2003, 20000);
-    /* 제품을 등록할 때 분류 코드를 입력하였다.
-     * 분류 코드는 주로 숫자로 입력한다.
-     * 문제는 코드를 작성한 후 일정 시간이 지나면,
-     * 해당 숫자가 어떤 분류인지 알아채기 쉽지 않다는 것이다.
-     * 왜? 숫자에 부여된 의미를 암기하기 쉽지 않다.
-     * 해결책? 숫자에 의미를 부여하라! 어떻게? 변수명을 활용하라! 즉 상수 변수를 활용하라!
+    Product p1 = new Product("마우스1", "비트", COMPUTER_PERI_MOUSE, 20000);
+    Product p2 = new Product("마우스2", "비트", COMPUTER_PERI_MOUSE, 25000);
+    Product p3 = new Product("키보드", "비트", COMPUTER_PERI_KEYBOARD, 20000);
+    Product p4 = new Product("마우스패드", "비트", COMPUTER_ACC_MOUSEPAD, 20000);
+    Product p5 = new Product("키보드손받침대", "비트", COMPUTER_ACC_KEYBOARDPAD, 20000);
+    Product p6 = new Product("인텔CPU1", "비트", COMPUTER_MAIN_CPU, 20000);
+    Product p7 = new Product("삼성램4G", "비트", COMPUTER_MAIN_RAM, 20000);
+    Product p8 = new Product("AMD그래픽1", "비트", COMPUTER_MAIN_VGA, 20000);
+    Product p9 = new Product("키보드스킨", "비트", COMPUTER_ACC_KEYBOARDSKIN, 20000);
+    
+    /* 분류 코드를 작성할 때 숫자를 직접 사용하는 것 보다
+     * 위와 같이 변수에 저장해 놓고 변수를 사용하는 것이 
+     * 코드를 읽고 이해하는데 더 도움이 된다. 더 쉽다.
+     * 이것이 상수를 사용하는 이유다!
+     * ip 주소 대신 도메인 이름을 사용하는 이유와 같다!
      */
   }
 }

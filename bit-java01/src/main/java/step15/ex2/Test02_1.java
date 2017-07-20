@@ -1,40 +1,43 @@
-/* Top level nested class = static nested class
- * => nested class
- *    - 패키지에 소속된 클래스가 아니라 다른 클래스에 소속된 클래스를 말한다.
- *    - 특정 클래스 안에서만 사용될 클래스인 경우 굳이 패키지 멤버로 만들지 않고 
- *      유지보수에 좋도록 사용 범위를 좁히기 위해 만든 문법이다.
- *    - 즉 특정 클래스 안에서만 사용되는 클래스라면
- *      특정 클래스 안에서만 사용되도록 가둬두면
- *      유지보수할 때 편하다. 
- * => static nested class?
- *    - nested class(중첩클래스) 중에서 static이 붙은 중첩 클래스를 말한다.
- *    - 변수나 메서드를 한 클래스 안에 두기에는 변수나 메서드가 너무 많이 관리하기가 불편하고, 
- *      그렇다고 따로 클래스로 뽑아내기에는 너무 많이 클래스를 만들어야 할 것 같을 때,
- *      static nested class 문법을 사용한다.
- *    - 특히 계층 구조로 변수나 메서드를 관리하고 싶을 때 사용한다.
- *    - 보통 상수 값을 정의할 때 많이 사용한다.
- *    - 계층구조하면 기억해야 할 키워드 "OGNL".
- * OGNL?
- * => Object Graph Navigation Language의 약자이다.
- * => 클래스(또는 객체)에 소속된 변수나 메서드를 사용할 때 파일의 경로처럼 단순하게 표현하는 문법
- *    예) 파일을 가리킬 때 다음과 같이 슬래시를 이용하여 파일의 위치를 가리킨다.
- *       c:/workspace/java01/src/main/java/Hello.java
- *    예) 객체의 변수나 메서드도 위와 같이 표현하면 편할 것이다.
- *       student.photo.filename
- *       book.press.name 
- *  
+/* static nested class 응용 I - 상수를 사용하기 전
  */
 package step15.ex2;
 
 public class Test02_1 {
   
-  // static nested class = top level nested class 
-  static class MyClass {
+  // 제품의 정보를 저장할 static nested class
+  // => 주로 Test02_1 클래스에서만 사용할 것이라 가정하자! 
+  static class Product {
+    String title;
+    String maker;
+    int category;
+    int price;
     
+    public Product(String title, String maker, int category, int price) {
+      super();
+      this.title = title;
+      this.maker = maker;
+      this.category = category;
+      this.price = price;
+    }
   }
   
   public static void main(String[] args) {
-    
+    Product p1 = new Product("마우스1", "비트", 1001, 20000);
+    Product p2 = new Product("마우스2", "비트", 1001, 25000);
+    Product p3 = new Product("키보드", "비트", 1002, 20000);
+    Product p4 = new Product("마우스패드", "비트", 2001, 20000);
+    Product p5 = new Product("키보드손받침대", "비트", 2002, 20000);
+    Product p6 = new Product("인텔CPU1", "비트", 3001, 20000);
+    Product p7 = new Product("삼성램4G", "비트", 3002, 20000);
+    Product p8 = new Product("AMD그래픽1", "비트", 3003, 20000);
+    Product p9 = new Product("키보드스킨", "비트", 2003, 20000);
+    /* 제품을 등록할 때 분류 코드를 입력하였다.
+     * 분류 코드는 주로 숫자로 입력한다.
+     * 문제는 코드를 작성한 후 일정 시간이 지나면,
+     * 해당 숫자가 어떤 분류인지 알아채기 쉽지 않다는 것이다.
+     * 왜? 숫자에 부여된 의미를 암기하기 쉽지 않다.
+     * 해결책? 숫자에 의미를 부여하라! 어떻게? 변수명을 활용하라! 즉 상수 변수를 활용하라!
+     */
   }
 }
 
