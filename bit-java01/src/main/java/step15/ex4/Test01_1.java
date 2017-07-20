@@ -1,4 +1,4 @@
-/* local inner class
+/* local class
  * => 메서드 안에 선언된 중첩 클래스.
  * => 특정 메서드에서만 사용되는 클래스는 그 메서드 안에 선언하는 것이 
  *    유지보수에 좋다.
@@ -13,9 +13,9 @@
  */
 package step15.ex4;
 
-public class Test04_1 {
+public class Test01_1 {
   public static void main(String[] args) {
-    // local inner class 
+    // local class 
     class MyClass {
       
     }
