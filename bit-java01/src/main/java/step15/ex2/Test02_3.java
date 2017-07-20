@@ -1,11 +1,18 @@
-/* static nested class 응용 I - 상수를 사용하기 전
+/* static nested class 응용 I - 상수를 사용 
  */
 package step15.ex2;
 
-public class Test02_2 {
+public class Test02_3 {
+  // 분류코드를 쉽게 이해할 수 있도록 상수 변수로 정의한다.
+  public static final int COMPUTER_PERI_MOUSE = 1001;
+  public static final int COMPUTER_PERI_KEYBOARD = 1002;
+  public static final int COMPUTER_ACC_MOUSEPAD = 2001;
+  public static final int COMPUTER_ACC_KEYBOARDPAD = 2002;
+  public static final int COMPUTER_ACC_KEYBOARDSKIN = 2003;
+  public static final int COMPUTER_MAIN_CPU = 3001;
+  public static final int COMPUTER_MAIN_RAM= 3002;
+  public static final int COMPUTER_MAIN_VGA = 3003;
   
-  // 제품의 정보를 저장할 static nested class
-  // => 주로 Test02_2 클래스에서만 사용할 것이라 가정하자! 
   static class Product {
     String title;
     String maker;
