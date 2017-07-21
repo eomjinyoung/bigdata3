@@ -8,7 +8,7 @@
  *    Tico와 Truck의 공통점을 추출하여 Car 클래스를 만든다.
  *    Car와 ElectCar의 공통점을 찾아 Vehicle 클래스를 만든다. 
  */
-package step17.ex2;
+package step17.ex3;
 
 public class Test01 {
 
