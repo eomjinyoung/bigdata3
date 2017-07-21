@@ -1,6 +1,6 @@
 package step18.ex2;
 
-public class Tico extends Car {
+public class Tico extends Engine {
   public void run() {
     System.out.println("사방사방 달린다.");
   }

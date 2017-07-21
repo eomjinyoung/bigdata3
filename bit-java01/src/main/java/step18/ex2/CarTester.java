@@ -5,7 +5,7 @@ package step18.ex2;
 
 public class CarTester {
 
-  public static void test(Car car) {
+  public static void test(Engine car) {
     // 자동차를 파라미터로 받아서 시험한다.
     car.start();
     car.run();

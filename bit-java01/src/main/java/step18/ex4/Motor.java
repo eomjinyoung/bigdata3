@@ -1,6 +1,6 @@
-package step18.ex2;
+package step18.ex4;
 
-public abstract class ElectMotor {
+public abstract class Motor {
   int kwh;
   
   public void on() {

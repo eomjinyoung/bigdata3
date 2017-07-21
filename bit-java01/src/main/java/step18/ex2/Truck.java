@@ -1,6 +1,6 @@
 package step18.ex2;
 
-public class Truck extends Car {
+public class Truck extends Engine {
   public void run() {
     System.out.println("덜그럭 덜그럭 달린다.");
   }

@@ -1,7 +1,7 @@
 /* Car를 테스트하는 객체
  * 
  */
-package step18.ex1;
+package step18.ex4;
 
 public class CarTester {
 

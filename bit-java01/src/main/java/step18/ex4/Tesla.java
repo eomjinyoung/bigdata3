@@ -1,4 +1,4 @@
-package step18.ex1;
+package step18.ex4;
 
 public class Tesla extends Motor {
   int capacity;

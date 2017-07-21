@@ -1,6 +1,6 @@
 package step18.ex3;
 
-public abstract class Car {
+public abstract class Engine {
   int capacity;
   int fuelType;
   int liter;

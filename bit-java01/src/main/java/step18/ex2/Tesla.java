@@ -1,6 +1,6 @@
 package step18.ex2;
 
-public class Tesla extends ElectMotor {
+public class Tesla extends Motor {
   int capacity;
   int km;
   

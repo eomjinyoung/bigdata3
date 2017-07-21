@@ -1,4 +1,4 @@
-package step18.ex1;
+package step18.ex4;
 
 public class Truck extends Engine {
   public void run() {
