@@ -18,6 +18,12 @@ public class Tico extends Car {
     System.out.println("속도가 높으면 기어를 올리고 속도가 낮으면 기어를 낮춘다.");
     System.out.println("쌩쌩 달린다.");
   }
+  
+  // 상속 받은 start()를 가솔린차에 맞게 재정의 한다. => overring
+  public void start() {
+    System.out.println("연료를 분사한다.");
+    System.out.println("점화플러그에 전기를 흘려 연료에 불을 붙인다.");
+  }
 }
 
 
