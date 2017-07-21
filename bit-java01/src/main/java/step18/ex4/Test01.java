@@ -15,7 +15,10 @@
  *    - 그리고 CarTester.test() 메서드도 특정 클래스에 종속되지 말고,
  *      Car 규칙에 따라 만든 클래스라면 어떤 객체든지 테스트할 수 있게 만든다.
  *     
- *    
+ * => 인터페이스를 사용하는 이유?
+ *    CarTester.test() 메서드의 경우, 
+ *    파라미터를 클래스로 지정하는 것 보다 훨씬 더 많은 대상을 파라미터 값을 받을 수 있기 때문이다.
+ *    클래스 보다 인터페이스가 더 유연하다.   
  */
 package step18.ex4;
 
@@ -25,23 +28,19 @@ public class Test01 {
     // 자동차 객체 준비
     Tico tico = new Tico();
     Truck truck = new Truck();
-    
-    // 자동차 시험소에서 자동차를 테스트한다.
-    CarTester.test(tico);
-    CarTester.test(truck);
-    
-    // 전기 자동차를 준비
     Tesla tesla = new Tesla();
     
-    // 자동차 시험소에서 전기 자동차르르 테스트 할 수 있을까?
-    // test(Car) 메서드는 오직 Car 객체만 파라미터로 받을 수 있다.
-    // Tesla 객체는 Car의 서브 클래스가 아니다. 
-    // 그래서 현재의 CarTester에서는 Tesla를 테스트 할 수 없다.
-    //CarTester.test(tesla); // 컴파일 오류!
+    // 자동차 시험소에서 자동차를 테스트한다.
+    // CarTester는 Engine을 갖고 있든 Motor을 갖고 있든 상관하지 않는다.
+    // 다만 Car 규칙에 따라 만든 클래스여야 한다.
+    // 그런 객체라면 언제든 테스트를 할 수 있다.
+    // Tico, Truck과 Tesla가 비록 서로 부모 클래스가 다르더라도
+    // 모두 Car 인터페이스(규칙)를 구현했기(따라 만들었기) 때문에
+    // CarTester.test() 메서드에 파라미터 값으로 넘길 수 있다.
+    CarTester.test(tico); // OK!
+    CarTester.test(truck); // OK!
+    CarTester.test(tesla); // OK!
     
-    // 새로운 요구!
-    // => CarTester가 ElectCar를 상속 받은 전기 자동차도 테스트 하고 싶다!
-    // => 해결책? 다음 패키지를 보라!
   }
 
 }
