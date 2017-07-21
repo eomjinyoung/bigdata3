@@ -1,6 +1,7 @@
 /* 인터페이스 사용 전 
- * => CarTester에서 Tesla도 테스트하게 만들어 보자!
+ * => CarTester에서 Tesla 자동차도 테스트하게 만들어 보자!
  * => 방법?
+ *    - CarTester에 Tesla를 테스트할 수 있는 메서드를 추가하기.
  * 
  */
 package step18.ex2;
@@ -19,15 +20,9 @@ public class Test01 {
     // 전기 자동차를 준비
     Tesla tesla = new Tesla();
     
-    // 자동차 시험소에서 전기 자동차르르 테스트 할 수 있을까?
-    // test(Car) 메서드는 오직 Car 객체만 파라미터로 받을 수 있다.
-    // Tesla 객체는 Car의 서브 클래스가 아니다. 
-    // 그래서 현재의 CarTester에서는 Tesla를 테스트 할 수 없다.
-    //CarTester.test(tesla); // 컴파일 오류!
-    
-    // 새로운 요구!
-    // => CarTester가 ElectCar를 상속 받은 전기 자동차도 테스트 하고 싶다!
-    // => 해결책? 다음 패키지를 보라!
+    // 이제는 자동차 시험소에서 전기 자동차를 테스트 할 수 있다.
+    // 어떻게? 전기 자동차를 테스트할 수 있는 메서드를 추가했기 때문이다.
+    CarTester.test(tesla);
   }
 
 }

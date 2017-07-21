@@ -13,4 +13,16 @@ public class CarTester {
     System.out.println("-----------------------");
   }
 
+  // 파라미터는 다르더라도 같은 기능을 수행하는 메서드에 대해서
+  // 같은 이름을 부여함으로써 프로그래밍을 일관성 있게 작성하게 하는 문법 => "overloading
+  public static void test(Tesla car) {
+    car.on();
+    car.run();
+    car.off();
+    System.out.println("-----------------------");
+  }
 }
+
+
+
+
