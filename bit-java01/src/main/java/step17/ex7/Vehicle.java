@@ -10,15 +10,6 @@ public abstract class Vehicle {
     System.out.println("속도를 늦춘다.");
   }
 
-  // 서브 클래스에서 어차피 오버라이딩 할 메서드라면 수퍼 클래스에서 구현하지 말라!
-  // 구현하지 말라? 
-  // => 메서드는 선언하되 몸체를 만들지 말라는 의미다.
-  // => 몸체가 없는 메서드는 abstract로 선언해야 한다.
-  public abstract void start();
-  public abstract void stop();
-  public abstract void run();
-  
-  
   public int getCapacity() {
     return capacity;
   }
