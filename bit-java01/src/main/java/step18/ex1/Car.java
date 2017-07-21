@@ -5,8 +5,14 @@ public abstract class Car {
   int fuelType;
   int liter;
   
-  public abstract void start();
-  public abstract void stop();
+  public void start() {
+    System.out.println("모터를 돌려 시동을 건다.");    
+  }
+  
+  public void stop() {
+    System.out.println("연료를 끊어 시동을 끈다.");
+  }
+  
   public abstract void run();
   
   public void breaking() {
