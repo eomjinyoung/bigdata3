@@ -11,7 +11,7 @@ public class Car extends Vehicle {
   }
   
   public void stop() {
-    System.out.println("시동 끈다!");
+    System.out.println("연료를 차단하여 시동 끈다!");
   }
   
   public void run() {
