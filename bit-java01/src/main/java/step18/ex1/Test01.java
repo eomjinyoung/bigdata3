@@ -17,9 +17,9 @@ public class Test01 {
     // 전기 자동차를 준비
     Tesla tesla = new Tesla();
     
-    // 자동차 시험소에서 전기 자동차르르 테스트 할 수 있을까?
+    // 자동차 시험소에서 전기 자동차를 테스트 할 수 있을까?
     // test(Engine) 메서드는 오직 Engine을 갖고 있는 객체만 파라미터로 받을 수 있다.
-    // Tesla 객체는 Car의 서브 클래스가 아니다. 
+    // Tesla 객체는 Engine의 서브 클래스가 아니다. Motor의 서브 클래스이다. 
     // 그래서 현재의 CarTester에서는 Tesla를 테스트 할 수 없다.
     //CarTester.test(tesla); // 컴파일 오류!
     
