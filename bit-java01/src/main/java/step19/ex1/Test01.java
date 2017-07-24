@@ -25,6 +25,9 @@ public class Test01 {
     
     // 출력한다.
     for (Apple apple : appleList) {
+      // println() 메서드는 파라미터 값으로 String이 넘어오지 않으면
+      // 내부적으로 파라미터로 받은 객체에 대해 toString()을 호출하여
+      // 그 리턴 값을 출력한다.
       System.out.println(apple);
     }
     
