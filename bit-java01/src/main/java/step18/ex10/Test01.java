@@ -14,9 +14,10 @@ public class Test01 {
     Factory factory = new Factory();
     
     // 사과를 골라주는 객체를 준비한다.
-    MySelector selector1 = new MySelector();
+    // MySelector는 Selector 인터페이스를 구현했기 때문에 레퍼런스에 저장할 수 있다.
+    Selector selector1 = new MySelector();
     
-    // 공장에서 생산한 사과를 산다.
+    // 공장에서 생산한 사과 중에서 Selector가 골라준 사과를 산다.
     ArrayList apples = factory.buy(selector1); 
 
     // 사과를 출력한다.
