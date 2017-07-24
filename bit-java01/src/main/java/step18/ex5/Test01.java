@@ -12,7 +12,12 @@ public class Test01 {
     // 인터페이스 레퍼런스 변수는 그 인터페이스를 구현한 클래스의 객체를 가리킬 수 있다.
     A obj;
     
-    obj = new A(); // 인터페이스는 객체를 만들 수 없다! 컴파일 오류!
+    //obj = new A(); // 인터페이스는 객체를 만들 수 없다! 컴파일 오류!
+    obj = new Concrete(); // Concrete는 A 인터페이스를 구현하였다. OK!
+    //obj = new Concrete2(); // Concrete2는 추상 클래스이다. 인스턴스를 생성할 수 없다. 컴파일 오류!
+    obj = new Concrete3(); // Concrete3도 A 인터페이스를 구현하였다. OK!
+    
+    obj = new ChildConcrete(); // 당연히 자식 클래스의 객체도 가리킬 수 있다. OK!
   }
 
 }
