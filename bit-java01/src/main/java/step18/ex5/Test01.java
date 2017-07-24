@@ -9,6 +9,18 @@ package step18.ex5;
 public class Test01 {
   
   public static void main(String[] args) {
+    // 인터페이스 레퍼런스 변수는 그 인터페이스를 구현한 클래스의 객체를 가리킬 수 있다.
+    A obj;
+    
+    obj = new A(); // 인터페이스는 객체를 만들 수 없다! 컴파일 오류!
   }
 
 }
+
+
+
+
+
+
+
+
