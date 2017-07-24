@@ -1,13 +1,11 @@
 package step19.ex2;
 
-public class Grape {
+public class Grape extends Fruit {
   String type;
-  int weight;
   
   public Grape(String type, int weight) {
-    super();
+    super(weight);
     this.type = type;
-    this.weight = weight;
   }
 
   public String toString() {

@@ -1,13 +1,11 @@
 package step19.ex2;
 
-public class Pear {
+public class Pear extends Fruit {
   String local;
-  int weight;
   
   public Pear(String local, int weight) {
-    super();
+    super(weight);
     this.local = local;
-    this.weight = weight;
   }
   
   public String toString() {
