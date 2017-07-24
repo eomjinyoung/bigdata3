@@ -13,8 +13,11 @@ public class Test01 {
     // 공장 객체를 준비한다.
     Factory factory = new Factory();
     
+    // 사과를 골라주는 객체를 준비한다.
+    MySelector selector1 = new MySelector();
+    
     // 공장에서 생산한 사과를 산다.
-    ArrayList apples = factory.buy(); 
+    ArrayList apples = factory.buy(selector1); 
 
     // 사과를 출력한다.
     for (Object apple : apples) {
