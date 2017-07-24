@@ -41,8 +41,23 @@ public class Test01 {
       System.out.println(fruit);
     }
     
+    // 새로 추가한 Keyboard를 상자에 담고 싶다.
+    // => FruitBox는 Fruit 객체만 담기 때문에 
+    //    Fruit의 서브 클래스가 아닌 Keyboard를 담을 수 없다.
+    // => 해결책?
+    //    과일도 담고 키보드도 담으려면 두 클래스의 공통 조상을 가지면 된다.
+    //    그리고 그 공통 조상을 담을 상자를 만들면 된다.
+    //    다음 패키지를 보라!
+    //fruitBox.add(new Keyboard(87, "기계식")); // 컴파일 오류!
     
 
   }
 
 }
+
+
+
+
+
+
+
