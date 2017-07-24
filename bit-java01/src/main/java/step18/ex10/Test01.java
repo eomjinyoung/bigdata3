@@ -15,10 +15,12 @@ public class Test01 {
     
     // 사과를 골라주는 객체를 준비한다.
     // MySelector는 Selector 인터페이스를 구현했기 때문에 레퍼런스에 저장할 수 있다.
-    Selector selector1 = new MySelector();
+    Selector selector1 = new MySelector(); // red 사과
+    Selector selector2 = new MySelector2();// 150g 이상되는 사과
+    Selector selector3 = new MySelector3();// red + 150g
     
     // 공장에서 생산한 사과 중에서 Selector가 골라준 사과를 산다.
-    ArrayList apples = factory.buy(selector1); 
+    ArrayList apples = factory.buy(selector3); 
 
     // 사과를 출력한다.
     for (Object apple : apples) {
