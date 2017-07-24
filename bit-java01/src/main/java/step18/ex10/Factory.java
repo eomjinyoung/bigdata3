@@ -25,4 +25,22 @@ public class Factory {
     list.add(new Apple("green", 160));
     list.add(new Apple("green", 200));
   }
+  
+  public ArrayList buy() {
+    ArrayList box = new ArrayList();
+    
+    for (Object apple : list) {
+      box.add(apple);
+    }
+    
+    return box;
+  }
 }
+
+
+
+
+
+
+
+
