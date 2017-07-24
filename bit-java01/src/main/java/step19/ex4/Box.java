@@ -1,5 +1,7 @@
 package step19.ex4;
 
+import java.lang.reflect.Array;
+
 /* Box 클래스가 어떤 타입의 값을 저장하고 꺼낼 지 클래스에 변수를 선언한다.
  * class 클래스명<타입을저장할변수> {
  *   ...
@@ -25,12 +27,22 @@ public class Box<T> {
     return 0;
   }
   
-  public T[] toArray() {
-    T[] newArr = (T[]) new Object[cursor];
+  public T[] toArray(Class<T> type) {
+    // 사용자가 지정한 타입의 배열을 만들어야 하는 경우 
+    // 그 타입의 실제 정보를 알아야 한다. 
+    // 그래서 toArray() 이 메서드의 파라미터로 타입의 정보를 받도록 하였다.
+    // 배열을 만들 때도 new 연산자 대신, 배열을 만들어주는 Array 클래스를 사용하였다.
+    T[] newArr = (T[]) Array.newInstance(type, cursor);
     for (int i = 0; i < cursor; i++) {
       newArr[i] = arr[i];
     }
     return newArr;
   }
 }
+
+
+
+
+
+
 
