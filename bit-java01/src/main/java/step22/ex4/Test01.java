@@ -1,7 +1,7 @@
 /* 예외 처리 문법 사용 전
  * => 메서드의 리턴 값으로 예외 상황을 알리고 받아야 한다.
  */
-package step22.ex3;
+package step22.ex4;
 
 public class Test01 {
 

@@ -1,4 +1,4 @@
-package step22.ex3;
+package step22.ex4;
 
 public class Calculator {
   public static int plus(int a, int b) {
