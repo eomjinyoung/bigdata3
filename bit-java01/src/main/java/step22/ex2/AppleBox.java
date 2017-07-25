@@ -1,4 +1,4 @@
-package step22.ex1;
+package step22.ex2;
 
 public class AppleBox {
   Apple[] arr;
@@ -8,14 +8,14 @@ public class AppleBox {
     arr = new Apple[size];
   }
   
-  public int add(Apple apple) {
-    // 예외처리 문법이 없던 시절에는
-    // 다음과 같이 예외 상황이 발생했을 때 리턴 값으로 호출자에게 
-    // 예외 상황에 대해 알렸다.
+  // 예외 처리 문법을 사용하여 예외 상황을 호출자에게 보다 쉽게 알릴 수 있다.
+  // 오류에 대한 정보도 호출자에게 전달할 수 있다.
+  // 단 메서드에 어떤 예외가 호출자에게 전달될 수 있는지 선언해야 한다.
+  public void add(Apple apple) throws Exception {
+    // 예외 상황이 발생하면 예외 정보를 Exception 객체에 담아 호출자에게 전달한다.
     if (cursor == arr.length) // 상자에 더이상 담을 수 없다면 -1을 리턴.
-      return -1;
+      throw new Exception("상자가 꽉 찼습니다."); 
     arr[cursor++] = apple; // 현재 커서가 가리키는 곳에 사과를 담고 커서의 위치를 증가시킨다.
-    return 0;
   }
   
   public Apple[] toArray() {
