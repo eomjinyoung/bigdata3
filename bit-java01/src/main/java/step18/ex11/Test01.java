@@ -13,7 +13,11 @@
  *    기존 규칙(인터페이스)에 새 항목(메서드)를 추가하되,
  *    기존 클래스를 바꾸지 않아도 되게 만드는 것이다.
  * => Car 인터페이스에 전조등을 켜는 메서드를 추가해 보자!
- *  
+ *    Sonata 클래스처럼 새로 추가하는 클래스는 변경된 규칙에 따라 작성하면 되지만,
+ *    기존 클래스들은 다른 조치가 필요하다.
+ * => Car 인터페이스에 새로 추가하는 메서드는 추상 메서드로 만들지 말고
+ *    구현하라! 그러면 기존 클래스는 영향 받지 않을 것이다.
+ *    대신 메서드 앞에 반드시 default를 붙여야 한다. 
  */
 package step18.ex11;
 
@@ -24,17 +28,22 @@ public class Test01 {
     Tico tico = new Tico();
     Truck truck = new Truck();
     Tesla tesla = new Tesla();
+    Sonata sonata = new Sonata();
     
-    // 자동차 시험소에서 자동차를 테스트한다.
-    // CarTester는 Engine을 갖고 있든 Motor을 갖고 있든 상관하지 않는다.
-    // 다만 Car 규칙에 따라 만든 클래스여야 한다.
-    // 그런 객체라면 언제든 테스트를 할 수 있다.
-    // Tico, Truck과 Tesla가 비록 서로 부모 클래스가 다르더라도
-    // 모두 Car 인터페이스(규칙)를 구현했기(따라 만들었기) 때문에
-    // CarTester.test() 메서드에 파라미터 값으로 넘길 수 있다.
-    CarTester.test(tico); // OK!
-    CarTester.test(truck); // OK!
-    CarTester.test(tesla); // OK!
+    // 기존 클래스들도 새로 규칙에 추가한 메서드를 가지고 있다.
+    tico.lightOn();
+    truck.lightOn();
+    tesla.lightOn();
+    
+    // 물론 변경된 규칙에 따라 만든 클래스는 당연히 규칙에 추가된 메서드를 갖고 있다.
+    sonata.lightOn();
+    
+    // 인터페이스에 선언된 스태틱 메서드를 클래스의 스태틱 메서드처럼 사용할 수 있다.
+    System.out.println(Car.version());
+    
+    // 인터페이스에 선언된 스태틱 메서드는 클래스의 스태틱 메서드와 달리
+    // 인스턴스를 통해 사용할 수 없다.
+    //sonata.version(); // 컴파일 오류!
     
   }
 

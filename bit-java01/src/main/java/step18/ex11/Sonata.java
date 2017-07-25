@@ -1,5 +1,7 @@
 package step18.ex11;
 
+// 새로 추가하는 자동차는 변경한 Car 규칙에 따라 만들면 된다.
+// 문제는 기존 자동차이다.
 public class Sonata extends Engine implements Car {
   
   int kwh;
