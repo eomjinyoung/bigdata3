@@ -5,7 +5,7 @@ package step21.ex2;
 
 import java.lang.reflect.Method;
 
-public class Test01 {
+public class Test02 {
 
   public static void main(String[] args) throws Exception {
     Class<?> clazz = Class.forName("step21.ex1.Truck");
