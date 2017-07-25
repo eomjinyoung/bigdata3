@@ -13,7 +13,7 @@ public class Calculator {
     return a * b;
   }
   
-  public int divide(int a, int b) {
+  public static int divide(int a, int b) {
     // 0으로 나눌 수 없기에
     // 만약 파라미터 값이 0이면 호출자에게 나누기를 할 수 없다고 알려주자!
     return a / b;

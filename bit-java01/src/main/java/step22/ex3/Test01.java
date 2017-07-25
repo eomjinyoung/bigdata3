@@ -6,13 +6,13 @@ package step22.ex3;
 public class Test01 {
 
   public static void main(String[] args) {
-    Calculator calc = new Calculator();
-    calc.plus(10);
-    calc.minus(2);
-    calc.multiple(3);
-    calc.divide(0);
+    System.out.println(Calculator.plus(10, 20));
+    System.out.println(Calculator.minus(10, 20));
+    System.out.println(Calculator.multiple(10, 20));
+    System.out.println(Calculator.divide(20, 10));
     
-    System.out.println(calc.result);
+    // 만약 0으로 나눈다면
+    System.out.println(Calculator.divide(20, 0));
 
   }
 
