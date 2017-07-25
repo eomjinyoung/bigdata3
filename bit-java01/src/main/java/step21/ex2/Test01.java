@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 public class Test01 {
 
   public static void main(String[] args) throws Exception {
-    Class<?> clazz = Class.forName("step21.ex1.Truck");
+    Class<?> clazz = Class.forName("step21.ex2.Truck");
     
     // 클래스의 모든 메서드 목록 알아내기
     // => 상속 받은 메서드까지 알아내기
