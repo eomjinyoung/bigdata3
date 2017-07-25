@@ -24,7 +24,9 @@ package step20.ex1;
 public class Test01 {
   
   // 부모 클래스(수퍼 클래스)인 Object에서 상속 받은 toString() 메서드를 재정의하자!
-  public String toStrung() {
+  @Override // 컴파일러에 알려주는 대표적인 애노테이션이다.
+            // => 오버라이드를 제대로 하는 지 검사하는 명령이다.
+  public String toString() {
     return "Hello!";
   }
   
