@@ -1,21 +1,30 @@
 package step22.ex3;
 
 public class Calculator {
-  int result;
-  
-  public void plus(int value) {
-    this.result += value;
+  public static int plus(int a, int b) {
+    return a + b;
   }
   
-  public void minus(int value) {
-    this.result -= value;
+  public static int minus(int a, int b) {
+    return a - b;
   }
   
-  public void multiple(int value) {
-    this.result *= value;
+  public static int multiple(int a, int b) {
+    return a * b;
   }
   
-  public void divide(int value) {
-    this.result /= value;
+  public int divide(int a, int b) {
+    // 0으로 나눌 수 없기에
+    // 만약 파라미터 값이 0이면 호출자에게 나누기를 할 수 없다고 알려주자!
+    return a / b;
   }
 }
+
+
+
+
+
+
+
+
+
