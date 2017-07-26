@@ -16,9 +16,12 @@ import java.io.IOException;
 public class Test05_3 {
 
   public static void main(String[] args) {
+    
+    FileReader in = null;
+    
     try {
       // 1) 프로젝트 폴더에서 Hello.c 파일을 읽어 들이는 도구를 준비한다.
-      FileReader in = new FileReader("Hello.c");
+      in = new FileReader("Hello.c");
       
       // 2) 한 문자씩 읽어서 출력한다.
       int ch;
@@ -34,6 +37,19 @@ public class Test05_3 {
       
     } catch (IOException e) {
       System.out.println("한 문자를 읽다가 오류가 발생했습니다.");
+      
+    } finally {
+      
+      try {
+        in.close(); // try 블록은 finally 블록과 다른 블록이기 때문에
+                    // try 블록에서 선언된 변수는 finally 블록에서 사용할 수 없다.
+        // close() 메서드도 IOException 예외를 던지기 때문에 try ~ catch ~ 로 처리해야 한다.
+      } catch (IOException e) {
+        // 단 close()를 호출하다가(파일을 사용한 후 닫다가) 오류가 발생한 경우에는
+        // 개발자가 특별히 뭔가 처리할 게 없다. 
+        // catch 블록을 그냥 빈채로 둬라!
+      } 
+                  
     }
   }
 
