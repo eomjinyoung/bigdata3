@@ -23,7 +23,9 @@ public class Test03_2 {
   }
   
   public static void main(String[] args) throws Exception {
-    m1("Hello!");
+    //m1("Hello!");
+    //m1(null);
+    m1("");
   }
 
 }
