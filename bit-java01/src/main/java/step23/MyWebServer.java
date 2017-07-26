@@ -33,7 +33,7 @@ public class MyWebServer {
       out.println("Content-Type: text/html; charset=utf-8");
       out.println("Connection: close");
       out.println();
-      out.print("<html><body><h1>엄진영:Hello</h1></body></html>");
+      out.print("<html><body><h1 style='color:blue;'>엄진영:Hello</h1></body></html>");
       
     } catch (Exception e) {
       e.printStackTrace();
