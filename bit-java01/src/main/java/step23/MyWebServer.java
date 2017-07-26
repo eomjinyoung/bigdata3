@@ -29,13 +29,11 @@ public class MyWebServer {
       }
       
       // 웹브라우저로 데이터를 보낸다.
-      System.out.println("웹 브라우저로 데이터를 보내기:");
-      System.out.println("------------------------------------------------------");
       out.println("HTTP/1.1 200 OK");
-      out.println("Content-Type: text/plain; charset=utf-8");
+      out.println("Content-Type: text/html; charset=utf-8");
       out.println("Connection: close");
       out.println();
-      out.print("Hello!");
+      out.print("<html><body><h1>엄진영:Hello</h1></body></html>");
       
     } catch (Exception e) {
       e.printStackTrace();
@@ -45,6 +43,7 @@ public class MyWebServer {
   public static void main(String[] args) {
     try {
       ServerSocket ss = new ServerSocket(80);
+      System.out.println("웹서버 실행 중...");
       
       while (true) {
         // 클라이언트가 연결을 시도하면 서버에서 승인한다.
