@@ -15,9 +15,13 @@ public class MyWebServer {
       PrintWriter out = new PrintWriter(socket.getOutputStream());
     ) {
       // 웹브라우저가 보낸 데이터를 모두 읽는다.
+      System.out.println("웹 브라우저에서 보낸 데이터를 읽기:");
+      System.out.println("------------------------------------------------------");
       while (true) {
         try {
           String line = in.nextLine();
+          if (line.isEmpty())
+            break;
           System.out.println(line);
         } catch (Exception e) {
           break; // 웹브라우저가 보낸 데이터를 모두 읽으면 예외가 발생한다. 그러면 while 문을 나간다.
@@ -25,6 +29,8 @@ public class MyWebServer {
       }
       
       // 웹브라우저로 데이터를 보낸다.
+      System.out.println("웹 브라우저로 데이터를 보내기:");
+      System.out.println("------------------------------------------------------");
       out.println("HTTP/1.1 200 OK");
       out.println("Content-Type: text/plain; charset=utf-8");
       out.println("Connection: close");
