@@ -1,6 +1,7 @@
-/* 예외 처리 문법: finally 블록 사용법 IV
- * => Test05_3.java의 코드를 좀 더 이해하기 쉽도록 주석을 제거하였다.
- *    그냥 참조하라!
+/* 예외 처리 문법: try-with-resource 사용 전
+ * => 객체를 사용한 후 항상 자원을 해제시켜야 하는 경우,
+ *    다음 코드와 같이 finally 블록을 이용하여 자원을 해제시켰다.
+ *    
  *    
  */
 package step22.ex5;
@@ -9,12 +10,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Test05_4 {
+public class Test06_1 {
 
   public static void main(String[] args) {
-    
     FileReader in = null;
-    
     try {
       in = new FileReader("Hello.c");
       int ch;
