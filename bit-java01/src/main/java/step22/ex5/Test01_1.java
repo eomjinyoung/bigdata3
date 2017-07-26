@@ -11,7 +11,7 @@
  */
 package step22.ex5;
 
-public class Test01 {
+public class Test01_1 {
 
   public static void main(String[] args) {
     // 예외 처리를 하지 않는다면, 예외 상황을 만났을 때 즉시 실행을 멈춘다.

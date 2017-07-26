@@ -16,7 +16,7 @@
  */
 package step22.ex5;
 
-public class Test02 {
+public class Test01_2 {
 
   static void m1() throws Throwable { // 어떤 예외를 전달할지 설정
     throw new Throwable("예외 발생!"); // 예외 상황을 호출자에게 전달
