@@ -34,9 +34,20 @@ public class Test04_1 {
   }
   
   public static void main(String[] args) throws Exception {
-    //m1("Hello!");
-    //m1(null);
-    m1("");
+    try {
+      //m1("Hello!");
+      //m1(null);
+      m1("");
+      
+    } catch (NullPointerException e) {
+      System.out.println("null 값입니다."); 
+      
+    } catch (EmptyStringException e) {
+      System.out.println("빈 문자열입니다."); 
+    }
+    
+    // 또 다른 작업
+    System.out.println("예외가 발생하더라도 또 다른 작업은 실행되어야 한다.");
   }
 
 }
