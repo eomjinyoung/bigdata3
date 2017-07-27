@@ -18,7 +18,7 @@ public class MyWebServer {
     this.port = port;
   }
 
-  static void processRequest(Socket socket) {
+  private void processRequest(Socket socket) {
     try (
       Scanner in = new Scanner(socket.getInputStream());
       PrintWriter out = new PrintWriter(socket.getOutputStream());
@@ -58,7 +58,7 @@ public class MyWebServer {
   
   public void run() {
     try {
-      ServerSocket ss = new ServerSocket(80);
+      ServerSocket ss = new ServerSocket(this.port);
       
       while (true) {
         Socket socket = ss.accept(); 
@@ -71,9 +71,15 @@ public class MyWebServer {
   
   public static void main(String[] args) {
     MyWebServer webServer = new MyWebServer(80);
-    
     System.out.println("웹서버 실행 중...");
     
+    webServer.run();
   }
 
 }
+
+
+
+
+
+
