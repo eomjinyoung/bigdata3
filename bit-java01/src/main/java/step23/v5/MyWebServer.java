@@ -57,7 +57,7 @@ public class MyWebServer {
       
       if (servlet != null) {
         Map<String,String> paramMap = getRequestParameters(requestUri);
-        servlet.service(out);
+        servlet.service(paramMap, out);
       } else { 
         responseError(out);
       }
