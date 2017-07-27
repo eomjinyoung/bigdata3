@@ -3,8 +3,7 @@ package step23.v7;
 import java.io.PrintWriter;
 import java.util.Map;
 
-// MyWebServer가 사용할 클래스이기 때문에
-// 반드시 Servlet 규칙(인터페이스)에 따라 작성하라!
+@WebServlet("/hello")
 public class Hello implements Servlet {
 
   @Override

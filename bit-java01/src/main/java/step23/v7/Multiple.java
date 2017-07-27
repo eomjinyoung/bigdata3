@@ -3,6 +3,7 @@ package step23.v7;
 import java.io.PrintWriter;
 import java.util.Map;
 
+@WebServlet("/multiple")
 public class Multiple implements Servlet {
 
   @Override

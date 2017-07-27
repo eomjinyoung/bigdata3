@@ -3,6 +3,7 @@ package step23.v7;
 import java.io.PrintWriter;
 import java.util.Map;
 
+@WebServlet("/plus")
 public class Plus implements Servlet {
 
   @Override
