@@ -60,13 +60,9 @@ public class MyWebServer {
       // => 클래스의 인스턴스를 생성한다.
       Servlet servlet = (Servlet)clazz.newInstance();
       
-      
+      // => URL 값으로 인스턴스를 서블릿 보관소에 저장한다.
+      servletMap.put(anno.value(), servlet);
     }
-    
-    
-    // 3) 애노테이션의 URL 값을 꺼낸다.
-    
-    // 4) URL 값으로 인스턴스를 서블릿 보관소에 저장한다.
   }
 
   private void processRequest(Socket socket) {
@@ -155,10 +151,14 @@ public class MyWebServer {
   }
   
   public static void main(String[] args) {
-    MyWebServer webServer = new MyWebServer(80);
-    System.out.println("웹서버 실행 중...");
-    
-    webServer.run();
+    try {
+      MyWebServer webServer = new MyWebServer(80);
+      System.out.println("웹서버 실행 중...");
+      webServer.run();
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
 }
