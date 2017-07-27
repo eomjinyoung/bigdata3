@@ -7,7 +7,11 @@
  *    1) Servlet 인터페이스를 구현한 Plus 클래스를 만든다.
  *    2) 웹브라우저가 보낸 a와 b값을 꺼내서 더하기를 한 후 그 결과를 출력한다.
  *    3) Plus 클래스의 인스턴스를 만들어 서블릿 보관소에 등록한다.
- *    
+ * => 연습
+ *    - 다음 URL을 처리하는 Multiple 클래스를 작성하고 실행해보라!
+ *      http://localhost/multiple?a=20&b=30
+ *    - 결과는,
+ *      20 * 30 = 600
  */
 package step23.v6;
 
@@ -26,6 +30,7 @@ public class MyWebServer {
     this.port = port;
     servletMap.put("/hello", new Hello());
     servletMap.put("/plus", new Plus());
+    servletMap.put("/multiple", new Multiple());
   }
 
   private void processRequest(Socket socket) {
