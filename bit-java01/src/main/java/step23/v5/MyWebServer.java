@@ -43,7 +43,13 @@ public class MyWebServer {
             String requestUri = line.split(" ")[1]; // "/plus?a=200&b=300" 
             
             // requestUri에서 ?를 기준으로 값을 추출한다.
-            String[] values = requestUri.split("?"); // {"/plus", "a=200&b=300"} 
+            // 정규표현식에서 ?문자는 특별한 명령을 수행한다.
+            // 우리는 단지 ?문자로 문자열을 자르기를 원한다.
+            // 그렇다면 정규표현시에서 ?를 단순한 문자로 인식하게 만들어야 한다.
+            // "\?"를 작성하면 된다.
+            // 문제는 자바에서 \를 문자로 표현하려면 \를 앞에 한 개 더 붙여야 한다.
+            // 그래서 최종적으로 "\\?"라는 값이 만들어진 것이다.
+            String[] values = requestUri.split("\\?"); // {"/plus", "a=200&b=300"} 
             
             // requestUri 문자열에서 ? 앞에 있는 값은 
             url = values[0]; // "/plus" 
@@ -58,6 +64,7 @@ public class MyWebServer {
           if (line.isEmpty())
             break;
         } catch (Exception e) {
+          e.printStackTrace();
           break; 
         }
       }
