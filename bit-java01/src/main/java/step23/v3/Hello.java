@@ -8,7 +8,7 @@ public class Hello implements Servlet {
 
   @Override
   public void service(PrintWriter out) throws Exception {
-    out.println("Hello!!!!!");
+    out.print("<html><body><h1 style='color:blue;'>엄진영:Hello2</h1></body></html>");
   }
   
 }
