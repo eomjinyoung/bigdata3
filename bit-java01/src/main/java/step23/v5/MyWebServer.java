@@ -30,13 +30,28 @@ public class MyWebServer {
       PrintWriter out = new PrintWriter(socket.getOutputStream());
     ) {
       boolean isRequestLine = true;
-      String requestUri = null;
+      String url = null; // 서블릿 URL이다.
+      String queryString = null; // ? 다음에 오는 데이터 
+
       while (true) {
         try {
           String line = in.nextLine();
           
           if (isRequestLine) {
-            requestUri = line.split(" ")[1];
+            // 예) GET /plus?a=200&b=300 HTTP/1.1
+            // => request-line에서 requestUrl를 추출한다.
+            String requestUri = line.split(" ")[1]; // "/plus?a=200&b=300" 
+            
+            // requestUri에서 ?를 기준으로 값을 추출한다.
+            String[] values = requestUri.split("?"); // {"/plus", "a=200&b=300"} 
+            
+            // requestUri 문자열에서 ? 앞에 있는 값은 
+            url = values[0]; // "/plus" 
+            
+            if (values.length > 1) { // ? 문자가 있을 때 
+              queryString = values[1]; // "a=200&b=300" 
+            }
+            
             isRequestLine = false;
           }
           
@@ -53,10 +68,10 @@ public class MyWebServer {
       out.println("Connection: close");
       out.println();
 
-      Servlet servlet = servletMap.get(requestUri);
+      Servlet servlet = servletMap.get(url); // "/plus" 
       
       if (servlet != null) {
-        Map<String,String> paramMap = getRequestParameters(requestUri);
+        Map<String,String> paramMap = getRequestParameters(queryString); // "a=200&b=300"
         servlet.service(paramMap, out);
       } else { 
         responseError(out);
@@ -67,17 +82,14 @@ public class MyWebServer {
     }
   }
   
-  private Map<String,String> getRequestParameters(String url) {
+  private Map<String,String> getRequestParameters(String queryString) {
     HashMap<String,String> paramMap = new HashMap<>();
         
-    // 예) url: "/plus?a=200&b=300"
-    // url을 "?"로 짜른다. => {"/plus", "a=200&b=300"}
-    String[] values = url.split("?");
-    if (values.length == 1)
+    if (queryString == null)
       return paramMap;
     
     // "a=200&b=300"을 "&"로 짜른다. => {"a=200", "b=300"}
-    String[] params = values[1].split("&");
+    String[] params = queryString.split("&");
     for (String param : params) {
       String[] kv = param.split("=");
       paramMap.put(kv[0], kv[1]);
