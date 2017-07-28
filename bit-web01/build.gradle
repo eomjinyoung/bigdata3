@@ -1,0 +1,32 @@
+apply plugin: "java"
+apply plugin: "eclipse-wtp"
+apply plugin: "war"
+
+compileJava {
+  options.encoding = 'UTF-8'  // 자바 소스 파일의 인코딩
+  sourceCompatibility = '1.8' // 소스 코드의 자바 버전 
+}
+
+eclipse {
+  wtp {
+    facet {
+      facet name: 'jst.web', version: '3.1'  // 사용할 서블릿 API 버전  
+      facet name: 'jst.java', version: '1.8' // 웹 프로그램 개발할 때 사용한 자바 버전
+    }
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+}
+
+
+
+
+
+
+
