@@ -50,6 +50,24 @@
  *       apply plugin: 'war'
  *    3) 명령창에서 "gradle eclipse" 명령을 실행하여 이클립스 관련 설정 파일을 갱신한다. 
  *    4) 프로젝트를 "refresh" 한다.
+ * => @WebServlet 애노테이션을 붙인다.
+ * 
+ * 서버에 서블릿 클래스를 배포하기
+ * => 당장 새로 웹 애플리케이션을 만들지 말고 톰캣 서버에 존재하는 웹 애플리케이션에 배치해보자! 
+ * => 톰캣홈\webapps\examples\WEB-INF\classes 디렉토리 밑에 
+ *    step24 폴더를 만든다.
+ *    그리고 step24 폴더 안에 Hello.class 파일을 둔다.
+ * => 톰캣홈\webapps\examples\WEB-INF\web.xml 파일에서 다음 태그의 속성 값을 변경하라.
+ *    <web-app 
+ *     ...
+       metadata-complete="false"> 
+ *    
+ * 톰캣 서버 실행
+ * => 톰캣홈\bin\startup.bat 파일을 실행한다.
+ * 
+ * Hello 서블릿 클래스 실행하기
+ * => 웹 브라우저 주소 창에 다음과 같이 입력하여 Hello 클래스를 실행한다.
+ *    http://localhost:8080/examples/hello
  */
 package step24;
 
@@ -61,7 +79,9 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
 
+@WebServlet("/hello")
 public class Hello implements Servlet {
 
   @Override
@@ -82,7 +102,7 @@ public class Hello implements Servlet {
     PrintWriter out = res.getWriter();
     out.println("<html>");
     out.println("<body>");
-    out.println("<h1>안녕하세요</h1>");
+    out.println("<h1>Hello</h1>");
     out.println("</body>");
     out.println("</html>");
   }
