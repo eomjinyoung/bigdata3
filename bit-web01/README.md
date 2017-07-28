@@ -62,7 +62,7 @@ dependencies {
 ```
 
 ## 이클립스의 웹 프로젝트와 관련된 설정 파일을 만든다.
-다음 Gradle 명령을 실행하라!
+다음 Gradle 명령을 실행하라! 명령을 실행한 다음에 반드시 이클립스에서 프로젝트를 "refresh" 하라!
 
 ```
 > gradle eclipse
