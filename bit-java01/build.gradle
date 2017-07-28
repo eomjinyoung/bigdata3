@@ -4,6 +4,7 @@
 // 1) 빌드에 필요한 플러그인 장착
 apply plugin: "java"  // 자바 관련 작업을 수행할 Gradle 플러그인
 apply plugin: "eclipse" // 이클립스 관련 작업을 수행할 Gradle 플러그인
+apply plugin: "war" // 웹 애플리케이션 관련 작업을 수행할 Gradle 플러그인
 
 compileJava {
   // 소스 파일의 인코딩을 알려준다.
@@ -28,6 +29,11 @@ repositories {
 dependencies {
   // compile : 빌드 및 배포 시 사용하는 라이브러리
   compile group: 'org.reflections', name: 'reflections', version: '0.9.11'
+  
+  // providedCompile: 컴파일할 때만 사용하고 서버에 배포할 때는 포함시키지 않는다.
+  // 왜? 서버에는 이미 이 파일이 있다.
+  providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+  
 }
 
 
