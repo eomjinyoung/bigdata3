@@ -81,6 +81,10 @@ public class Hello implements Servlet {
     
     PrintWriter out = res.getWriter();
     out.println("<html>");
+    out.println("<body>");
+    out.println("<h1>안녕하세요</h1>");
+    out.println("</body>");
+    out.println("</html>");
   }
 
   @Override
