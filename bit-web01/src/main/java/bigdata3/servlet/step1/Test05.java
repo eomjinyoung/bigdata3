@@ -28,6 +28,11 @@ public class Test05 extends HttpServlet {
     // 파라미터 HttpServletRequest와 HttpServletResponse에는 
     // 기존에 ServletRequest와 ServletResponse에 없던 기능이 들어 있다.
     
+    // HTTP 요청 프로토콜에서 헤더 값 알아내기
+    System.out.println(req.getHeader("User-Agent"));
+    
+    // 웹브라우저가 요청한 명령을 알아내기
+    System.out.println(req.getMethod());
   }
 
 }

@@ -41,6 +41,10 @@ public class Test04 extends HttpServlet {
   @Override
   public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
     System.out.println("step1.Test04.service()");
+    
+    // ServletRequest와 ServletResponse에는 HTTP 프로토콜을 다루는 메서드가 없다.
+    //System.out.println(req.getHeader("User-Agent")); // 컴파일 오류! 
+    //System.out.println(req.getMethod()); // 컴파일 오류!
   }
 
 }
