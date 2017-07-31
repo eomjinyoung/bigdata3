@@ -37,6 +37,31 @@ public class Test05 extends HttpServlet {
 
 }
 
+/* Servlet 인터페이스
+ * - init()
+ * - service()
+ * - destroy()
+ * - getServletInfo()
+ * - getServletConfig()
+ * 
+ * GenericServlet 추상클래스
+ * - init() {...}
+ * - service() <== 추상 메서드 
+ * - destroy() {...}
+ * - getServletInfo() {...}
+ * - getServletConfig() {...}
+ * 
+ * HttpServlet 추상클래스
+ * - service(ServletRequest, ServletResponse) {...}
+ * - service(HttpServletRequest, HttpServletResponse) {...} // 오버로딩 메서드
+ * - doGet(HttpServletRequest, HttpServletResponse) {...}
+ * - doPost(HttpServletRequest, HttpServletResponse) {...}
+ * - doHead(HttpServletRequest, HttpServletResponse) {...}
+ * - doPut(HttpServletRequest, HttpServletResponse) {...}
+ * - doDelete(HttpServletRequest, HttpServletResponse) {...}
+ * ...
+ */
+
 
 
 
