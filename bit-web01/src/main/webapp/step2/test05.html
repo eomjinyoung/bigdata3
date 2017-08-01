@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>GET 요청</h1>
+form 태그에 method 속성을 작성하지 않으면 기본이 "get"이다.
+<form action="test05">
+이름 <input type="text" name="name"><br>
+나이 <input type="text" name="age"><br>
+<button>전송</button>
+</form>
+<hr>
+<h1>GET 요청</h1>
+"get" 요청은 URL에 데이터를 붙여 보낸다.
+<form action="test05" method="get">
+이름 <input type="text" name="name"><br>
+나이 <input type="text" name="age"><br>
+<button>전송</button>
+</form>
+<hr>
+<h1>POST 요청</h1>
+"post" 요청은 message-body 부분에 데이터를 붙여 보낸다.
+<form action="test05" method="post">
+이름 <input type="text" name="name"><br>
+나이 <input type="text" name="age"><br>
+<button>전송</button>
+</form>
+</body>
+</html>
+
+
+
+
