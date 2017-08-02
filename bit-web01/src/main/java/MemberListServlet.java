@@ -1,5 +1,6 @@
-/* 회원 관리 만들기 : 회원 목록 출력하기 II
- * => 회원 목록을 HTML로 만들어 출력한다.
+/* 회원 관리 만들기 : 회원 목록 출력
+ * => 포워드 적용: 오류 처리 부분
+ * => 인클루딩 적용: 웹페이지의 꼬리말 출력 부분
  */
 
 
@@ -8,13 +9,14 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.GenericServlet;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(urlPatterns="/member/Servlet02")
-public class Servlet02  extends GenericServlet {
+@WebServlet(urlPatterns="/member/list")
+public class MemberListServlet  extends GenericServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
@@ -39,13 +41,18 @@ public class Servlet02  extends GenericServlet {
     out.println("<head>");
     out.println("  <meta charset='UTF-8'>");
     out.println("  <title>회원관리</title>");
+    
+    // including 기법을 사용하여 각 페이지에 기본 CSS 스타일 코드를 출력한다.
+    RequestDispatcher rd = req.getRequestDispatcher("/style/core");
+    rd.include(req, res);
+    
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>회원 목록</h1>");
     
     String jdbcDriver = "com.mysql.jdbc.Driver";
-    String jdbcUrl = "jdbc:mysql://localhost:3306/studydb";
-    String jdbcUsername = "study";
+    String jdbcUrl = "jdbc:mysql://localhost:3306/webappdb";
+    String jdbcUsername = "webapp";
     String jdbcPassword = "1111";
     
     try {
@@ -67,7 +74,7 @@ public class Servlet02  extends GenericServlet {
       for (Member m : list) {
         out.println("<tr>");
         out.printf("  <td>%d</td>\n", m.getNo());
-        out.printf("  <td><a href='Servlet04?no=%d'>%s</a></td>\n", m.getNo(), m.getName());
+        out.printf("  <td><a href='detail?no=%d'>%s</a></td>\n", m.getNo(), m.getName());
         out.printf("  <td>%s</td>\n", m.getTel());
         out.printf("  <td>%s</td>\n", m.getEmail());
         out.println("</tr>");
@@ -77,11 +84,14 @@ public class Servlet02  extends GenericServlet {
       out.println("</table>");
       
     } catch (Exception e) {
-      out.println("오류 발생!");
-      out.println("<pre>");
-      e.printStackTrace(out);
-      out.println("</pre>");
+      rd = req.getRequestDispatcher("/error");
+      rd.forward(req, res);
+      return;
     }
+    
+    // including 기법을 사용하여 각 페이지마다 꼬리말을 붙인다.
+    rd = req.getRequestDispatcher("/footer");
+    rd.include(req, res);
     
     out.println("</body>");
     out.println("</html>");
