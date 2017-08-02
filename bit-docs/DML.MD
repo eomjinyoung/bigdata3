@@ -34,12 +34,12 @@ insert into croom(name) values('강남402호');
 insert into croom(name) values('강남403호');
 
 -- 회원 데이터 입력
-insert into memb(email,pwd,name,tel) values('user01@test.com','1111','홍길동','1111-1111');
-insert into memb(email,pwd,name,tel) values('user02@test.com','1111','홍길동2','1111-1112');
-insert into memb(email,pwd,name,tel) values('user03@test.com','1111','홍길동3','1111-1113');
+insert into memb(email,pwd,name,tel) values('study01@test.com','1111','홍길동','1111-1111');
+insert into memb(email,pwd,name,tel) values('study02@test.com','1111','홍길동2','1111-1112');
+insert into memb(email,pwd,name,tel) values('study03@test.com','1111','홍길동3','1111-1113');
 
 -- 'email' 컬럼은 유니크이기 때문에 중복 값을 넣을 수 없다.
-insert into memb(email,pwd,name,tel) values('user03@test.com','1111','홍길동4','1111-1114'); -- 오류!
+insert into memb(email,pwd,name,tel) values('study03@test.com','1111','홍길동4','1111-1114'); -- 오류!
 ~~~~
 
 ### 자식 테이블의 값 입력
@@ -56,7 +56,7 @@ values(2, 'http://www.hong2.com', 'http://www.facebook.com/hong', null); -- 홍�
 
 -- 학생 데이터 입력
 insert into stud(sno,work,lst_schl) 
-values(3, 'Y', '학사'); -- 홍길동3
+values(31, 'Y', '학사'); -- 홍길동3
 ~~~~
 
 ## 데이터 변경하기
@@ -70,15 +70,15 @@ update 테이블명 set 컬럼명=값, 컬럼명=값, ... where 조건;
 -- 회원 데이터 이름 변경
 update memb set name='임꺽정' where mno=2; -- 홍길동2 > 임꺽정
 
--- 모든 사용자의 암호를 '0000'으로 초기화 시킨다.
-update memb set pwd='0000'; -- 조건이 없으면 모든 데이터에 변경을 적용한다.
+-- 모든 사용자의 암호를 '111'으로 초기화 시킨다.
+update memb set pwd='1111'; -- 조건이 없으면 모든 데이터에 변경을 적용한다.
 
 -- 암호는 입력 값 그대로 저장하면 안되고 반드시 암호화시켜서 저장해야 한다.
 -- MySQL DBMS에게 제공해주는 password() 함수를 사용하라!
-update memb set pwd=password('0000');
+update memb set pwd=password('1111');
 
 -- 사용자 인증 
-select * from memb where email='user01@test.com' and pwd=password('0000');
+select * from memb where email='user01@test.com' and pwd=password('1111');
 ~~~~
 
 ## 데이터 삭제하기
@@ -107,11 +107,11 @@ values('user08@test.com',password('0000'),'홍길동8','1111-1111');
 insert into memb(email,pwd,name,tel) 
 values('user09@test.com',password('0000'),'홍길동9','1111-1111');
 
--- '홍길동9' 삭제
-delete from memb where name='홍길동9';
+-- '홍길동' 삭제
+delete from memb where name='홍길동';
 
--- 이메일이 'user08'로 시작하는 회원, 이름이 '7'로 끝나는 회원을 삭제
-delete from memb where email like 'user08%' or name like '%7';
+-- 이메일이 'study'로 시작하는 회원이면서 이름이 '3'로 끝나는 회원을 삭제
+delete from memb where email like 'study%' and name like '%3';
 ~~~~
 
 

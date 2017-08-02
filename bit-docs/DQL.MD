@@ -119,7 +119,7 @@ where 조건1 조건2 조건3
 예: 강의료가 100만원 이하인 강의를 조회하라!
 ~~~~
 -- 출력결과: 강의번호, 강의명, 시작일, 종료일, 모집인원
-select lno, titl, sdt, edt, qty 
+select lno, titl, sdt, edt, qty, pric 
 from lect
 where pric <= 1000000;
 ~~~~
@@ -157,8 +157,13 @@ select lno, titl
 from lect
 where crmno=1 or crmno=2 or crmno=3 or crmno=4 or crmno=5;
 
+-- 서브 쿼리를 이용하여 강의장 이름을 출력하기
+select lno, titl, (select name from croom where crmno=l.crmno) room
+from lect l
+where crmno=1 or crmno=2 or crmno=3 or crmno=4 or crmno=5;
+
 -- 여러 값 중에 하나에 해당되는 지 검사하는 편리한 연산자 'in'
-select lno, titl
+select lno, titl, crmno
 from lect
 where crmno in (1, 2, 3, 4, 5);
 
@@ -191,14 +196,14 @@ where crmno not between 1 and 5;
 #### null 조회
 예: 트위터가 없는 강사(강사번호, 홈페이지)를 조회하라.
 ~~~~
-select tno, hmpg
+select tno, hmpg, twit
 from tcher
 where twit is null;
 ~~~~
 
 예: 페이스북이 있는 강사(강사번호, 트위터)를 조회하라.
 ~~~~
-select tno, twit
+select tno, twit, fcbk
 from tcher
 where fcbk is not null;
 ~~~~
@@ -341,11 +346,6 @@ select trim(both 'k' from 'kkkabckkkk');
 #### curdate() : 현재 날짜 조회
 ~~~~
 select curdate();
-~~~~
-
-#### curtime() : 현재 시간 조회
-~~~~
-select curtime();
 ~~~~
 
 #### curtime() : 현재 시간 조회

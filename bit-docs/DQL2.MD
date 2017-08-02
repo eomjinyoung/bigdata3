@@ -6,6 +6,8 @@ SQL 문법 중에서 데이터를 조회할 때 사용하는 문법2
 
 예: 각 강사가 강의한 과목의 개수를 조회하기
 ~~~~
+select tno, lno from tchr_lect;
+
 select tno, count(lno), max(lno), min(lno), sum(lno)
 from tchr_lect
 group by tno;
@@ -130,7 +132,7 @@ from lect left outer join croom on lect.crmno=croom.crmno;
 
 -- 강의실을 중심으로 왼쪽 테이블의 데이터를 연결할 때.
 -- 강의가 배정되지 않은 강의실을 포함해서 모든 강의실 데이터를 출력한다.
-select lno, titl, lect.crmno, name
+select lno, titl, croom.crmno, name
 from lect right outer join croom on lect.crmno=croom.crmno;
 
 -- [오라클에서는 지원, MySQL은 지원하지 않음]
@@ -160,12 +162,43 @@ from lect_appy
 	 left outer join lect on lect_appy.lno=lect.lno
 	 left outer join memb on lect_appy.sno=memb.mno;	 
 	 
-select lano, titl, sdt, edt, name, name
+select lano, titl, sdt, edt, memb.name, croom.name
 from lect_appy
 	 left outer join lect on lect_appy.lno=lect.lno
-	 left outer join memb on lect_appy.sno=memb.mno;		 
-	 
-select lano, titl, sdt, edt, croom.name, m2.name, mgr.posi, memb.name, memb.email
+	 left outer join memb on lect_appy.sno=memb.mno
+	 left outer join croom on lect.crmno=croom.crmno;		 
+	
+select lano, titl, sdt, edt, memb.name 'member name', croom.name 'classroom name'
+from lect_appy
+   left outer join lect on lect_appy.lno=lect.lno
+   left outer join memb on lect_appy.sno=memb.mno
+   left outer join croom on lect.crmno=croom.crmno; 
+
+select 
+   lano, 
+   titl, 
+   sdt, 
+   edt, 
+   memb.name memb_name, 
+   croom.name croom_name,
+   m2.name mgr_name
+from lect_appy
+   left outer join lect on lect_appy.lno=lect.lno
+   left outer join memb on lect_appy.sno=memb.mno
+   left outer join croom on lect.crmno=croom.crmno 
+   left outer join memb m2 on lect.mrno=m2.mno;
+   
+
+select 
+   lano, 
+   titl, 
+   sdt, 
+   edt, 
+   memb.name memb_name, 
+   croom.name croom_name,
+   m2.name mgr_name,
+   mgr.posi,
+   m2.email
 from lect_appy
 	 left outer join lect on lect_appy.lno=lect.lno
 	 left outer join memb on lect_appy.sno=memb.mno
