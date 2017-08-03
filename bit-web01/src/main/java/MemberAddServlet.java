@@ -1,18 +1,11 @@
 /* 회원 관리 만들기 : 회원 등록하기 
- * => GenericServlet을 상속 받는 대신 HttpServlet 을 상속 받아 서블릿을 만든다.
- * => 이점?
- *    Servlet 인터페이스에 선언된 service(ServletRequest, ServletResponse)를 
- *    직접 오버라이딩 하지 않고,
- *    HttpServlet 클래스에 추가된 service(HttpServletRequest, HttpServletResponse)를
- *    오버라이딩 한다.
- *    그러면 ServletRequest, ServletResponse를 
- *    HttpServletRequest와 HttpServletResponse로 형변환할 필요가 없다.
+ * => ServletRequest 보관소를 활용하여 예외 정보를 ErrorServlet과 공유하기
  */
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,24 +45,10 @@ public class MemberAddServlet extends HttpServlet {
       res.sendRedirect("list");
       
     } catch (Exception e) {
-      res.setContentType("text/html;charset=UTF-8");
-      PrintWriter out = res.getWriter();
-      
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("  <meta charset='UTF-8'>");
-      out.println("  <title>회원관리</title>");
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>회원 등록</h1>");
-      out.println("오류 발생!");
-      out.println("<pre>");
-      e.printStackTrace(out);
-      out.println("</pre>");
-      out.println("<a href='list'>목록</a>");
-      out.println("</body>");
-      out.println("</html>");
+      req.setAttribute("error", e); // ServletRequest 보관소에 오류 정보를 보관한다.
+      RequestDispatcher rd = req.getRequestDispatcher("/error");
+      rd.forward(req, res);
+      return;
     }
     
   }

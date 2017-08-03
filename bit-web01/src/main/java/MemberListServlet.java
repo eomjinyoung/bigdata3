@@ -1,6 +1,5 @@
 /* 회원 관리 만들기 : 회원 목록 출력
- * => 포워드 적용: 오류 처리 부분
- * => 인클루딩 적용: 웹페이지의 꼬리말 출력 부분
+ * => ServletRequest 보관소를 활용하여 예외 정보를 ErrorServlet과 공유하기
  */
 
 
@@ -51,8 +50,8 @@ public class MemberListServlet  extends GenericServlet {
     out.println("<h1>회원 목록</h1>");
     
     String jdbcDriver = "com.mysql.jdbc.Driver";
-    String jdbcUrl = "jdbc:mysql://localhost:3306/webappdb";
-    String jdbcUsername = "webapp";
+    String jdbcUrl = "jdbc:mysql://localhost:3306/studydb";
+    String jdbcUsername = "study";
     String jdbcPassword = "1111";
     
     try {
@@ -84,6 +83,7 @@ public class MemberListServlet  extends GenericServlet {
       out.println("</table>");
       
     } catch (Exception e) {
+      req.setAttribute("error", e); // ServletRequest 보관소에 오류 정보를 보관한다.
       rd = req.getRequestDispatcher("/error");
       rd.forward(req, res);
       return;

@@ -1,8 +1,5 @@
 /* 예외 처리 서블릿
- * => 다른 서블릿을 실행하는 중에 예외가 발생하면 이 서블릿으로 위임할 것이다.
- *    방법?
- *    포워딩을 사용하여 위임할 것이다.
- * => 포워딩을 활용하는 한 가지 예이다. 
+ * => ServletRequest 보관소를 활용하여 예외 정보를 ErrorServlet과 공유하기
  */
 
 
@@ -32,6 +29,15 @@ public class ErrorServlet  extends HttpServlet {
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>오류발생</h1>");
+
+    //ServletRequest에 보관된 오류 정보를 꺼낸다.
+    Exception e = (Exception)req.getAttribute("error");
+    if (e != null) {
+      out.println("<pre>");
+      e.printStackTrace(out);
+      out.println("</pre>");
+    }
+    
     out.println("</body>");
     out.println("</html>");
   }
