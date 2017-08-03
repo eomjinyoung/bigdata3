@@ -1,3 +1,4 @@
+package bigdata3.dao;
 /* 역할:
  * => memb 테이블의 데이터를 다루는 메서드를 모아둔 클래스이다.
  * => 출력하는 역할은 호출자에게 맡긴다.
@@ -13,6 +14,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import bigdata3.domain.Member;
+import bigdata3.util.DBConnectionPool;
 
 public class MemberDao {
   DBConnectionPool conPool;
@@ -112,7 +116,6 @@ public class MemberDao {
   
   public int update(Member member) throws Exception {
     Connection con = conPool.getConnection();
-    
     try (
       PreparedStatement stmt = con.prepareStatement(
           "update memb set name=?, tel=?, email=?, pwd=password(?) where mno=?");) {

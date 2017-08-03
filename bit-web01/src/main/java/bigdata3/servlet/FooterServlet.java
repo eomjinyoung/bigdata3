@@ -1,3 +1,4 @@
+package bigdata3.servlet;
 /* 꼬리말을 출력하는 서블릿
  * => 다른 서블릿과 협력하여 꼬리말을 출력하는 일을 한다. 
  */
@@ -21,7 +22,7 @@ public class FooterServlet  extends HttpServlet {
     PrintWriter out = res.getWriter();
     
     out.println("<div class='footer'>");
-    out.println("  <span>비트캠프</span> | ");
+    out.println("  <span>비트캠프 자바93기</span> | ");
     out.println("  <address>서울시 서초구 서초동 1327-15번지 비트아카데미 빌딩 3층</address> ");
     out.println("</div>");
   }

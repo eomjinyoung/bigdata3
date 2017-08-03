@@ -1,3 +1,4 @@
+package bigdata3.servlet;
 /* ServletContext 보관소에 저장된 MemberDao 이용하기 
  */
 
@@ -11,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import bigdata3.dao.MemberDao;
 
 @WebServlet(urlPatterns="/member/delete") 
 public class MemberDeleteServlet  extends HttpServlet {

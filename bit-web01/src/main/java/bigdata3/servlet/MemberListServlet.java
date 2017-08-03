@@ -1,3 +1,4 @@
+package bigdata3.servlet;
 /* ServletContext 보관소에 저장된 MemberDao 이용하기 
  */
 
@@ -11,6 +12,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
+
+import bigdata3.dao.MemberDao;
+import bigdata3.domain.Member;
 
 @WebServlet(urlPatterns="/member/list")
 public class MemberListServlet  extends GenericServlet {
