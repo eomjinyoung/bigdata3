@@ -1,7 +1,5 @@
-/* 회원 관리 만들기 : 회원 변경하기
- * => ServletRequest 보관소를 활용하여 예외 정보를 ErrorServlet과 공유하기
+/* ServletContext 보관소에 저장된 MemberDao 이용하기 
  */
-
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -45,17 +43,8 @@ public class MemberUpdateServlet  extends HttpServlet {
     out.println("<body>");
     out.println("<h1>회원 변경</h1>");
     
-    String jdbcDriver = "com.mysql.jdbc.Driver";
-    String jdbcUrl = "jdbc:mysql://localhost:3306/studydb";
-    String jdbcUsername = "study";
-    String jdbcPassword = "1111";
-    
     try {
-      DBConnectionPool conPool = new DBConnectionPool(
-          jdbcDriver, jdbcUrl, jdbcUsername, jdbcPassword);
-      
-      MemberDao memberDao = new MemberDao(conPool);
-      
+      MemberDao memberDao = (MemberDao)this.getServletContext().getAttribute("memberDao");
       int count = memberDao.update(m);
       if (count < 1) {
         throw new Exception(m.getNo() + "번 회원을 찾을 수 없습니다.");

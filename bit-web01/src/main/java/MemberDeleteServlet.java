@@ -1,5 +1,4 @@
-/* 회원 관리 만들기 : 회원 삭제하기
- * => ServletRequest 보관소를 활용하여 예외 정보를 ErrorServlet과 공유하기
+/* ServletContext 보관소에 저장된 MemberDao 이용하기 
  */
 
 
@@ -36,17 +35,8 @@ public class MemberDeleteServlet  extends HttpServlet {
     out.println("<body>");
     out.println("<h1>회원 삭제</h1>");
     
-    String jdbcDriver = "com.mysql.jdbc.Driver";
-    String jdbcUrl = "jdbc:mysql://localhost:3306/studydb";
-    String jdbcUsername = "study";
-    String jdbcPassword = "1111";
-    
     try {
-      DBConnectionPool conPool = new DBConnectionPool(
-          jdbcDriver, jdbcUrl, jdbcUsername, jdbcPassword);
-      
-      MemberDao memberDao = new MemberDao(conPool);
-      
+      MemberDao memberDao = (MemberDao)this.getServletContext().getAttribute("memberDao");      
       int no = Integer.parseInt(req.getParameter("no"));
       
       int count = memberDao.delete(no);
