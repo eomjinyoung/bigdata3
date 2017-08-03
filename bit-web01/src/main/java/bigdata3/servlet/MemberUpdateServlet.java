@@ -21,8 +21,6 @@ public class MemberUpdateServlet  extends HttpServlet {
 
   @Override
   public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-    req.setCharacterEncoding("UTF-8");
-    
     Member m = new Member();
     m.setNo(Integer.parseInt(req.getParameter("no")));
     m.setName(req.getParameter("name"));

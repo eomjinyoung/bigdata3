@@ -24,8 +24,6 @@ public class MemberAddServlet extends HttpServlet {
   // HttpServlet 클래스에 추가된 메서드이다.
   @Override
   public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-    req.setCharacterEncoding("UTF-8");
-    
     Member m = new Member();
     m.setName(req.getParameter("name"));
     m.setTel(req.getParameter("tel"));
