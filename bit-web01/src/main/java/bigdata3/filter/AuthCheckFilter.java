@@ -1,6 +1,6 @@
 package bigdata3.filter;
 
-/* 역할: 로그인 여부를 검사하는 필터 */
+/* 역할: HttpSession 객체에 로그인 회원 정보가 있는 검사한다. */
 
 import java.io.IOException;
 
@@ -28,16 +28,9 @@ public class AuthCheckFilter implements Filter {
     HttpServletRequest httpRequest = (HttpServletRequest) request;
     HttpServletResponse httpResponse = (HttpServletResponse) response;
     
-    // 로그인 여부 검사
-    String sessionId = httpRequest.getParameter("sessionId");
-    if (sessionId == null) { // 파라미터에 세션 아이디가 없으면 로그인 화면으로 보낸다.
-      httpResponse.sendRedirect("../auth/login.html");
-      return;
-    }
-    
-    Member loginMember = (Member)request.getServletContext().getAttribute("id_" + sessionId);
-    if (loginMember == null) { // 로그인 하지 않았다면 로그인 화면으로 보낸다.
-      httpResponse.sendRedirect("../auth/login.html");
+    Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
+    if (loginMember == null) { // 쿠키에 세션ID가 없다면 로그인 화면으로 보낸다.
+      httpResponse.sendRedirect("../auth/login");
       return;
     }
     
