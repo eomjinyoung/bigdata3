@@ -20,7 +20,7 @@ public class MemberUpdateServlet  extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
-  public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+  public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     Member m = new Member();
     m.setNo(Integer.parseInt(req.getParameter("no")));
     m.setName(req.getParameter("name"));

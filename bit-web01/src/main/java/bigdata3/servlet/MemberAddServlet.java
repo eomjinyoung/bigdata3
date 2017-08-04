@@ -19,11 +19,8 @@ import bigdata3.domain.Member;
 public class MemberAddServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  // 강조!
-  // 다음 메서드는 Servlet 인터페이스에 선언된 메서드가 아니라,
-  // HttpServlet 클래스에 추가된 메서드이다.
   @Override
-  public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+  public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     Member m = new Member();
     m.setName(req.getParameter("name"));
     m.setTel(req.getParameter("tel"));
