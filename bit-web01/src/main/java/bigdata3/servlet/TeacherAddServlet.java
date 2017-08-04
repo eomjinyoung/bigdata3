@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bigdata3.dao.MemberDao;
-import bigdata3.dao.TeacherDao;
 import bigdata3.domain.Teacher;
+import bigdata3.service.TeacherService;
 
 @WebServlet(urlPatterns="/teacher/add")
 public class TeacherAddServlet extends HttpServlet {
@@ -29,12 +28,10 @@ public class TeacherAddServlet extends HttpServlet {
     t.setTwitter(req.getParameter("twitter"));
     
     try {
-      MemberDao memberDao = (MemberDao)this.getServletContext().getAttribute("memberDao");
-      memberDao.insert(t);
+      TeacherService teacherService = 
+          (TeacherService)this.getServletContext().getAttribute("teacherService");   
+      teacherService.add(t);
       
-      TeacherDao teacherDao = (TeacherDao)this.getServletContext().getAttribute("teacherDao");
-      teacherDao.insert(t);
-
       res.sendRedirect("list");
       
     } catch (Exception e) {

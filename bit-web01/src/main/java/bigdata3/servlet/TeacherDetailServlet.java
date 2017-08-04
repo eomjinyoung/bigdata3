@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bigdata3.dao.TeacherDao;
 import bigdata3.domain.Teacher;
+import bigdata3.service.TeacherService;
 
 @WebServlet(urlPatterns="/teacher/detail")
 public class TeacherDetailServlet extends HttpServlet {
@@ -40,10 +40,12 @@ public class TeacherDetailServlet extends HttpServlet {
     out.println("<h1>강사 조회</h1>");
     
     try {
-      TeacherDao teacherDao = (TeacherDao)this.getServletContext().getAttribute("teacherDao");      
       int no = Integer.parseInt(req.getParameter("no"));
+
+      TeacherService teacherService = 
+          (TeacherService)this.getServletContext().getAttribute("teacherService");      
+      Teacher teacher = teacherService.get(no);
       
-      Teacher teacher = teacherDao.selectOne(no);
       if (teacher == null) {
         throw new Exception(no + "번 강사가 없습니다.");
       }
