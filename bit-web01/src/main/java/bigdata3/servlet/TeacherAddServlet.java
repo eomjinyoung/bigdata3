@@ -40,13 +40,12 @@ public class TeacherAddServlet extends HttpServlet {
       ArrayList<String> photoList = new ArrayList<>();
       for (int i = 1; i <= 3; i++) {
         FileItem fileItem = partMap.get("photo" + i);
-        if (fileItem.getSize() <= 0) 
-          continue; 
-        // 파일이 업로드 된 경우
-        File file = new File(this.getServletContext().getRealPath(
-            "/teacher/photo/" + fileItem.getName()));
-        fileItem.write(file); // 임시 디렉토리에 저장된 파일을 지정된 경로로 옮긴다.
-        photoList.add(fileItem.getName()); // 클라이언트에서 받은 파일명을 목록에 저장한다.
+        if (fileItem.getSize() > 0) { // 파일이 업로드 된 경우
+          File file = new File(this.getServletContext().getRealPath(
+              "/teacher/photo/" + fileItem.getName()));
+          fileItem.write(file);
+          photoList.add(fileItem.getName());
+        }
       }
       
       // 사진 파일의 이름이 저장된 photoList를 Teacher 담는다.
@@ -61,7 +60,7 @@ public class TeacherAddServlet extends HttpServlet {
       
     } catch (Exception e) {
       req.setAttribute("error", e); 
-      RequestDispatcher rd = req.getRequestDispatcher("/error");
+      RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
       rd.forward(req, res);
       return;
     }

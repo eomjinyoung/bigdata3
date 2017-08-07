@@ -2,7 +2,6 @@ package bigdata3.servlet;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -56,30 +55,11 @@ public class TeacherUpdateServlet  extends HttpServlet {
           (TeacherService)this.getServletContext().getAttribute("teacherService");
       teacherService.update(t);
     
-      res.setContentType("text/html;charset=UTF-8");
-      PrintWriter out = res.getWriter();
-      
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("  <meta charset='UTF-8'>");
-      out.println("  <title>강사관리</title>");
-      RequestDispatcher rd = req.getRequestDispatcher("/style/core");
-      rd.include(req, res);
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>강사 변경</h1>");
-      out.println("<p>변경 성공입니다.</p>");
-      rd = req.getRequestDispatcher("/footer");
-      rd.include(req, res);
-      out.println("</body>");
-      out.println("</html>");
-      
-      res.setHeader("Refresh", "1;url=list");
+      res.sendRedirect("list");
       
     } catch (Exception e) {
       req.setAttribute("error", e);
-      RequestDispatcher rd = req.getRequestDispatcher("/error");
+      RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
       rd.forward(req, res);
       return;
     }
