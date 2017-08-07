@@ -10,8 +10,7 @@
 </head>
 <body>
 <jsp:include page="/header.jsp"></jsp:include>
-<h1>강사 목록 by JSP ^^</h1>
-<h2>Hello!</h2>
+<h1>강사 목록 by JSP</h1>
 <a href='form.html'>새강사</a>
 <table border='1'>
 <thead>
@@ -21,7 +20,7 @@
 <c:forEach items="${list}" var="item">
 <tr>
   <td>${item.no}</td>
-  <td><a href='detail?no=${item.no}'>${item.name}</a></td>
+  <td><a href='detail.do?no=${item.no}'>${item.name}</a></td>
   <td>${item.tel}</td>
   <td>${item.email}</td>
   <td>${item.homepage}</td>
