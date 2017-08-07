@@ -5,9 +5,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import bigdata3.dao.MemberDao;
-import bigdata3.dao.TeacherDao;
-import bigdata3.service.TeacherService;
+import bigdata3.dao.mysql.MemberDaoImpl;
+import bigdata3.dao.mysql.TeacherDaoImpl;
+import bigdata3.service.impl.TeacherServiceImpl;
 import bigdata3.util.DBConnectionPool;
 
 @WebListener
@@ -24,10 +24,10 @@ public class ContextLoaderListener implements ServletContextListener {
     try {
       DBConnectionPool conPool = new DBConnectionPool(
           jdbcDriver, jdbcUrl, jdbcUsername, jdbcPassword);
-      MemberDao memberDao = new MemberDao(conPool);
-      TeacherDao teacherDao = new TeacherDao(conPool);
+      MemberDaoImpl memberDao = new MemberDaoImpl(conPool);
+      TeacherDaoImpl teacherDao = new TeacherDaoImpl(conPool);
       
-      TeacherService teacherService = new TeacherService();
+      TeacherServiceImpl teacherService = new TeacherServiceImpl();
       teacherService.setMemberDao(memberDao);
       teacherService.setTeacherDao(teacherDao);
       
