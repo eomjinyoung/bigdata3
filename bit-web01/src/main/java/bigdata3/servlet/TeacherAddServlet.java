@@ -1,6 +1,9 @@
 package bigdata3.servlet;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+
 import bigdata3.domain.Teacher;
 import bigdata3.service.TeacherService;
+import bigdata3.util.MultipartFormDataProcessor;
 
 @WebServlet(urlPatterns="/teacher/add")
 public class TeacherAddServlet extends HttpServlet {
@@ -18,16 +24,35 @@ public class TeacherAddServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-    Teacher t = new Teacher();
-    t.setName(req.getParameter("name"));
-    t.setTel(req.getParameter("tel"));
-    t.setEmail(req.getParameter("email"));
-    t.setPassword(req.getParameter("password"));
-    t.setHomepage(req.getParameter("homepage"));
-    t.setFacebook(req.getParameter("facebook"));
-    t.setTwitter(req.getParameter("twitter"));
-    
     try {
+      Map<String,FileItem> partMap = MultipartFormDataProcessor.parse(req);
+      
+      Teacher t = new Teacher();
+      t.setName(partMap.get("name").getString("UTF-8"));
+      t.setTel(partMap.get("tel").getString("UTF-8"));
+      t.setEmail(partMap.get("email").getString("UTF-8"));
+      t.setPassword(partMap.get("password").getString("UTF-8"));
+      t.setHomepage(partMap.get("homepage").getString("UTF-8"));
+      t.setFacebook(partMap.get("facebook").getString("UTF-8"));
+      t.setTwitter(partMap.get("twitter").getString("UTF-8"));
+      
+      // 사진 데이터 처리
+      ArrayList<String> photoList = new ArrayList<>();
+      for (int i = 1; i <= 3; i++) {
+        FileItem fileItem = partMap.get("photo" + i);
+        if (fileItem.getSize() <= 0) 
+          continue; 
+        // 파일이 업로드 된 경우
+        File file = new File(this.getServletContext().getRealPath(
+            "/teacher/photo/" + fileItem.getName()));
+        fileItem.write(file); // 임시 디렉토리에 저장된 파일을 지정된 경로로 옮긴다.
+        photoList.add(fileItem.getName()); // 클라이언트에서 받은 파일명을 목록에 저장한다.
+      }
+      
+      // 사진 파일의 이름이 저장된 photoList를 Teacher 담는다.
+      t.setPhotoList(photoList);
+      
+      
       TeacherService teacherService = 
           (TeacherService)this.getServletContext().getAttribute("teacherService");   
       teacherService.add(t);
@@ -40,7 +65,6 @@ public class TeacherAddServlet extends HttpServlet {
       rd.forward(req, res);
       return;
     }
-    
   }
 }
 

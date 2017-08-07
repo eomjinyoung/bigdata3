@@ -1,7 +1,4 @@
 package bigdata3.dao;
-/* 역할: tcher 테이블의 데이터를 다루는 클래스
- */
-
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,8 +23,8 @@ public class TeacherDao {
       PreparedStatement stmt = con.prepareStatement(
           "select m.mno, m.name, m.tel, m.email, t.hmpg " +
           " from tcher t inner join memb m on t.tno=m.mno " +
-          " order by m.name asc" + 
-          " limit ?, ?");) {
+          " order by m.name asc " + 
+          "limit ?, ?");) {
       
       stmt.setInt(1, (pageNo - 1) * pageSize /* 시작 인덱스 */);
       stmt.setInt(2, pageSize /* 꺼낼 레코드 수 */);
@@ -167,5 +164,57 @@ public class TeacherDao {
     }
   }
   
+  public void insertPhoto(int no, List<String> photoList) throws Exception {
+    Connection con = conPool.getConnection();
+    try (
+      PreparedStatement stmt = con.prepareStatement(
+          "insert into tch_phot(tno,path) values(?,?)");) {
+      
+      for (String path : photoList) {
+        stmt.setInt(1, no);
+        stmt.setString(2, path);
+        stmt.executeUpdate();
+      }
+    
+    } finally { 
+      conPool.returnConnection(con);
+    }
+  }
+  
+  public List<String> selectPhotoList(int teacherNo) throws Exception {
+    Connection con = conPool.getConnection();
+
+    try ( 
+      PreparedStatement stmt = con.prepareStatement(
+          "select path from tch_phot where tno=?");) {
+      
+      stmt.setInt(1, teacherNo);
+      
+      ArrayList<String> list = new ArrayList<>();
+      
+      try (ResultSet rs = stmt.executeQuery();) {
+        while (rs.next()) { 
+          list.add(rs.getString("path"));
+        }
+      }
+      return list;
+      
+    } finally { 
+      conPool.returnConnection(con);
+    }
+  }
+  
+  public void deletePhoto(int teacherNo) throws Exception {
+    Connection con = conPool.getConnection();
+    try (
+      PreparedStatement stmt = con.prepareStatement(
+          "delete from tch_phot where tno=?");) {
+      stmt.setInt(1, teacherNo);
+      stmt.executeUpdate();
+    
+    } finally { 
+      conPool.returnConnection(con);
+    }
+  }
   
 }
