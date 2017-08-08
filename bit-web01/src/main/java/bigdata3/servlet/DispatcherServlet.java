@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+
 import bigdata3.control.Controller;
 
 @WebServlet(urlPatterns="*.do")
@@ -25,8 +27,10 @@ public class DispatcherServlet  extends HttpServlet {
       
       res.setContentType("text/html;charset=UTF-8");
       
-      Controller pageController = 
-          (Controller)this.getServletContext().getAttribute(controllerPath);
+      ApplicationContext beanContainer = 
+          (ApplicationContext)this.getServletContext().getAttribute("beanContainer");
+      
+      Controller pageController = (Controller)beanContainer.getBean(controllerPath);
       
       if (pageController == null) {
         throw new ServletException("요청한 URL을 처리할 수 없습니다.");

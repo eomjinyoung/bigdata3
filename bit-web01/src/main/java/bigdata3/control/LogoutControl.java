@@ -4,7 +4,7 @@ package bigdata3.control;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bigdata3.annotation.Component;
+import org.springframework.stereotype.Component;
 
 @Component("/auth/logout")
 public class LogoutControl implements Controller {

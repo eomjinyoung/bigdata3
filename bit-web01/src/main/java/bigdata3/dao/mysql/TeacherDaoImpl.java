@@ -6,18 +6,16 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import bigdata3.annotation.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import bigdata3.dao.TeacherDao;
 import bigdata3.domain.Teacher;
 import bigdata3.util.DBConnectionPool;
 
 @Component
 public class TeacherDaoImpl implements TeacherDao {
-  DBConnectionPool conPool;
-  
-  public void setDBConnectionPool(DBConnectionPool conPool) {
-    this.conPool = conPool;
-  }
+  @Autowired DBConnectionPool conPool;
   
   public List<Teacher> selectList(int pageNo, int pageSize) throws Exception {
     Connection con = conPool.getConnection();

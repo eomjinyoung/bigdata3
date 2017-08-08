@@ -7,18 +7,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import bigdata3.annotation.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import bigdata3.dao.MemberDao;
 import bigdata3.domain.Member;
 import bigdata3.util.DBConnectionPool;
 
 @Component
 public class MemberDaoImpl implements MemberDao {
-  DBConnectionPool conPool;
-  
-  public void setDBConnectionPool(DBConnectionPool conPool) {
-    this.conPool = conPool;
-  }
+  @Autowired DBConnectionPool conPool;
   
   public List<Member> selectList(int pageNo, int pageSize) throws Exception {
     Connection con = conPool.getConnection();

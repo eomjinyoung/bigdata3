@@ -8,19 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import bigdata3.annotation.Component;
 import bigdata3.domain.Teacher;
 import bigdata3.service.TeacherService;
 import bigdata3.util.MultipartFormDataProcessor;
 
 @Component("/teacher/update")
 public class TeacherUpdateControl implements Controller {
-  TeacherService teacherService;
-  
-  public void setTeacherService(TeacherService teacherService) {
-    this.teacherService = teacherService;
-  }
+  @Autowired TeacherService teacherService;
   
   @Override
   public String service(HttpServletRequest req, HttpServletResponse res) throws Exception {

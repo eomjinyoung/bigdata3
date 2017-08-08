@@ -2,7 +2,9 @@ package bigdata3.service.impl;
 
 import java.util.List;
 
-import bigdata3.annotation.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import bigdata3.dao.MemberDao;
 import bigdata3.dao.TeacherDao;
 import bigdata3.domain.Teacher;
@@ -10,15 +12,8 @@ import bigdata3.service.TeacherService;
 
 @Component
 public class TeacherServiceImpl implements TeacherService {
-  MemberDao memberDao;
-  TeacherDao teacherDao;
-  
-  public void setMemberDao(MemberDao memberDao) {
-    this.memberDao = memberDao;
-  }
-  public void setTeacherDao(TeacherDao teacherDao) {
-    this.teacherDao = teacherDao;
-  }
+  @Autowired MemberDao memberDao;
+  @Autowired TeacherDao teacherDao;
   
   public List<Teacher> list(int pageNo, int pageSize) throws Exception {
     return teacherDao.selectList(pageNo, pageSize);

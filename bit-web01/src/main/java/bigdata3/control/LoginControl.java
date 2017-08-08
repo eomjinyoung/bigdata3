@@ -6,17 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bigdata3.annotation.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import bigdata3.domain.Member;
 import bigdata3.service.TeacherService;
 
 @Component("/auth/login")
 public class LoginControl implements Controller {
-  TeacherService teacherService;
-  
-  public void setTeacherService(TeacherService teacherService) {
-    this.teacherService = teacherService;
-  }
+  @Autowired TeacherService teacherService;
   
   @Override
   public String service(HttpServletRequest req, HttpServletResponse resp) throws Exception {
