@@ -6,9 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bigdata3.annotation.Component;
 import bigdata3.domain.Member;
 import bigdata3.service.TeacherService;
 
+@Component("/auth/login")
 public class LoginControl implements Controller {
   TeacherService teacherService;
   

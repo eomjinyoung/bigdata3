@@ -2,11 +2,13 @@ package bigdata3.service.impl;
 
 import java.util.List;
 
+import bigdata3.annotation.Component;
 import bigdata3.dao.MemberDao;
 import bigdata3.dao.TeacherDao;
 import bigdata3.domain.Teacher;
 import bigdata3.service.TeacherService;
 
+@Component
 public class TeacherServiceImpl implements TeacherService {
   MemberDao memberDao;
   TeacherDao teacherDao;

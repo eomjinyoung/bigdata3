@@ -6,14 +6,16 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import bigdata3.annotation.Component;
 import bigdata3.dao.TeacherDao;
 import bigdata3.domain.Teacher;
 import bigdata3.util.DBConnectionPool;
 
+@Component
 public class TeacherDaoImpl implements TeacherDao {
   DBConnectionPool conPool;
   
-  public TeacherDaoImpl(DBConnectionPool conPool) {
+  public void setDBConnectionPool(DBConnectionPool conPool) {
     this.conPool = conPool;
   }
   

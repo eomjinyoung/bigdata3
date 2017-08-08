@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 
+import bigdata3.annotation.Component;
 import bigdata3.domain.Teacher;
 import bigdata3.service.TeacherService;
 import bigdata3.util.MultipartFormDataProcessor;
 
+@Component("/teacher/add")
 public class TeacherAddControl implements Controller {
   TeacherService teacherService;
   

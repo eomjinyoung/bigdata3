@@ -5,14 +5,14 @@
 <html>
 <head>
   <meta charset='UTF-8'>
-  <meta http-equiv="Refresh" content="2;url=login.do">
-  <title>로그인</title>
+  <title>인사</title>
   <jsp:include page="/corestyle.jsp"></jsp:include>
 </head>
 <body>
 <jsp:include page="/header.jsp"></jsp:include>
-<h1>로그인 오류!</h1>
-<p>이메일 또는 암호가 맞지 않습니다.</p>
+<h1>인사하기</h1>
+<p>${message}</p>
+
 <jsp:include page="/footer.jsp"></jsp:include>
 </body>
 </html>

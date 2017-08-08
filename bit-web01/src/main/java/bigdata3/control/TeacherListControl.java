@@ -5,9 +5,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bigdata3.annotation.Component;
 import bigdata3.domain.Teacher;
 import bigdata3.service.TeacherService;
 
+@Component("/teacher/list")
 public class TeacherListControl implements Controller {
   TeacherService teacherService;
   

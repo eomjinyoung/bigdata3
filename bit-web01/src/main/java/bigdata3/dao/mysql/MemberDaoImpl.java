@@ -1,13 +1,4 @@
 package bigdata3.dao.mysql;
-/* 역할:
- * => memb 테이블의 데이터를 다루는 메서드를 모아둔 클래스이다.
- * => 출력하는 역할은 호출자에게 맡긴다.
- * => DAO의 역할은 결과를 리턴하면 된다.
- * => 커넥션은 DBConnectionPool로부터 얻어서 사용하고,
- *    사용한 후에는 반납한다.
- * => DAO는 커넥션을 관리하지 않는다.
- */
-
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,14 +7,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import bigdata3.annotation.Component;
 import bigdata3.dao.MemberDao;
 import bigdata3.domain.Member;
 import bigdata3.util.DBConnectionPool;
 
+@Component
 public class MemberDaoImpl implements MemberDao {
   DBConnectionPool conPool;
   
-  public MemberDaoImpl(DBConnectionPool conPool) {
+  public void setDBConnectionPool(DBConnectionPool conPool) {
     this.conPool = conPool;
   }
   
