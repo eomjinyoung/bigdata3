@@ -2,54 +2,37 @@ package bigdata3.control;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletContext;
 
-import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import bigdata3.domain.Teacher;
 import bigdata3.service.TeacherService;
-import bigdata3.util.MultipartFormDataProcessor;
 
 @Controller
 public class TeacherUpdateControl {
   @Autowired TeacherService teacherService;
+  @Autowired ServletContext servletContext;
   
   @RequestMapping("/teacher/update")
-  public String service(HttpServletRequest req, HttpServletResponse res) throws Exception {
-    Map<String,FileItem> partMap = MultipartFormDataProcessor.parse(req);
-    
-    Teacher t = new Teacher();
-    t.setNo(Integer.parseInt(partMap.get("no").getString()));
-    t.setName(partMap.get("name").getString("UTF-8"));
-    t.setTel(partMap.get("tel").getString("UTF-8"));
-    t.setEmail(partMap.get("email").getString("UTF-8"));
-    t.setPassword(partMap.get("password").getString("UTF-8"));
-    t.setHomepage(partMap.get("homepage").getString("UTF-8"));
-    t.setFacebook(partMap.get("facebook").getString("UTF-8"));
-    t.setTwitter(partMap.get("twitter").getString("UTF-8"));
-    
-    // 사진 데이터 처리
+  public String service(
+      Teacher teacher, 
+      MultipartFile[] photo) throws Exception {
     ArrayList<String> photoList = new ArrayList<>();
-    for (int i = 1; i <= 3; i++) {
-      FileItem fileItem = partMap.get("photo" + i);
+    for (MultipartFile fileItem : photo) {
       if (fileItem.getSize() > 0) { // 파일이 업로드 된 경우
-        File file = new File(req.getServletContext().getRealPath(
-            "/teacher/photo/" + fileItem.getName()));
-        fileItem.write(file);
-        photoList.add(fileItem.getName());
+        File file = new File(servletContext.getRealPath(
+            "/teacher/photo/" + fileItem.getOriginalFilename()));
+        fileItem.transferTo(file);
+        photoList.add(fileItem.getOriginalFilename());
       }
     }
-    
-    t.setPhotoList(photoList); // 업로드 한 사진 파일명을 저장한다.
-  
-    teacherService.update(t);
-  
+    teacher.setPhotoList(photoList); // 업로드 한 사진 파일명을 저장한다.
+    teacherService.update(teacher);
     return "redirect:list.do";
   }
 }
