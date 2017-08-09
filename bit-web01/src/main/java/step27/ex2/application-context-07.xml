@@ -10,19 +10,38 @@
       http://www.springframework.org/schema/context/spring-context.xsd">
 
   <bean id="e1" class="step27.ex2.Engine" p:valve="16" p:cylinder="8"/>
-
+  <!-- 
+    Engine obj = new Engine();
+    obj.setValve(16);
+    obj.Cylinder(8);
+    map.put("e1", obj);
+   -->
   <!-- 프로퍼티에 객체 값을 넣기 -->  
   <bean id="c1" class="step27.ex2.Car">
     <property name="model" value="소나타"/>
     <property name="cc" value="1998"/>
     <property name="engine" ref="e1"/>
   </bean>
+  <!-- 
+    Car obj = new Car();
+    obj.setModel("소나타");
+    obj.setCc(1998);
+    obj.setEngine(map.get("e1"));
+    map.put("c1", obj);
+   -->
   
   <bean id="c2" class="step27.ex2.Car">
     <property name="model" value="에쿠스"/>
     <property name="cc" value="3000"/>
     <property name="engine" ref="e1"/>
   </bean>
+  <!-- 
+    Car obj = new Car();
+    obj.setModel("에쿠스");
+    obj.setCc(3000);
+    obj.setEngine(map.get("e1"));
+    map.put("c2", obj);
+   -->
   
   <!-- 프로퍼티에 새 객체를 넣을 수 있다. -->
   <bean id="c3" class="step27.ex2.Car">
@@ -33,6 +52,19 @@
       <bean class="step27.ex2.Engine" p:valve="16" p:cylinder="6"/>
     </property>
   </bean>
+  <!-- 
+    Car obj = new Car();
+    obj.setModel("에쿠스2");
+    obj.setCc(3000);
+    
+    Engine tmp = new Engine();
+    tmp.setValve(16);
+    tmp.setCylinder(6);
+    
+    obj.setEngine(tmp);
+    
+    map.put("c2", obj);
+   -->
   
   <bean id="c4" class="step27.ex2.Car">
     <property name="model" value="에쿠스3"/>

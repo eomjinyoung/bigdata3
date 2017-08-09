@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import bigdata3.dao.MemberDao;
 import bigdata3.dao.TeacherDao;
 import bigdata3.domain.Teacher;
 import bigdata3.service.TeacherService;
 
-@Component
+@Service
 public class TeacherServiceImpl implements TeacherService {
   @Autowired
   MemberDao memberDao;

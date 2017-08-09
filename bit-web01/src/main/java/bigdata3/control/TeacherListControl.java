@@ -2,34 +2,27 @@ package bigdata3.control;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import bigdata3.domain.Teacher;
 import bigdata3.service.TeacherService;
 
-@Component("/teacher/list")
-public class TeacherListControl implements Controller {
-  @Autowired TeacherService teacherService;
+@Controller
+public class TeacherListControl {
+  @Autowired public TeacherService teacherService;
   
-  @Override
-  public String service(HttpServletRequest req, HttpServletResponse res) throws Exception {
-    int pageNo = 1;
-    int pageSize = 5;
-    
-    try { 
-      pageNo = Integer.parseInt(req.getParameter("pageNo"));
-    } catch (Exception e) {}
-    
-    try { 
-      pageSize = Integer.parseInt(req.getParameter("pageSize"));
-    } catch (Exception e) {}
+  @RequestMapping("/teacher/list")
+  public String service(
+      @RequestParam(defaultValue="1") int pageNo,
+      @RequestParam(defaultValue="5") int pageSize,
+      Model model) throws Exception {
     
     List<Teacher> list = teacherService.list(pageNo, pageSize);
-    req.setAttribute("list", list);
+    model.addAttribute("list", list);
     
     return "/teacher/list.jsp";
   }

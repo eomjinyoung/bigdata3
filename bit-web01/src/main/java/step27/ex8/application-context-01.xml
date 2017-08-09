@@ -10,6 +10,8 @@
   <!-- @Autowired 뿐만아니라 @Component 등의 애노테이션을 처리할 객체 등록 -->
   <context:component-scan base-package="step27.ex8"/>
   
+  <context:property-placeholder location="bigdata3/jdbc.properties"/>
+
 </beans>
 
 

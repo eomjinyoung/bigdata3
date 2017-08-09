@@ -19,6 +19,7 @@ public class Test01 {
     // => 패키지를 일반 폴더처럼 경로로 표현한다.
     ApplicationContext ctx = 
         new ClassPathXmlApplicationContext("step27/ex1/application-context-01.xml");
+
   }
 }
 

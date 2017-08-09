@@ -24,7 +24,7 @@ public class Teacher extends Member {
   public String getHomepage() {
     return homepage;
   }
-  public void setHomepage(String homepage) {
+  public void setHomepage(String homepage) { /* homepage */
     this.homepage = homepage;
   }
   public String getFacebook() {

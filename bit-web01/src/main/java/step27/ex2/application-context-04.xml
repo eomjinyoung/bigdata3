@@ -17,6 +17,12 @@
     <property name="model" value="소나타"/>
     <property name="cc" value="1998"/>
   </bean>
+  <!-- 
+    Car obj = new Car();
+    obj.setModel("소나타");
+    obj.setCc(1998);
+    map.put("c2", obj);
+   -->
         
 </beans>
 

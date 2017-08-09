@@ -10,6 +10,14 @@ public class Test03 {
     ApplicationContext ctx = 
         new ClassPathXmlApplicationContext("step27/ex1/application-context-02.xml");
     
+    
+    System.out.println("-----------------------");
+    String[] names = ctx.getBeanDefinitionNames();
+    for (String name : names) {
+      System.out.println(ctx.getBean(name));
+    }
+    System.out.println("-----------------------");
+    
     // getBean(빈의 ID)
     Car obj1 = (Car)ctx.getBean("c1");
     System.out.println(obj1);
@@ -36,6 +44,8 @@ public class Test03 {
     
     //System.out.println(ctx.getBean("c10")); // 해당 빈이 없다. 예외 발생!
     System.out.println(ctx.getBean("c10 c11 c12"));
+    
+    
   }
 }
 

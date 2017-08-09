@@ -9,17 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import bigdata3.domain.Teacher;
 import bigdata3.service.TeacherService;
 import bigdata3.util.MultipartFormDataProcessor;
 
-@Component("/teacher/update")
-public class TeacherUpdateControl implements Controller {
+@Controller
+public class TeacherUpdateControl {
   @Autowired TeacherService teacherService;
   
-  @Override
+  @RequestMapping("/teacher/update")
   public String service(HttpServletRequest req, HttpServletResponse res) throws Exception {
     Map<String,FileItem> partMap = MultipartFormDataProcessor.parse(req);
     
