@@ -14,11 +14,12 @@ import bigdata3.domain.Member;
 import bigdata3.service.TeacherService;
 
 @Controller
-public class LoginControl {
+@RequestMapping("/auth")
+public class AuthControl {
   @Autowired TeacherService teacherService;
   
-  @RequestMapping("/auth/login")
-  public String service(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+  @RequestMapping("login")
+  public String login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
     
     if (req.getMethod().equals("GET")) {
       return "/auth/form.jsp";
@@ -53,6 +54,12 @@ public class LoginControl {
       return "/auth/fail.jsp";
     }
   }
+  
+  @RequestMapping("logout")
+  public String logout(HttpServletRequest req, HttpServletResponse res) throws Exception {
+    req.getSession().invalidate();  
+    return "redirect:../auth/login.do";
+  }  
 }
 
 
