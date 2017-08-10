@@ -18,7 +18,7 @@ public class Test05_1 {
     String jdbcPassword = "1111";
     
     String name = "홍길동103";
-    String email = "hong103@test.com";
+    String email = "hong104@test.com";
     String tel = "1111-1111";
     String password = "1111";
   
@@ -36,11 +36,14 @@ public class Test05_1 {
       // 더하기 연산자 '+'를 사용해야 한다.
       // 특히 문자열인 경우에는 작은 따옴표 ''를 사용해야 한다.
       // 너무 번거롭고 불편한다.
-      int count = stmt.executeUpdate("insert into memb(name,tel,email,pwd) values('" +
-        name + "', '"+ 
-        tel + "', '" + 
-        email + "', password('" + 
-        password + "'))");
+      String sql = "insert into memb(name,tel,email,pwd) values('" +
+          name + "', '"+ 
+          tel + "', '" + 
+          email + "', password('" + 
+          password + "'))";
+      System.out.println(sql);
+      
+      int count = stmt.executeUpdate(sql);
 
       System.out.println(count);
     } catch (Exception e) {

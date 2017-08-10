@@ -19,7 +19,7 @@ public class Test05_2 {
     String jdbcPassword = "1111";
     
     String name = "홍길동102";
-    String email = "hong102@test.com";
+    String email = "hong105@test.com";
     String tel = "1111-1111";
     String password = "1111";
   
