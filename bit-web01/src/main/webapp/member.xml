@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<members>
+	<member>
+	  <name>홍길동</name>
+	  <age>20</age>
+	  <working>true</working>
+	</member>
+	<member>
+    <name>임꺽정</name>
+    <age>30</age>
+    <working>false</working>
+  </member>
+   <member>
+    <name>유관순</name>
+    <age>16</age>
+    <working>true</working>
+  </member>
+</members>

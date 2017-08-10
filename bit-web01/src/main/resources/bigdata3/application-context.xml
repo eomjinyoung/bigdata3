@@ -61,6 +61,22 @@
   <!-- AOP를 처리할 객체 등록 -->
   <aop:aspectj-autoproxy/>
   
+  <!--
+      기본 설정된 ViewResolver를 대체한다.
+      스프링 WebMVC에 기본으로 설정된 ViewResolver는 페이지 컨트롤러가 리턴한 
+      URL로 보내는 일을 한다.
+      * ViewResolver 란?
+        - 뷰 컴포넌트를 찾아 실행시키는 객체이다.
+        
+      * 기존의 ViewResolver를 대체할 객체는?
+       => 페이지 컨트롤러가 JSP URL을 리턴할 때, 리턴된 값에 접두사및 접미사를 붙여 
+          URL을 완성한 후, JSP를 실행한다.  
+  -->
+  <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+    <property name="prefix" value="/WEB-INF/jsp/"/>
+    <property name="suffix" value=".jsp"/>
+  </bean> 
 </beans>
 
 

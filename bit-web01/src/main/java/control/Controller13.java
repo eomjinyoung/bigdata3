@@ -33,10 +33,10 @@ public class Controller13 {
   
   // 1) String ---> java.sql.Date 으로 자동 변환 가능! 
   @RequestMapping("ok1")
-  public void ok1(java.sql.Date date, boolean working, HttpServletResponse response) throws Exception {
+  public void ok1(java.util.Date date, boolean working, HttpServletResponse response) throws Exception {
     response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    out.println("ok1()");
+    out.println("ok1()==>");
     out.printf("date: %s\n", date.toString());
   }
   
@@ -57,9 +57,10 @@ public class Controller13 {
   //  클라이언트에서 보낸 각각의 요청 파라미터에 대해 요청 핸들러의 아규먼트 값으로 바꿀 때 마다 호출된다.
   // => 기능? 요청 파라미터를 아규먼트 값으로 바꿔주는 변환기를 등록한다.
   //
-  @InitBinder
+  //@InitBinder
   protected void initBinder(WebDataBinder binder) {
       System.out.println("initBinder()....");
+      
       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
       dateFormat.setLenient(false);
       
@@ -68,7 +69,8 @@ public class Controller13 {
           java.util.Date.class, // 첫 번째 파라미터: 문자열을 변환하여 만들 값의 타입 
           new CustomDateEditor( // 이 프로퍼티 변환기는 스프링에서 기본으로 제공. String --> java.util.Date
               dateFormat, // yyyy-MM-dd 형식으로 된 문자열을 분석하여 java.util.Date 객체 생성
-              false/*파라미터 값 필수!*/));
+              false //파라미터 값 필수!
+          ));
   }     
 }
 

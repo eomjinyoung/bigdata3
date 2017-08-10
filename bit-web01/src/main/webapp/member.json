@@ -1,0 +1,5 @@
+[
+{"name":"홍길동", "age":20, "working":true},
+{"name":"임꺽정", "age":30, "working":false},
+{"name":"유관순", "age":16, "working":true}
+]
