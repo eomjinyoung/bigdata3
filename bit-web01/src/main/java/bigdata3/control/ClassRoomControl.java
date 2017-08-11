@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import bigdata3.domain.ClassRoom;
+import bigdata3.domain.Teacher;
 import bigdata3.service.ClassRoomService;
 
 @Controller
@@ -45,6 +46,14 @@ public class ClassRoomControl {
     return "redirect:list.do";
   }
 
+  @RequestMapping("detail")
+  public void detail(int no, Model model) throws Exception {
+    ClassRoom classRoom = classRoomService.get(no);
+    if (classRoom == null) {
+      throw new Exception(no + "번 교실이 없습니다.");
+    }
+    model.addAttribute("classRoom", classRoom);
+  }  
 }
 
 
