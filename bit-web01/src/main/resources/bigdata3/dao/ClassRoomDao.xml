@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- 맵퍼의 namespace 값은 DAO 인터페이스의 이름과 같게 하라! --> 
+<mapper namespace="bigdata3.dao.ClassRoomDao">
+  
+  <!-- DB 컬럼과 자바 객체의 프로퍼티를 연결하는 정보 -->
+  <resultMap type="classroom" id="classroomMap">
+    <id column="crmno" property="no"/>
+    <result column="name" property="name"/>
+  </resultMap>
+
+  <select id="selectList" resultMap="classroomMap" parameterType="map">
+    select crmno, name
+    from croom    
+    order by name asc 
+    limit #{startIndex}, #{pageSize}
+  </select>
+  
+</mapper>
+
+
+
+
+
+
+
