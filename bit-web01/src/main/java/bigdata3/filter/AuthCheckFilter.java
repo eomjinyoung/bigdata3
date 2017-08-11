@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bigdata3.domain.Member;
 
-@WebFilter({"/member/*", "/classroom/*", "/lecture/*"})
+//@WebFilter({"/member/*", "/classroom/*", "/lecture/*"})
 public class AuthCheckFilter implements Filter {
 
   @Override

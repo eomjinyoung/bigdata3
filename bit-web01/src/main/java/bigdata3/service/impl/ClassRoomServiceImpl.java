@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import bigdata3.dao.ClassRoomDao;
 import bigdata3.domain.ClassRoom;
+import bigdata3.domain.Teacher;
 import bigdata3.service.ClassRoomService;
 
 @Service
@@ -20,6 +21,10 @@ public class ClassRoomServiceImpl implements ClassRoomService {
     valueMap.put("pageSize", pageSize);
     
     return classRoomDao.selectList(valueMap);
+  }
+  
+  public void add(ClassRoom classRoom) throws Exception {
+    classRoomDao.insert(classRoom);
   }
 }
 
