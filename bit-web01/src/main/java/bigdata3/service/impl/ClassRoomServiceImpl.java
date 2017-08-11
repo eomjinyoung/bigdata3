@@ -25,6 +25,10 @@ public class ClassRoomServiceImpl implements ClassRoomService {
   public void add(ClassRoom classRoom) throws Exception {
     classRoomDao.insert(classRoom);
   }
+  
+  public ClassRoom get(int no) throws Exception {
+    return classRoomDao.selectOne(no);
+  }
 }
 
 

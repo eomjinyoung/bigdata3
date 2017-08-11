@@ -24,6 +24,11 @@
     values(#{name})
   </insert>
   
+  <select id="selectOne" resultMap="classroomMap" parameterType="int">
+    select  crmno, name
+    from croom
+    where crmno = #{no}
+  </select>
 </mapper>
 
 
