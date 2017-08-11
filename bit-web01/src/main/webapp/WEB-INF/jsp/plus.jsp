@@ -6,13 +6,13 @@
 <head>
   <meta charset='UTF-8'>
   <title>더하기</title>
-  <jsp:include page="/corestyle.jsp"></jsp:include>
+  <jsp:include page="corestyle.jsp"></jsp:include>
 </head>
 <body>
-<jsp:include page="/header.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <h1>더하기 결과</h1>
 <p>${param.a} + ${param.b} = ${result}</p>
 
-<jsp:include page="/footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

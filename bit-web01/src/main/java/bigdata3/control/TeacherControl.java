@@ -53,7 +53,7 @@ public class TeacherControl {
       throw new Exception(no + "번 강사가 없습니다.");
     }
     model.addAttribute("teacher", teacher);
-    return "/teacher/detail.jsp";
+    return "teacher/detail";
   }
 
   @RequestMapping("list")
@@ -65,7 +65,7 @@ public class TeacherControl {
     List<Teacher> list = teacherService.list(pageNo, pageSize);
     model.addAttribute("list", list);
     
-    return "/teacher/list.jsp";
+    return "teacher/list";
   }
   
   @RequestMapping("update")

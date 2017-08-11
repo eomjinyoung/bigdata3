@@ -16,7 +16,7 @@ public class PlusControl {
     
     request.setAttribute("result", a + b);
     
-    return "/plus.jsp";
+    return "plus";
   }
 
 }

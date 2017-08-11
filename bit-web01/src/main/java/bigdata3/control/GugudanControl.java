@@ -22,7 +22,7 @@ public class GugudanControl {
     
     request.setAttribute("result", buf.toString());
     
-    return "/gugudan.jsp";
+    return "gugudan";
   }
   
   @RequestMapping("/gugudan2")
@@ -38,7 +38,7 @@ public class GugudanControl {
     
     model.addAttribute("result", buf.toString());
     
-    return "/gugudan.jsp";
+    return "gugudan";
   }
   
   @RequestMapping("/gugudan3")
@@ -53,7 +53,7 @@ public class GugudanControl {
     
     model.addAttribute("result", buf.toString());
     
-    return "/gugudan.jsp";
+    return "gugudan";
   }
   
   @RequestMapping("/gugudan4")
@@ -68,7 +68,7 @@ public class GugudanControl {
     
     model.addAttribute("result", buf.toString());
     
-    return "/gugudan.jsp";
+    return "gugudan";
   }
   
   @RequestMapping("/gugudan5")
@@ -81,7 +81,7 @@ public class GugudanControl {
     
     model.addAttribute("result", buf.toString());
     
-    return "/gugudan.jsp";
+    return "gugudan";
   }
 
 }

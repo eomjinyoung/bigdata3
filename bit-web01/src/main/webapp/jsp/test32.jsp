@@ -66,6 +66,18 @@ PageContext > ServletRequest > HttpSession > ApplicationContext
 <c:set var="name2" value="유관순" scope="session"/>
 <c:set var="name2" value="윤봉길" scope="application"/> 
 \${name2}: ${name2}<br> 
+
+<c:remove var="name2" scope="page"/>
+\${name2}: ${name2}<br> 
+
+<c:remove var="name2" scope="request"/>
+\${name2}: ${name2}<br> 
+
+<c:remove var="name2" scope="session"/>
+\${name2}: ${name2}<br> 
+
+<c:remove var="name2" scope="application"/>
+\${name2}: ${name2}<br> 
 </body>
 </html>
 

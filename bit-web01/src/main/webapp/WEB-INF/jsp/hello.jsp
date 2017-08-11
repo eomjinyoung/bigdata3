@@ -5,14 +5,14 @@
 <html>
 <head>
   <meta charset='UTF-8'>
-  <title>구구단</title>
-  <jsp:include page="/corestyle.jsp"></jsp:include>
+  <title>인사</title>
+  <jsp:include page="corestyle.jsp"></jsp:include>
 </head>
 <body>
-<jsp:include page="/header.jsp"></jsp:include>
-<h1>구구단 ${param.dan}단</h1>
-<p>${result}</p>
+<jsp:include page="header.jsp"></jsp:include>
+<h1>인사하기</h1>
+<p>${message}</p>
 
-<jsp:include page="/footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

@@ -84,7 +84,7 @@ public class testA_jsp extends HttpServlet implements HttpJspPage {
     try {
       response.setContentType("text/html; charset=UTF-8");
       out.write("<!DOCTYPE html>");
-      out.write("<html>");
+      out.write("<html><!-- HTML 주석은 JSP 입장에서 일반 텍스트로 취급된다. -->");
       out.write("<head>");
       out.write("  <meta charset=\"UTF-8\">");
       out.write("  <title>JSP</title>");

@@ -7,10 +7,10 @@
 <head>
   <meta charset='UTF-8'>
   <title>오류</title>
-  <jsp:include page="/corestyle.jsp"></jsp:include>
+  <jsp:include page="corestyle.jsp"></jsp:include>
 </head>
 <body>
-<jsp:include page="/header.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <h1>실행 오류!</h1>
 <pre>
 <%
@@ -20,7 +20,7 @@ if (error != null) {
 }
 %>
 </pre>
-<jsp:include page="/footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
     

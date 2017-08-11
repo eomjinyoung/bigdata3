@@ -22,7 +22,7 @@ public class AuthControl {
   public String login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
     
     if (req.getMethod().equals("GET")) {
-      return "/auth/form.jsp";
+      return "auth/form";
     }
 
     String userType = req.getParameter("userType");
@@ -51,7 +51,7 @@ public class AuthControl {
       return "redirect:../teacher/list.do";
       
     } else {
-      return "/auth/fail.jsp";
+      return "auth/fail";
     }
   }
   

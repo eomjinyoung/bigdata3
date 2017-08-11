@@ -25,15 +25,25 @@
 <body>
 <h1>JSTL - c:set 태그 사용법</h1>
 <c:set var="name" value="임꺽정1"/> <%-- PageContext 보관소--%>
+<%-- pageContext.setAttribute("name", "임꺽정"); --%>
+
 <c:set var="name" value="임꺽정2" scope="page"/> <%-- PageContext 보관소--%>
+<%-- pageContext.setAttribute("name", "임꺽정2"); --%>
+
 <c:set var="name" value="임꺽정3" scope="request"/> <%-- ServletRequest 보관소 --%>
+<%-- request.setAttribute("name", "임꺽정3"); --%>
+
 <c:set var="name" value="임꺽정4" scope="session"/> <%-- HttpSession 보관소 --%>
+<%-- session.setAttribute("name", "임꺽정4"); --%>
+
 <c:set var="name" value="임꺽정5" scope="application"/> <%-- ServletContext 보관소 --%>
-기본: <c:out value="${pageScope.name}"/><br>
-PageContext:    <c:out value="${pageScope.name}"/><br>
-ServletRequest: <c:out value="${requestScope.name}"/><br>
-HttpSession:    <c:out value="${sessionScope.name}"/><br>
-ServletContext: <c:out value="${applicationScope.name}"/><br>
+<%-- application.setAttribute("name", "임꺽정5"); --%>
+
+기본: <c:out value="${pageScope.name}"/><br><%-- pageContext.getAttribute("name") --%>
+PageContext:    <c:out value="${pageScope.name}"/><br><%-- pageContext.getAttribute("name") --%>
+ServletRequest: <c:out value="${requestScope.name}"/><br><%-- request.getAttribute("name") --%>
+HttpSession:    <c:out value="${sessionScope.name}"/><br><%-- session.getAttribute("name") --%>
+ServletContext: <c:out value="${applicationScope.name}"/><br><%-- application.getAttribute("name") --%>
 
 <%-- 값을 설정할 때 value 속성 대신 콘텐트에 지정할 수 있다. --%>
 <c:set var="name2">유관순</c:set> 
