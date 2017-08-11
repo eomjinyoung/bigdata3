@@ -7,4 +7,5 @@ import bigdata3.domain.ClassRoom;
 
 public interface ClassRoomDao {
   List<ClassRoom> selectList(Map<String,Object> valueMap);
+  int insert(ClassRoom classRoom);
 }

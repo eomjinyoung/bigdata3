@@ -18,6 +18,11 @@
     order by name asc 
     limit #{startIndex}, #{pageSize}
   </select>
+
+  <insert id="insert" parameterType="classroom">
+    insert into croom(name) 
+    values(#{name})
+  </insert>
   
 </mapper>
 
