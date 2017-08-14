@@ -38,6 +38,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
   }  
   
   public void remove(int no) throws Exception {
+    classRoomDao.deletePhoto(no);
     int count = classRoomDao.delete(no);
     if (count < 1) {
       throw new Exception(no + "번 교실을 찾을 수 없습니다.");
