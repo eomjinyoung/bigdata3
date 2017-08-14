@@ -9,4 +9,6 @@ public interface ClassRoomDao {
   List<ClassRoom> selectList(Map<String,Object> valueMap);
   int insert(ClassRoom classRoom);
   ClassRoom selectOne(int no);
+  int update(ClassRoom classRoom);
+  int delete(int no);
 }

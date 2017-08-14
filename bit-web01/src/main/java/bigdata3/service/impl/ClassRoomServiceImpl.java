@@ -29,6 +29,17 @@ public class ClassRoomServiceImpl implements ClassRoomService {
   public ClassRoom get(int no) throws Exception {
     return classRoomDao.selectOne(no);
   }
+  
+  public void update(ClassRoom classRoom) throws Exception {
+    classRoomDao.update(classRoom);
+  }  
+  
+  public void remove(int no) throws Exception {
+    int count = classRoomDao.delete(no);
+    if (count < 1) {
+      throw new Exception(no + "번 교실을 찾을 수 없습니다.");
+    }
+  }  
 }
 
 

@@ -8,6 +8,8 @@ public interface ClassRoomService {
   List<ClassRoom> list(int pageNo, int pageSize) throws Exception;
   void add(ClassRoom classRoom) throws Exception;
   ClassRoom get(int no) throws Exception;
+  void update(ClassRoom classRoom) throws Exception;
+  void remove(int no) throws Exception;
 }
 
 

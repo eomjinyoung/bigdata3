@@ -29,6 +29,16 @@
     from croom
     where crmno = #{no}
   </select>
+  
+  <update id="update" parameterType="classroom">
+    update croom set 
+      name=#{name} 
+    where crmno=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from croom where crmno=#{no}
+  </delete>  
 </mapper>
 
 

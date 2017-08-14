@@ -52,7 +52,19 @@ public class ClassRoomControl {
       throw new Exception(no + "번 교실이 없습니다.");
     }
     model.addAttribute("classRoom", classRoom);
-  }  
+  } 
+  
+  @RequestMapping("update")
+  public String update(ClassRoom classRoom) throws Exception {
+    classRoomService.update(classRoom);
+    return "redirect:list.do";
+  }
+  
+  @RequestMapping("delete")
+  public String delete(int no) throws Exception {
+    classRoomService.remove(no);
+    return "redirect:list.do";
+  }    
 }
 
 
