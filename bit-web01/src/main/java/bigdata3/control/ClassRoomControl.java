@@ -1,5 +1,7 @@
 package bigdata3.control;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import bigdata3.domain.ClassRoom;
 import bigdata3.service.ClassRoomService;
@@ -40,7 +43,16 @@ public class ClassRoomControl {
   }
   
   @RequestMapping("add")
-  public String add(ClassRoom classRoom) throws Exception {
+  public String add(ClassRoom classRoom, MultipartFile[] photo) throws Exception {
+    ArrayList<String> photoNameList = new ArrayList<>();
+    for (MultipartFile fileItem : photo) {
+      if (fileItem.getSize() == 0) continue;
+      fileItem.transferTo(new File(servletContext.getRealPath(
+          "/classroom/photo/" + fileItem.getOriginalFilename())));
+      photoNameList.add(fileItem.getOriginalFilename());
+    }
+    classRoom.setPhotoNames(photoNameList);
+    
     classRoomService.add(classRoom);
     return "redirect:list.do";
   }

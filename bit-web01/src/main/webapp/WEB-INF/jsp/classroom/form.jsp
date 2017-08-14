@@ -10,6 +10,9 @@
 <h1>교실 등록</h1>
 <form action="add.do" method="POST" enctype="multipart/form-data">
 이름:<input type="text" name="name"><br>
+사진1:<input type="file" name="photo"><br>
+사진2:<input type="file" name="photo"><br>
+사진3:<input type="file" name="photo"><br> 
 <button>등록</button>
 </form>
 

@@ -19,7 +19,8 @@
     limit #{startIndex}, #{pageSize}
   </select>
 
-  <insert id="insert" parameterType="classroom">
+  <insert id="insert" parameterType="classroom"
+          useGeneratedKeys="true" keyColumn="crmno" keyProperty="no">
     insert into croom(name) 
     values(#{name})
   </insert>
