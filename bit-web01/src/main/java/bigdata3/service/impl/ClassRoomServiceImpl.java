@@ -33,6 +33,8 @@ public class ClassRoomServiceImpl implements ClassRoomService {
   
   public void update(ClassRoom classRoom) throws Exception {
     classRoomDao.update(classRoom);
+    classRoomDao.deletePhoto(classRoom.getNo());
+    this.insertPhoto(classRoom);
   }  
   
   public void remove(int no) throws Exception {

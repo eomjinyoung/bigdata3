@@ -14,6 +14,9 @@
 <form action='update.do' method='POST' enctype='multipart/form-data'>
 번호:<input type='text' name='no' value='${classRoom.no}' readonly><br>
 이름:<input type='text' name='name' value='${classRoom.name}'><br>
+사진1:<input type='file' name='photo'><br>
+사진2:<input type='file' name='photo'><br>
+사진3:<input type='file' name='photo'><br>
 <div>
 <c:forEach items='${classRoom.photoNames}' var='name'>
 <img class='photo1' src='photo/${name}'>

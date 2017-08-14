@@ -67,7 +67,16 @@ public class ClassRoomControl {
   } 
   
   @RequestMapping("update")
-  public String update(ClassRoom classRoom) throws Exception {
+  public String update(ClassRoom classRoom, MultipartFile[] photo) throws Exception {
+    ArrayList<String> photoNameList = new ArrayList<>();
+    for (MultipartFile fileItem : photo) {
+      if (fileItem.getSize() == 0) continue;
+      fileItem.transferTo(new File(servletContext.getRealPath(
+          "/classroom/photo/" + fileItem.getOriginalFilename())));
+      photoNameList.add(fileItem.getOriginalFilename());
+    }
+    classRoom.setPhotoNames(photoNameList);
+    
     classRoomService.update(classRoom);
     return "redirect:list.do";
   }

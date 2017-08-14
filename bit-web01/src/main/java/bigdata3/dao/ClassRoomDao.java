@@ -12,4 +12,5 @@ public interface ClassRoomDao {
   int update(ClassRoom classRoom);
   int delete(int no);
   void insertPhoto(Map<String,Object> valueMap);
+  void deletePhoto(int no);
 }
