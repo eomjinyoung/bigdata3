@@ -28,6 +28,9 @@ address {
 .header a:hover {
   text-decoration: underline;
 }
+.photo1 {
+  height: 100px; /* 너비는 원래 이미지의 비율에 맞춰 자동으로 조정된다.*/
+}
 
 
 

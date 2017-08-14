@@ -24,6 +24,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
   
   public void add(ClassRoom classRoom) throws Exception {
     classRoomDao.insert(classRoom);
+    this.insertPhoto(classRoom); // 교실 사진 추가
   }
   
   public ClassRoom get(int no) throws Exception {
@@ -39,7 +40,17 @@ public class ClassRoomServiceImpl implements ClassRoomService {
     if (count < 1) {
       throw new Exception(no + "번 교실을 찾을 수 없습니다.");
     }
-  }  
+  }
+  
+  private void insertPhoto(ClassRoom classRoom) {
+    HashMap<String,Object> valueMap = new HashMap<>();
+    valueMap.put("classroomNo", classRoom.getNo());
+    
+    for (String photoName : classRoom.getPhotoNames()) {
+      valueMap.put("photoName", photoName);
+      classRoomDao.insertPhoto(valueMap);
+    }
+  }
 }
 
 

@@ -14,6 +14,11 @@
 <form action='update.do' method='POST' enctype='multipart/form-data'>
 번호:<input type='text' name='no' value='${classRoom.no}' readonly><br>
 이름:<input type='text' name='name' value='${classRoom.name}'><br>
+<div>
+<c:forEach items='${classRoom.photoNames}' var='name'>
+<img class='photo1' src='photo/${name}'>
+</c:forEach>
+</div>
 <button>변경</button>
 <button type='button' onclick='doDelete()'>삭제</button>
 <button type='button' onclick='doList()'>목록</button>
