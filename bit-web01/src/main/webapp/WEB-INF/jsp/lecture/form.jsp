@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>교실관리</title>
+<title>강의관리</title>
   <style>
 body {
   background-image: url('11.png');
@@ -15,16 +15,16 @@ body {
 </style>
 </head>
 <body>
-<h1>교실 등록</h1>
+<h1>강의 등록</h1>
 <form action="add.do" method="POST" enctype="multipart/form-data">
-교실번호:
+강의실:
 <select name="classroomNo">
 <c:forEach items="${classrooms}" var="classroom">
   <option value="${classroom.no}">${classroom.name}</option>
 </c:forEach>
 </select>
 <br>
-매니저번호:
+매니저:
 <select name="managerNo">
 <c:forEach items="${managers}" var="manager">
   <option value="${manager.no}">${manager.name}(${manager.email})</option>

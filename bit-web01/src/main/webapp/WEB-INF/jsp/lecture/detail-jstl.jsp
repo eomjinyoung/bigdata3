@@ -16,14 +16,14 @@
 강의실:
 <select name="classroomNo">
 <c:forEach items="${classrooms}" var="classroom">
-  <option value="${classroom.no}" ${(classroom.no == lecture.classroomNo) ? "selected" : ""}>${classroom.name}</option>
+  <option value="${classroom.no}" <c:if test="${classroom.no == lecture.classroomNo }">selected</c:if>>${classroom.name}</option>
 </c:forEach>
 </select>
 <br>
 매니저:
 <select name="managerNo">
 <c:forEach items="${managers}" var="manager">
-  <option value="${manager.no}" ${(manager.no == lecture.managerNo) ? "selected" : ""}>${manager.name}(${manager.email})</option>
+  <option value="${manager.no}" <c:if test="${manager.no == lecture.managerNo }">selected</c:if>>${manager.name}(${manager.email})</option>
 </c:forEach>
 </select>
 <br>

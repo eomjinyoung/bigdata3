@@ -44,6 +44,8 @@ public class LectureControl {
       throw new Exception(no + "번 강의가 없습니다.");
     }
     model.addAttribute("lecture", lecture);
+    model.addAttribute("managers", managerService.list(1, 100));
+    model.addAttribute("classrooms", classRoomService.list(1, 100));
     return "lecture/detail";
   } 
 	
