@@ -29,18 +29,6 @@ dependencies { // 다운로드 받을 의존 라이브러리 목록
     // compile => 빌드(컴파일,JAR 파일 생성 등)할 때 사용할 라이브러리 
     compile("org.springframework.boot:spring-boot-starter-web")
     
-    // mybatis가 spring-jdbc 등의 라이브러리를 사용하기 때문에 자동으로 가져온다.
-    // 그래서 mybatis starter를 지정할 때는 jdbc starter를 빼도 된다.
-    //compile("org.springframework.boot:spring-boot-starter-jdbc")
-    
-    // 스프링 부트 스타터가 없는 라이브러리는 직접 해당 라이브러리를 지정하면 된다.
-    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.43'
-
-    // mybatis 관련 라이브러리를 가져오는 부트 스타터이다.
-    compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.0")
-    
-    
-    
     // testCompile => 테스트할 때 사용할 라이브러리 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
@@ -50,10 +38,6 @@ compileJava { // 자바 컴파일러에게 전달하는 정보.
   sourceCompatibility = '1.8' // 소스 코드의 자바 버전 
 }
 
-// "gradle bootRun" 명령을 실행할 때 사용할 메인 클래스를 지정한다.
-bootRun {
-  main = 'bigdata3.Application'
-}
 
 
 
