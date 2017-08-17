@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +17,20 @@ body {
 <body>
 <h1>교실 등록</h1>
 <form action="add.do" method="POST" enctype="multipart/form-data">
-교실번호:<input type="text" name="classroomNo"><br>
-매니저번호:<input type="text" name="managerNo"><br>
+교실번호:
+<select name="classroomNo">
+<c:forEach items="${classrooms}" var="classroom">
+  <option value="${classroom.no}">${classroom.name}</option>
+</c:forEach>
+</select>
+<br>
+매니저번호:
+<select name="managerNo">
+<c:forEach items="${managers}" var="manager">
+  <option value="${manager.no}">${manager.name}(${manager.email})</option>
+</c:forEach>
+</select>
+<br>
 강의명:<input type="text" name="title"><br>
 상세:<input type="text" name="descript"><br>
 시작일:<input type="text" name="startDate"><br>
