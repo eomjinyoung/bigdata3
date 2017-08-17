@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import bigdata3.domain.Lecture;
+import bigdata3.service.ClassRoomService;
 import bigdata3.service.LectureService;
-//aaaaaa
+import bigdata3.service.ManagerService;
+
 @Controller
 @RequestMapping("/lecture") 
 public class LectureControl {
 	@Autowired LectureService lectureService;
+	@Autowired ManagerService managerService;
+	@Autowired ClassRoomService classRoomService;
 
 	@RequestMapping("list")
 	  public String list(
@@ -28,10 +32,10 @@ public class LectureControl {
 	    return "lecture/list";
 	  }
   @RequestMapping("form")
-  public void form() throws Exception {
-    
+  public void form(Model model) throws Exception {
+    model.addAttribute("managers", managerService.list(1, 100));
+    model.addAttribute("classrooms", classRoomService.list(1, 100));
   }
-	
 	
   @RequestMapping("detail")
   public String detail(int no, Model model) throws Exception {
