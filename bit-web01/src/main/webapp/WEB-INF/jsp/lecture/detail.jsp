@@ -16,14 +16,14 @@
 강의실:
 <select name="classroomNo">
 <c:forEach items="${classrooms}" var="classroom">
-  <option value="${classroom.no}" ${(classroom.no == lecture.classroomNo) ? "selected" : ""}>${classroom.name}</option>
+  <option value="${classroom.no}">${classroom.name}</option>
 </c:forEach>
 </select>
 <br>
 매니저:
 <select name="managerNo">
 <c:forEach items="${managers}" var="manager">
-  <option value="${manager.no}" ${(manager.no == lecture.managerNo) ? "selected" : ""}>${manager.name}(${manager.email})</option>
+  <option value="${manager.no}">${manager.name}(${manager.email})</option>
 </c:forEach>
 </select>
 <br>
@@ -49,6 +49,12 @@ function doList() {
   location.href = 'list.do'
 
 }
+
+var classroomTag = document.querySelector("select[name=classroomNo]")
+classroomTag.value = '${lecture.classroomNo}'
+
+var managerTag = document.querySelector("select[name=managerNo]")
+managerTag.value = '${lecture.managerNo}'
 
 </script>
 
