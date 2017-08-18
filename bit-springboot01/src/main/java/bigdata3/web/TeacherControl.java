@@ -19,6 +19,8 @@ import bigdata3.service.TeacherService;
 @Controller
 @RequestMapping("/teacher")
 public class TeacherControl {
+  static final String UPLOAD_DIR = "c:/webupload/teacher/";
+  
   @Autowired TeacherService teacherService;
   @Autowired ServletContext servletContext;
   
@@ -29,8 +31,7 @@ public class TeacherControl {
     ArrayList<String> photoList = new ArrayList<>();
     for (MultipartFile fileItem : photo) {
       if (fileItem.getSize() > 0) { // 파일이 업로드 된 경우
-        File file = new File(servletContext.getRealPath(
-            "/teacher/photo/" + fileItem.getOriginalFilename()));
+        File file = new File(UPLOAD_DIR + fileItem.getOriginalFilename());
         fileItem.transferTo(file);
         photoList.add(fileItem.getOriginalFilename());
       }

@@ -29,11 +29,12 @@ dependencies { // 다운로드 받을 의존 라이브러리 목록
     // compile => 빌드(컴파일,JAR 파일 생성 등)할 때 사용할 라이브러리 
     compile("org.springframework.boot:spring-boot-starter-web")
     
-    // JSP를 처리해주는 톰캣 JSP 엔진 추가
+    // JSP 기반 Spring MVC를 사용하려면 다음 두 개의 라이브러리를 추가해야 한다.
+    // 1) JSP를 처리해주는 톰캣 JSP 엔진 추가
     compile("org.apache.tomcat.embed:tomcat-embed-jasper");
-    
-    // JSTL 라이브러리 추가
+    // 2) JSTL 라이브러리 추가
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+
 
     // mybatis가 spring-jdbc 등의 라이브러리를 사용하기 때문에 자동으로 가져온다.
     // 그래서 mybatis starter를 지정할 때는 jdbc starter를 빼도 된다.
