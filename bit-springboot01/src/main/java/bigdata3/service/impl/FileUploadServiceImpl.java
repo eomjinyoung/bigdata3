@@ -2,6 +2,7 @@ package bigdata3.service.impl;
 
 import java.io.File;
 
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,8 +28,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
   @Override
   public Resource load(String filename) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
+    return new FileSystemResource(UPLOAD_DIR + filename);
   }
   
   private int count = 0;

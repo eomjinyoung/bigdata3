@@ -25,7 +25,7 @@
 사진3:<input type='file' name='photo'><br>
 <div>
 <c:forEach items='${teacher.photoList}' var='path'>
-<img class='photo1' src='photo/${path}'>
+<img class='photo1' src='../download/${path}'>
 </c:forEach>
 </div>
 <button>변경</button>

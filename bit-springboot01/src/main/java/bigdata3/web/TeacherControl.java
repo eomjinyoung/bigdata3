@@ -22,7 +22,7 @@ import bigdata3.service.TeacherService;
 public class TeacherControl {
   @Autowired TeacherService teacherService;
   @Autowired ServletContext servletContext;
-  @Autowired FileUploadService uploadService;
+  @Autowired FileUploadService fileUploadService;
   
   @RequestMapping("add")
   public String add(
@@ -30,7 +30,7 @@ public class TeacherControl {
       MultipartFile[] photo) throws Exception {
     ArrayList<String> photoList = new ArrayList<>();
     for (MultipartFile fileItem : photo) {
-      String filename = uploadService.save(fileItem);
+      String filename = fileUploadService.save(fileItem);
       if (filename == null) continue;
       photoList.add(filename);
     }
