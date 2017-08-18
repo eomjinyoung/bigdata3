@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import bigdata3.domain.Teacher;
+import bigdata3.service.FileUploadService;
 import bigdata3.service.TeacherService;
 
 @Controller
 @RequestMapping("/teacher")
 public class TeacherControl {
-  static final String UPLOAD_DIR = "c:/webupload/teacher/";
-  
   @Autowired TeacherService teacherService;
   @Autowired ServletContext servletContext;
+  @Autowired FileUploadService uploadService;
   
   @RequestMapping("add")
   public String add(
