@@ -30,11 +30,9 @@ public class TeacherControl {
       MultipartFile[] photo) throws Exception {
     ArrayList<String> photoList = new ArrayList<>();
     for (MultipartFile fileItem : photo) {
-      if (fileItem.getSize() > 0) { // 파일이 업로드 된 경우
-        File file = new File(UPLOAD_DIR + fileItem.getOriginalFilename());
-        fileItem.transferTo(file);
-        photoList.add(fileItem.getOriginalFilename());
-      }
+      String filename = uploadService.save(fileItem);
+      if (filename == null) continue;
+      photoList.add(filename);
     }
     teacher.setPhotoList(photoList);
     teacherService.add(teacher);
