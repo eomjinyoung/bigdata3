@@ -18,7 +18,9 @@
         </activity>
         <activity android:name=".Button1Activity" />
         <activity android:name=".Button2Activity" />
-        <activity android:name=".Button3Activity"></activity>
+        <activity android:name=".Button3Activity" />
+        <activity android:name=".Button4Activity" />
+        <activity android:name=".Button5Activity"></activity>
     </application>
 
 </manifest>

@@ -54,4 +54,18 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity(myIntent);
     }
 
+    public void onButton4Click(View v) {
+        // 자바코드 + XML = UI 만들기 II
+        Intent myIntent = new Intent(
+                this.getApplicationContext(), Button4Activity.class);
+        this.startActivity(myIntent);
+    }
+
+    public void onButton5Click(View v) {
+        // 자바코드 + 레이아웃 파라미터 = UI 만들기
+        Intent myIntent = new Intent(
+                this.getApplicationContext(), Button5Activity.class);
+        this.startActivity(myIntent);
+    }
+
 }

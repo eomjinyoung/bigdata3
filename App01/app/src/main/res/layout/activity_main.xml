@@ -38,6 +38,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onButton3Click"
-            android:text="자바코드로 UI 생성 2" />
+            android:text="자바코드 + XML (1)" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onButton4Click"
+            android:text="자바코드 + XML (2)" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onButton5Click"
+            android:text="자바코드 + 레이아웃 파라미터" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
