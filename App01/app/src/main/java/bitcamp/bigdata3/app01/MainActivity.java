@@ -1,71 +1,70 @@
-/* View와 ViewGroup
-=> View 클래스?
-   - 안드로이드 UI 객체를 위한 공통 필드와 메서드를 정의한 클래스이다.
-   - 안드로이드의 모든 UI 객체는 이 클래스의 자손이다.
-   - UI 중에서 버튼이나 텍스트 상자와 같이
-     화면에 출력되는 View 객체를 "위젯(widget)"이라 부른다.
-   - 예) TextView, EditView, Button, ImageView 등
-
-=> ViewGroup 클래스?
-   - ViewGroup도 View의 자손이다.
-   - 단 다른 뷰를 담을 수 있는 기능을 갖고 있다.
-   - 실제 뭔가를 출력하는 것이 아니라 자신이 품고 있는 뷰 객체의
-     배치를 관리하는 일을 한다.
-   - 예) ConstraintLayout, LinearLayout, GridLayout
-
-=> 뷰 그룹을 중첩하여 원하는 UI를 만들 수 있다.
+/* 레이아웃 다루기: ConstraintLayout
+=> Android Studio 2.3.x부터 액티비티의 기본 레이아웃으로 채택되었다.
+=> 뷰의 Anchor point(뷰의 연결점; 동서남북 테두리에 있는 점)를
+   부모나 다른 동료 뷰에 연결하여 자신의 위치를 설정하는 방법
 
  */
 package bitcamp.bigdata3.app01;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        //1) layout_width, layout_height
+        //   => match_parent : 부모의 크기에 자신을 맞춘다.
+        //setContentView(R.layout.activity_main1);
+
+        //   => wrap_content : 내용물의 크기에 자신을 맞춘다.
+        //setContentView(R.layout.activity_main2);
+
+        //   => XXdp : 뷰의 크기를 지정한다.
+        // dp or dip(density independent pixel) :
+        //   - 논리적인 픽셀 지정
+        //   - 보통 물리적인 픽셀 4개를 묶어 한 개의 논리 픽셀로 사용한다.
+        // sp or sip (scale independent pixel)
+        //   - 폰트의 확장 크기를 기준으로 한 논리 픽셀
+        //   - 폰트 크기를 지정할 때 주로 사용. dp를 대신 사용할 수 있다.
+        // px(pixel), in(inch), mm(밀리미터) 등
+        //setContentView(R.layout.activity_main3);
+
+        // 2) 네임스페이스
+        // => android:xxx  - 안드로이드 SDK에 기본으로 포함된 것.
+        // => app:xxx      - 외부 라이브러리에 포함된 것.
+        // => tools:xxx    - 안드로이드 스튜디오에서 사용하는 것.
+        //                   실제 앱에 적용되지 않는다.
+        //                   즉 개발하는 동안에만 도움을 줄 목적으로 사용한다.
+        // => main4 레이아웃의 버튼에는 절대 좌표가 설정되어 있다.
+        //    단 안드로이드 스튜디어에서 디자인 하는 동안에 사용할 좌표 값이다.
+        //    앱을 실제 실행할 때는 무시된다.
+        // => ConstraintLayout에서 뷰를 배치하려면
+        //    적절한 제약조건을 설정해야 한다.
+        //    설정하지 않으면 main4와 같이 버튼을 왼쪽 상단을 기준으로 배치한다.
+        //setContentView(R.layout.activity_main4);
+
+        // 3) 부모를 기준으로 배치
+        // => anchor point를 부모의 왼쪽,오른쪽,상단,하단에 연결하여 맞춘다.
+        //setContentView(R.layout.activity_main5);
+
+        // 4) Vertical Bias, Horizontal Bias
+        // => 가운데 정렬시킬 때 좌우, 위아래의 비율을 지정할 수 있다.
+        //setContentView(R.layout.activity_main6);
+
+        // 5) 동료 뷰를 기준으로 배치할 수 있다.
+        //setContentView(R.layout.activity_main7);
+
+        // 6) Guideline 사용하기
+        // 테두리 바깥 여백:layout_margin, layout_marginLeft, ...Right, ...Top, ...Bottom
+        // 테두리 안쪽 여백:padding, paddingLeft, ...Right, ...Top, ...Bottom
+        //setContentView(R.layout.activity_main8);
+
+        // 7) 로그인 화면 만들기
+        setContentView(R.layout.activity_main9);
     }
 
-    public void onButton1Click(View v) {
-        // TextView 위젯을 자바 코드로 만들어 붙이기
-        Intent myIntent = new Intent(
-                this.getApplicationContext(), Button1Activity.class);
-        this.startActivity(myIntent);
-    }
-
-    public void onButton2Click(View v) {
-        // 레이아웃을 포함한 위젯을 자바 코드로 만들어 붙이기
-        Intent myIntent = new Intent(
-                this.getApplicationContext(), Button2Activity.class);
-        this.startActivity(myIntent);
-    }
-
-    public void onButton3Click(View v) {
-        // 자바코드 + XML = UI 만들기
-        // 레이아웃은 자바 코드로 만들고,
-        // TextView는 XML로 설계한다.
-        Intent myIntent = new Intent(
-                this.getApplicationContext(), Button3Activity.class);
-        this.startActivity(myIntent);
-    }
-
-    public void onButton4Click(View v) {
-        // 자바코드 + XML = UI 만들기 II
-        Intent myIntent = new Intent(
-                this.getApplicationContext(), Button4Activity.class);
-        this.startActivity(myIntent);
-    }
-
-    public void onButton5Click(View v) {
-        // 자바코드 + 레이아웃 파라미터 = UI 만들기
-        Intent myIntent = new Intent(
-                this.getApplicationContext(), Button5Activity.class);
-        this.startActivity(myIntent);
-    }
 
 }

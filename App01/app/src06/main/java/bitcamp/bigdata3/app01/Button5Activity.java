@@ -33,8 +33,13 @@ public class Button5Activity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
-        // TextView를 뷰그룹에 넣을 때 배치 파라미터 값을 함께 지정한다.
-        layout.addView(tv, params);
+        // 레이아웃 정보와 함께 UI 객체를 뷰그룹에 추가하는 방법
+        // 방법1) 레이아웃 파라미터 정보를 UI 객체에 설정한 다음, 뷰그룹에 추가하기
+        tv.setLayoutParams(params);
+        layout.addView(tv);
+
+        // 방법2) TextView를 뷰그룹에 넣을 때 배치 파라미터 값을 함께 지정한다.
+        //layout.addView(tv, params);
 
         this.setContentView(layout);
     }
