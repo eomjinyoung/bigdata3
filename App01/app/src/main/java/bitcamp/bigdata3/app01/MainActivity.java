@@ -1,60 +1,64 @@
-/* 레이아웃 다루기: LinearLayout
-=> UI 객체를 수평 또는 수직으로 배치하는 레이아웃 관리자.
-=> layout_gravity
-   - 뷰 객체를 뷰그룹에 정렬하는 속성
-   gravity
-   - 뷰 객체의 내용물을 정렬하는 속성
+/* 레이아웃 다루기: FrameLayout
+=> UI 객체를 겹쳐서 관리한다.
+=> visibility 속성을 사용하여 UI 출력 여부를 설정한다.
 
  */
 package bitcamp.bigdata3.app01;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+    View tab1;
+    View tab2;
+    View tab3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //1) 수평으로 정렬하여 배치하기
-        //   => orientation=horizontal
+        //1) 버튼을 출력할 LinearLayout과 내용을 출력할 FrameLayout을 출력한다.
         //setContentView(R.layout.activity_main1);
 
-        //2) 수직으로 정렬하여 배치하기
-        //   => orientation=vertical
+        //2) LinearLayout에 버튼을 3개 추가한다.
+        //   => 각 버튼에 대해 이벤트 리스너(핸들러)를 등록한다.
         //setContentView(R.layout.activity_main2);
 
-        //3) 수직으로 정렬하여 배치할 때 윈도우 크기를 벗어난다면?
-        //   => 짤린다.
-        //setContentView(R.layout.activity_main3);
+        //3) 각 버튼에 해당하는 화면을 만들어 FrameaLayout에 추가한다.
+        // => 버튼을 눌렀을 때 지정된 UI가 보이도록 한다.
+        // => 다른 UI는 감춘다.
+        setContentView(R.layout.activity_main3);
 
-        //4) 뷰의 위치를 조정하기(수평 배치)
-        //   => layout_gravity : 뷰그룹에서 뷰의 위치를 조정할 때 사용한다.
-        //setContentView(R.layout.activity_main4);
+        // tab1, tab2, tab3 UI 객체를 찾아서 인스턴스 필드에 보관해 두었다가
+        // 필요할 때 참조한다.
+        tab1 = this.findViewById(R.id.tab1);
+        tab2 = this.findViewById(R.id.tab2);
+        tab3 = this.findViewById(R.id.tab3);
 
-        //5) 뷰의 위치를 조정하기(수직 배치)
-        //   => layout_gravity : 뷰그룹에서 뷰의 위치를 조정할 때 사용한다.
-        //setContentView(R.layout.activity_main5);
-
-        //6) 뷰의 내용물을 정렬하기
-        //   => gravity : 뷰 안에 있는 내용물을 정렬할 때 사용한다.
-        //setContentView(R.layout.activity_main6);
-
-        //7) 뷰의 기본 크기에서 추가로 차지할 영역의 비율을 조정하기
-        //   => layout_weight : 모든 뷰의 비중을 합쳐서 자신의 비중과 대비하여
-        //                      너비나 높이를 결정한다.
-        //setContentView(R.layout.activity_main7);
-
-        //8) TextView 정렬
-        //   => 기본으로 baseline을 기준으로 정렬한다.
-        //   => 변경하고 싶다면, baselineAligned 값을 false로 설정하라!
-        //setContentView(R.layout.activity_main8);
-
-        //9) 로그인 화면을 만들라!
-        //   => LinearLayout 만 사용하여 화면을 구성하라!
-        setContentView(R.layout.activity_main9);
     }
+
+    public void onButton1Click(View v) {
+        //Toast.makeText(this,"버튼1 눌렀음!", Toast.LENGTH_SHORT).show();
+        tab1.setVisibility(View.VISIBLE);
+        tab2.setVisibility(View.INVISIBLE);
+        tab3.setVisibility(View.INVISIBLE);
+    }
+
+    public void onButton2Click(View v) {
+        //Toast.makeText(this,"버튼2 눌렀음!", Toast.LENGTH_SHORT).show();
+        tab1.setVisibility(View.INVISIBLE);
+        tab2.setVisibility(View.VISIBLE);
+        tab3.setVisibility(View.INVISIBLE);
+    }
+
+    public void onButton3Click(View v) {
+        //Toast.makeText(this,"버튼3 눌렀음!", Toast.LENGTH_SHORT).show();
+        tab1.setVisibility(View.INVISIBLE);
+        tab2.setVisibility(View.INVISIBLE);
+        tab3.setVisibility(View.VISIBLE);
+    }
+
 
 
 }
