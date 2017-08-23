@@ -14,9 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    View tab1;
-    View tab2;
-    View tab3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
