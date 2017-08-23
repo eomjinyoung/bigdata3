@@ -24,12 +24,6 @@
             android:layout_height="wrap_content"
             android:text="Button2" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button3" />
-
     </TableRow>
 
     <TableRow
@@ -63,16 +57,5 @@
             android:layout_height="wrap_content"
             android:text="Button7" />
 
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button8" />
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button9" />
     </TableRow>
 </TableLayout>

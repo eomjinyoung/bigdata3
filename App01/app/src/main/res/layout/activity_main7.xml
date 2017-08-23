@@ -5,12 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:stretchColumns="1,2"
     tools:context="bitcamp.bigdata3.app01.MainActivity">
 
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/button1"
@@ -18,7 +19,11 @@
             android:layout_height="wrap_content"
             android:text="Button1" />
 
-        <TextView />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button2" />
 
         <Button
             android:id="@+id/button3"
@@ -53,10 +58,17 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button7" />
 
-        <TextView />
-
-        <TextView />
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button8" />
 
         <Button
             android:id="@+id/button9"
