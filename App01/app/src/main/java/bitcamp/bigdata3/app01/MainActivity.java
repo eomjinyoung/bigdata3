@@ -32,7 +32,19 @@ public class MainActivity extends AppCompatActivity {
 
         //2) layout_alignParentStart/...End
         // => layout_alignParentLeft/...Right 와 같다.
-        setContentView(R.layout.activity_main2);
+        //setContentView(R.layout.activity_main2);
+
+        //3) 다른 뷰를 기준으로 정렬하기
+        // => layout_alignLeft="기준뷰" : 기준이 되는 뷰의 왼쪽면에 맞추어 정렬한다.
+        //    ...Right, ...Top, ...Bottom 도 마찬가지로 기준이 되는 뷰의 해당 면에 맞추어 정렬한다.
+        // => layout_toRightOf="기준뷰" : 기준이 되는 뷰의 오른쪽에 위치시킨다.
+        //    ...toLeftOf(왼쪽에 위치시킨다),
+        //    layout_above(위쪽), layout_below(아래쪽)
+        //setContentView(R.layout.activity_main3);
+
+        //4) 로그인 화면을 만들라!
+        // => RelativeLayout 만 사용하여 만들라!
+        setContentView(R.layout.activity_main4);
 
     }
 
