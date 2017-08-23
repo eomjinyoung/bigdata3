@@ -1,6 +1,10 @@
-/* 레이아웃 다루기: FrameLayout
-=> UI 객체를 겹쳐서 관리한다.
-=> visibility 속성을 사용하여 UI 출력 여부를 설정한다.
+/* 레이아웃 다루기: RelativeLayout
+=> 부모 또는 다른 뷰 객체를 기준으로 특정 뷰의 위치를 지정한다.
+=> 부모기준
+   layout_alignParentLeft, ...Right, ...Top, ...Bottom,
+   layout_centerHorizontal, ...Vertical, ...InParent
+=> 다른 뷰 기준
+   layout_above, layout_below, ...toLeftOf, ...toRightOf,
 
  */
 package bitcamp.bigdata3.app01;
@@ -18,46 +22,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //1) 버튼을 출력할 LinearLayout과 내용을 출력할 FrameLayout을 출력한다.
+        //1) 부모를 기준으로 정렬하기
+        // => layout_alignParentLeft, ...Right, ...Top, ...Bottom
+        // => layout_centerHorizontal(수평 중앙), ...Vertical(수직 중앙)
+        //    ...InParent(정가운데)
+        // => 정렬한 후 margin 값을 통해 위치를 조정한다.
         //setContentView(R.layout.activity_main1);
 
-        //2) LinearLayout에 버튼을 3개 추가한다.
-        //   => 각 버튼에 대해 이벤트 리스너(핸들러)를 등록한다.
-        //setContentView(R.layout.activity_main2);
 
-        //3) 각 버튼에 해당하는 화면을 만들어 FrameaLayout에 추가한다.
-        // => 버튼을 눌렀을 때 지정된 UI가 보이도록 한다.
-        // => 다른 UI는 감춘다.
-        setContentView(R.layout.activity_main3);
-
-        // tab1, tab2, tab3 UI 객체를 찾아서 인스턴스 필드에 보관해 두었다가
-        // 필요할 때 참조한다.
-        tab1 = this.findViewById(R.id.tab1);
-        tab2 = this.findViewById(R.id.tab2);
-        tab3 = this.findViewById(R.id.tab3);
+        //2) layout_alignParentStart/...End
+        // => layout_alignParentLeft/...Right 와 같다.
+        setContentView(R.layout.activity_main2);
 
     }
 
-    public void onButton1Click(View v) {
-        //Toast.makeText(this,"버튼1 눌렀음!", Toast.LENGTH_SHORT).show();
-        tab1.setVisibility(View.VISIBLE);
-        tab2.setVisibility(View.INVISIBLE);
-        tab3.setVisibility(View.INVISIBLE);
-    }
 
-    public void onButton2Click(View v) {
-        //Toast.makeText(this,"버튼2 눌렀음!", Toast.LENGTH_SHORT).show();
-        tab1.setVisibility(View.INVISIBLE);
-        tab2.setVisibility(View.VISIBLE);
-        tab3.setVisibility(View.INVISIBLE);
-    }
-
-    public void onButton3Click(View v) {
-        //Toast.makeText(this,"버튼3 눌렀음!", Toast.LENGTH_SHORT).show();
-        tab1.setVisibility(View.INVISIBLE);
-        tab2.setVisibility(View.INVISIBLE);
-        tab3.setVisibility(View.VISIBLE);
-    }
 
 
 
