@@ -9,13 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity8">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MyDialogActivity"
+            android:label="대화상자"
+            android:theme="@style/Animation.AppCompat.Dialog" />
+        <activity android:name=".OtherActivity"
+            android:label="다른 액티비티"/>
     </application>
 
 </manifest>
