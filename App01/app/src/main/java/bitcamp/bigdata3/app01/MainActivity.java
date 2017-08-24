@@ -6,6 +6,12 @@
 2) 다른 액티비티가 보낸 값을 받기
    - startActivityForResult(content, requestCode)
    - onActivityResult()
+
+3) 다른 액티비티에게 객체를 보내기
+   - 액티비티에게 보낼 객체는 Parcelable 인터페이스 구현체여야 한다.
+   - Intent.putExtra(key, 객체)
+   - Intent.getExtras().getParcelable(key)
+
  */
 package bitcamp.bigdata3.app01;
 

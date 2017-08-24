@@ -11,6 +11,16 @@ public class Member implements Parcelable {
     String email;
     String password;
 
+    @Override
+    public String toString() {
+        return "Member{" +
+                "no=" + no +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
     public Member() {}
 
     public Member(int no, String name, String email, String password) {
