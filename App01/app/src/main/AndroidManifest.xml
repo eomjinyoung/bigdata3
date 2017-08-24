@@ -16,12 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MyDialogActivity"
-            android:label="대화상자"
-            android:theme="@style/Theme.AppCompat.Dialog"/>
-        <activity android:name=".OtherActivity"
-            android:label="다른 액티비티"/>
+        <activity android:name=".Sub1Activity"></activity>
     </application>
 
 </manifest>
