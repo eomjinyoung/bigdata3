@@ -3,7 +3,6 @@
  */
 package step26.ex3;
 
-import java.io.DataOutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
@@ -21,11 +20,11 @@ public class Client {
       URLConnection urlConnection = url.openConnection();
       
       // => 웹서버가 보낼 데이터를 읽을 도구를 준비한다.
-      Scanner in = new Scanner(urlConnection.getInputStream());
-      
-      // => 웹서버가 보낸 응답 데이터를 읽는다.
-      while (in.hasNext()) {
-        System.out.println(in.nextLine());
+      try (Scanner in = new Scanner(urlConnection.getInputStream());) {
+        // => 웹서버가 보낸 응답 데이터를 읽는다.
+        while (in.hasNext()) {
+          System.out.println(in.nextLine());
+        }
       }
       
     } catch (Exception e) {
