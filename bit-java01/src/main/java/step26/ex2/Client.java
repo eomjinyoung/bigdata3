@@ -32,8 +32,6 @@ public class Client {
       Scanner in = new Scanner(socket.getInputStream());
       DataOutputStream out = new DataOutputStream(socket.getOutputStream());) {
       
-      
-      
       //1) 서버에 파일 이름을 보낸다.
       out.writeUTF(file.getName());
       
@@ -41,10 +39,14 @@ public class Client {
       out.writeLong(file.length());
       
       //3) 서버에 파일을 보낸다.
-      //=> 파일을 읽을 도구를 만든다.
+      int b;
+      while ((b = fileIn.read()) != -1) { // read()의 리턴 값이 -1이면, 모두 읽어다는 의미다.
+        out.writeByte(b);
+      }
       
-      
-      
+      //4) 서버의 응답을 받는다.
+      String message = in.nextLine();
+      System.out.println(message);
       
     } catch (Exception e) {
       e.printStackTrace();
