@@ -1,11 +1,11 @@
-/* 스레드 - Critical Section(크리티컬 섹션)
- * => 여러 스레드가 코드를 실행하기 위해 동시에 진입했을 때
- *    문제가 발생할 수 있는 코드 블록이다.
+/* 스레드 - Critical Section(크리티컬 섹션)을 "Thread Safe"로 만들기
+ * => 크리티컬 섹션에 오직 한 개의 스레드만이 진입하게 제한한다.
+ *    synchronized 키워드를 메서드 앞에 붙이면 된다.
  *     
  */
 package step25;
 
-public class Test05 {
+public class Test06 {
   
   static class Account {
     long balance;
@@ -14,12 +14,13 @@ public class Test05 {
       this.balance = balance;
     }
     
-    // withdraw() 메서드는 "크리티컬 섹션"에 해당한다.
-    // 즉 스레드에 안전하지 않는 코드이다.
-    // 여러 스레드가 동시에 진입하여 실행할 때
-    // 같은 인스턴스 변수를 동시에 변경할 수 있다.
-    // 이때 다른 스레드가 변경한 값을 덮어쓸 수 있다.
-    public long withdraw(long money) {
+    // 메서드나 블록 앞에 synchronized를 붙이면 
+    // 뮤텍스(MUTual EXclusion; 상호배제) 방식으로 진입을 관리한다.
+    // 즉 한 번에 한 개의 스레드만이 호출할 수 있다.
+    // 나머지 스레드는 다른 스레드가 호출을 끝낼 때까지 기다려야 한다.
+    // => 단점 결국 이 메서드를 호출할 때는 한 번에 한 개의 스레드 만이 지나갈 수 있기 때문에
+    //    애플리케이션 실행 속도를 늦추는 "병목지점"이 된다.
+    synchronized public long withdraw(long money) {
       long temp = balance;
       if ((temp - money) >= 0) {
         temp = temp - money;
