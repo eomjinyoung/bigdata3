@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Client {
   public static void main(String[] args) throws Exception {
     //1) 서버에 연결할 도구를 준비한다.
-    Socket socket = new Socket("localhost", 9999);
+    Socket socket = new Socket("192.168.0.26", 9999);
     
     //2) 소켓을 통해 입출력을 할 수 있는 도구를 꺼낸다.
     InputStream in = socket.getInputStream();

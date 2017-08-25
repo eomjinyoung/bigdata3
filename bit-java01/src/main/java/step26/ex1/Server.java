@@ -45,7 +45,7 @@ public class Server {
     System.out.println(message);
     
     //6) 클라이언트로 답장을 보낸다.
-    out2.println("반갑습니다.");
+    out2.println("반갑습니다. 엄진영입니다.");
     
     //7) 클라이언트와의 대화가 끝났으면 연결을 끊는다.
     out2.close(); // in 객체와 연결한 객체를 끊으면 in도 함께 끊긴다.
