@@ -4,7 +4,7 @@
  *      => "main" 스레드 : 실제 main()를 호출하는 스레드 
  *   => "Reference Handler" 스레드 : 인스턴스를 가리키는 레퍼런스를 관리한다.
  *   => "Finalizer" 스레드 : 가비지 인스턴스를 메모리에서 해제하는 일을 담당.
- *   => "Signal Dispatcher" 스레드 : 키보드, 네트워크 이벤트를 관리
+ *   => "Signal Dispatcher" 스레드 : 키보드, 네트워크 등의 이벤트를 관리
  *   => "Attach Listener" 스레드  
  */
 package step25;
