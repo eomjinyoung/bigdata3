@@ -4,6 +4,7 @@
 package step26.ex2;
 
 import java.io.DataOutputStream;
+import java.io.File;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -21,18 +22,20 @@ public class Client {
     
     keyScan.close();
     
-    System.out.println(serverAddress);
-    System.out.println(filePath);
-    /*
     try (
-      Socket socket = new Socket("192.168.0.26", 9999);
+      Socket socket = new Socket(serverAddress, 9999);
       Scanner in = new Scanner(socket.getInputStream());
       DataOutputStream out = new DataOutputStream(socket.getOutputStream());) {
+      
+      //0) 파일 경로를 가지고 파일 정보를 다룰 객체를 만든다.
+      File file = new File(filePath);
+      
+      //1) 서버에 파일 이름을 보낸다.
+      
       
     } catch (Exception e) {
       e.printStackTrace();
     }
-    */
   }
 }
 
