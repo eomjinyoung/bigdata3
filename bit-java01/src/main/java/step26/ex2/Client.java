@@ -5,6 +5,7 @@ package step26.ex2;
 
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -22,15 +23,27 @@ public class Client {
     
     keyScan.close();
     
+    //파일 경로를 가지고 파일 정보를 다룰 객체를 만든다.
+    File file = new File(filePath);
+    
     try (
+      FileInputStream fileIn = new FileInputStream(file); // 파일을 읽을 때 사용하는 도구 
       Socket socket = new Socket(serverAddress, 9999);
       Scanner in = new Scanner(socket.getInputStream());
       DataOutputStream out = new DataOutputStream(socket.getOutputStream());) {
       
-      //0) 파일 경로를 가지고 파일 정보를 다룰 객체를 만든다.
-      File file = new File(filePath);
+      
       
       //1) 서버에 파일 이름을 보낸다.
+      out.writeUTF(file.getName());
+      
+      //2) 서버에 파일 크기를 보낸다.
+      out.writeLong(file.length());
+      
+      //3) 서버에 파일을 보낸다.
+      //=> 파일을 읽을 도구를 만든다.
+      
+      
       
       
     } catch (Exception e) {
