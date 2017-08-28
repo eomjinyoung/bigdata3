@@ -1,30 +1,29 @@
-/* 액티비티와 데이터 주고 받기
-1) 다른 액티비티로 문자열 및 원시 데이터 값 보내고 받기
-   - Intent.putExtra(key, value)
-   - Intent.getExtras().getXxx(key)
+/* 에코 클라이언트 만들기
+1) 스레드를 사용해야 하는 이유
+=> 네트워크 통신은 속도에 따라 실행이 지연되는 경우가 있다.
+   그럴 경우 통신이 완료할 때까지 화면이 멈추거나
+   사용자의 터치에 반응하지 않는 문제가 발생한다.
+=> 그래서 안드로이드에서는 통신과 같이 UI 실행에 영향을 미치는 기능인 경우
+   반드시 별도의 스레드를 띄워서 실행하도록 요구하고 있다.
 
-2) 다른 액티비티가 보낸 값을 받기
-   - startActivityForResult(content, requestCode)
-   - onActivityResult()
-
-3) 다른 액티비티에게 객체를 보내기
-   - 액티비티에게 보낼 객체는 Parcelable 인터페이스 구현체여야 한다.
-   - Intent.putExtra(key, 객체)
-   - Intent.getExtras().getParcelable(key)
-
+2) 중요 자원의 이용 권한 획득
+=> 인터넷과 같은 중요 자원을 이용하려면
+   반드시 AndroidManifest.xml 파일에 권한 요청을 설정해야 한다.
  */
 package bitcamp.bigdata3.app01;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
-    public static final int REQ_SUB2ACTIVITY = 100;
-    public static final int REQ_SUB3ACTIVITY = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,36 +32,42 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButton1Click(View v) {
-        Intent intent = new Intent(this, Sub1Activity.class);
-        intent.putExtra("name", "홍길동");
-        intent.putExtra("age", 20);
-        this.startActivity(intent);
+        String address = ((EditText)this.findViewById(R.id.etAddress))
+                                .getText()
+                                .toString();
+        String message = ((EditText)this.findViewById(R.id.etMessage))
+                                .getText()
+                                .toString();
+
+
     }
 
-    public void onButton2Click(View v) {
-        Intent intent = new Intent(this, Sub2Activity.class);
-        intent.putExtra("name", "홍길동");
-        intent.putExtra("age", 20);
-        this.startActivityForResult(intent, REQ_SUB2ACTIVITY);
-    }
+    class EchoClient extends Thread {
+        String address;
+        String message;
 
-    public void onButton3Click(View v) {
-        Member member = new Member(1, "홍길동", "hong@test.com", "1111");
+        public EchoClient(String address, String message) {
+            this.address = address;
+            this.message = message;
+        }
 
-        Intent intent = new Intent(this, Sub3Activity.class);
-        intent.putExtra("member", member);
-        this.startActivityForResult(intent, REQ_SUB3ACTIVITY);
-    }
+        @Override
+        public void run() {
+            Socket socket = null;
+            try {
+                socket = new Socket(this.address, 9999);
+                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                DataInputStream in = new DataInputStream(socket.getInputStream());
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // 이 메서드는 startActivityForResult()를 통해 실행한
-        // 액티비티로부터 데이터를 받을 때 호출된다.
-        // 데이터를 보낸 액티비티는 requestCode를 사용하여 구분한다.
-        if (requestCode == REQ_SUB2ACTIVITY) {
-            Log.v(TAG, String.format("name=%s", data.getExtras().getString("name")));
-            Log.v(TAG, String.format("age=%d", data.getExtras().getInt("age")));
+                out.writeUTF(this.message);
+                String responseText = in.readUTF();
+                Log.v(TAG, responseText);
+
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage());
+            } finally {
+                try {socket.close();} catch (Exception e) {}
+            }
         }
     }
 }
