@@ -1,20 +1,15 @@
-/* 에코 클라이언트 만들기 II
-1) 서버로부터 받은 메시지를 토스트로 출력하기
-   => 액티비티에서 만든 다른 스레드는 UI를 사용할 수 없다.
-
-[안드로이드에서 UI를 제어하기]
-=> 안드로이드는 기본적으로 main 스레드가 UI를 다룬다.
-=> 그외 모든 스레드는 UI를 다룰 수 없다.
-=> 이유?
-   - 액티비티가 존재하지 않는 상태에서 임의의 스레드가
-     존재하지 않는 액티비트의 UI를 사용하는 상황을 방지하기 위함이다.
-   - 그래서 안드로이드에서는 main 스레드만이 액티비트의 UI를 제어할 수 있다.
-=> 그럼 다른 스레드에서 UI를 다루기 위해서는?
-   - main 스레드에게 요청하라!
+/* 스레드에서 UI 다루기 I - main 스레드의 UI 핸들러에게 메시지를 보내기
+=> main 스레드에 메시지 수신기(Handler)를 장착한다.
+=> main 스레드에게 메시지를 보내는 절차
+   1) 핸들러로부터 메시지 상자를 얻는다. => Handler.obtainMessage()
+   2) 메시지 상자에 값을 저장한다.  => Message.put(key, value)
+   3) 메시지를 핸들러에게 보낸다. => Handler.sendMessage()
  */
 package bitcamp.bigdata3.app01;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -25,14 +20,32 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
 
-public class Main2Activity extends AppCompatActivity {
+public class Main3Activity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
+
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setTitle("Main2");
+        this.setTitle("Main3");
         setContentView(R.layout.activity_main1);
+
+        // Handler 객체는 그 객체를 만드는 스레드에 장착된다.
+        // 즉 다음 코드는 onCreate()에서 Handler 객체를 생성하기 때문에
+        // 이 핸들러 객체는 main 스레드에 장착된다.
+        // 왜? onCreate()를 호출하는 것은 main 스레드이기 때문이다.
+        handler = new Handler() {
+            // 다른 스레드로부터 메시지를 수신할 때마다
+            // main 스레드는 다음 메서드를 호출한다.
+            @Override
+            public void handleMessage(Message msg) {
+                String responseText = msg.getData().getString("responseText");
+                Toast.makeText(Main3Activity.this,
+                        responseText,
+                        Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 
     public void onButton1Click(View v) {
@@ -66,9 +79,19 @@ public class Main2Activity extends AppCompatActivity {
                 String responseText = in.readUTF();
                 Log.v(TAG, responseText);
 
-                // main 이 아닌 스레드에서는
-                // 다음과 같이 UI를 다룰 수 없다.
-                Toast.makeText(Main2Activity.this, responseText, Toast.LENGTH_SHORT).show();
+                // main 스레드에 데이터를 보내기 위해 상자를 준비한다.
+                Bundle box = new Bundle();
+                box.putString("responseText", responseText);
+
+                // main 스레드에 메시지를 보내기
+                // => 메시지 상자를 얻는다.
+                Message cart = Main3Activity.this.handler.obtainMessage();
+
+                // => 메시지 상자에 데이터가 보관된 박스를 담는다.
+                cart.setData(box);
+
+                // => main 스레드에 장착된 핸들러에게 메시지를 보낸다.
+                Main3Activity.this.handler.sendMessage(cart);
 
             } catch (Exception e) {
                 Log.e(TAG, e.getMessage());
