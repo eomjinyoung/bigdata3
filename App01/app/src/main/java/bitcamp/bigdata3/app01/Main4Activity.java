@@ -62,7 +62,7 @@ public class Main4Activity extends AppCompatActivity {
                 DataInputStream in = new DataInputStream(socket.getInputStream());
 
                 out.writeUTF(this.message);
-                String responseText = in.readUTF();
+                final String responseText = in.readUTF();
                 Log.v(TAG, responseText);
 
                 // main 스레드의 핸들러에게
