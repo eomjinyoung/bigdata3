@@ -27,11 +27,10 @@ public class EchoClient {
   
   public void echo() throws Exception {
     try (
-        Socket socket = new Socket(this.address, 9999);
-        ) {
-      
-      DataInputStream in = new DataInputStream(socket.getInputStream());
+      Socket socket = new Socket(this.address, 9999);
       DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+      DataInputStream in = new DataInputStream(socket.getInputStream());
+    ) {
       
       out.writeUTF(this.message);
       out.flush(); // 버퍼에 저장된 내용이 있다면 모두 서버에 보낼 것을 명령한다.
