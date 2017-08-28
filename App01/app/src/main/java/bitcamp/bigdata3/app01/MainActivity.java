@@ -37,36 +37,5 @@ public class MainActivity extends AppCompatActivity {
         //new EchoAsyncTask().execute(address, message);
     }
 
-    // Async<아규먼트의 타입, 중간 상태 리턴 타입, 결과 리턴 타입>
-    class EchoAsyncTask extends AsyncTask<String, Void, String> {
-        // 작업 스레드에서 호출하는 메서드
-        @Override
-        protected String doInBackground(String... params) {
-            Socket socket = null;
-            try {
-                socket = new Socket(params[0], 9999);
-                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-                DataInputStream in = new DataInputStream(socket.getInputStream());
 
-                out.writeUTF(params[1]);
-                return in.readUTF(); // main 스레드에게 작업 결과를 리턴한다.
-
-            } catch (Exception e) {
-                Log.e(TAG, e.getMessage());
-            } finally {
-                try {socket.close();} catch (Exception e) {}
-            }
-            return null;
-        }
-
-        // 작업 스레드가 작업을 완료한 후 main 스레드가 호출하는 메서드
-        // => 작업 스레드가 doInBackground() 호출을 완료한 후에
-        //    main 스레드가 호출하는 메서드
-        @Override
-        protected void onPostExecute(String result) {
-            Toast.makeText(MainActivity.this,
-                    result,
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
 }
