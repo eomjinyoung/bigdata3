@@ -38,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
         String message = ((EditText)this.findViewById(R.id.etMessage))
                                 .getText()
                                 .toString();
-
-
+        new EchoClient(address, message).start();
     }
 
     class EchoClient extends Thread {
