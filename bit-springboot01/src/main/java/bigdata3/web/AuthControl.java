@@ -18,13 +18,11 @@ import bigdata3.service.TeacherService;
 public class AuthControl {
   @Autowired TeacherService teacherService;
   
+  @RequestMapping("form")
+  public void form() {}
+  
   @RequestMapping("login")
   public String login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    
-    if (req.getMethod().equals("GET")) {
-      return "auth/form";
-    }
-
     String userType = req.getParameter("userType");
     String email = req.getParameter("email");
     String password = req.getParameter("password");
