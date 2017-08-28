@@ -35,7 +35,7 @@ import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = "MainActivity";
+    public static final String TAG = "MainXActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -7,4 +7,4 @@
     android:layout_height="wrap_content"
     android:src="@drawable/test02"
     android:scaleType="matrix"
-    tools:context="bitcamp.bigdata3.app01.MainActivity"/>
+    tools:context="bitcamp.bigdata3.app01.MainXActivity"/>

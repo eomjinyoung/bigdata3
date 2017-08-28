@@ -20,7 +20,7 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 
 public class Main5Activity extends AppCompatActivity {
-    public static final String TAG = "MainActivity";
+    public static final String TAG = "MainXActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

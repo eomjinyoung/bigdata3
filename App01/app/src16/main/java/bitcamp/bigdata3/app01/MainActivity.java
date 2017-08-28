@@ -22,7 +22,7 @@ import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = "MainActivity";
+    public static final String TAG = "MainXActivity";
     public static final int REQ_SUB2ACTIVITY = 100;
     public static final int REQ_SUB3ACTIVITY = 101;
 

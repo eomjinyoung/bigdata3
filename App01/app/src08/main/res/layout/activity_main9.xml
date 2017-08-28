@@ -7,7 +7,7 @@
     android:baselineAligned="false"
     android:gravity="center_vertical|center_horizontal"
     android:orientation="horizontal"
-    tools:context="bitcamp.bigdata3.app01.MainActivity">
+    tools:context="bitcamp.bigdata3.app01.MainXActivity">
 
 
     <LinearLayout
