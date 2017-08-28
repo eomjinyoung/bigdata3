@@ -7,12 +7,12 @@
  */
 package bitcamp.bigdata3.app01;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.DataInputStream;
@@ -30,14 +30,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButton1Click(View v) {
-        String address = ((EditText)this.findViewById(R.id.etAddress))
-                                .getText()
-                                .toString();
-        String message = ((EditText)this.findViewById(R.id.etMessage))
-                                .getText()
-                                .toString();
+        Intent intent = new Intent(this, LoginActivity.class);
+        this.startActivity(intent);
+
         //AsyncTask를 실행한다.
-        new EchoAsyncTask().execute(address, message);
+        //new EchoAsyncTask().execute(address, message);
     }
 
     // Async<아규먼트의 타입, 중간 상태 리턴 타입, 결과 리턴 타입>
