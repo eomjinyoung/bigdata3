@@ -8,19 +8,14 @@
 package bitcamp.bigdata3.app01;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = "MainXActivity";
+    public static final String TAG = "MainActivity";
+    public static final int REQ_LOGIN = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +26,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void onButton1Click(View v) {
         Intent intent = new Intent(this, LoginActivity.class);
-        this.startActivity(intent);
-
-        //AsyncTask를 실행한다.
-        //new EchoAsyncTask().execute(address, message);
+        this.startActivityForResult(intent, REQ_LOGIN);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == REQ_LOGIN) {
+            Member member = data.getExtras().getParcelable("member");
+            Log.v(TAG, member.toString());
+
+            Intent intent = new Intent(this, TeacherActivity.class);
+            this.startActivity(intent);
+        }
+    }
 }

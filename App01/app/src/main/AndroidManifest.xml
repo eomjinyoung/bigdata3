@@ -25,7 +25,10 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="로그인" />
+        <activity
+            android:name=".TeacherActivity"
+            android:label="강사관리" />
     </application>
 
 </manifest>

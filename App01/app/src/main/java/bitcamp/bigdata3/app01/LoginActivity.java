@@ -1,6 +1,7 @@
 // 로그인 액티비티
 package bitcamp.bigdata3.app01;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LoginActivity extends AppCompatActivity {
@@ -64,18 +66,36 @@ public class LoginActivity extends AppCompatActivity {
                     throw new Exception("서버 요청 오류!");
 
                 JSONObject jsonObject = new JSONObject(json); // 문자열 ==> 자바 객체
-                Log.v(TAG, jsonObject.getString("state"));
 
-                JSONObject member = jsonObject.getJSONObject("data");
-                Log.v(TAG, member.getString("name"));
-
-                JSONArray photoList = member.getJSONArray("photoList");
-                for (int i = 0; i < photoList.length(); i++) {
-                    Log.v(TAG, photoList.getString(i));
+                // 로그인 실패 => 안내 문구를 띄운다.
+                if (jsonObject.getString("state").equals("fail")) {
+                    Toast.makeText(LoginActivity.this,
+                            "이메일 또는 암호가 맞지않습니다.",
+                            Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
+                // 로그인 성공 => 서버에서 받은 데이터를 Member 객체에 담는다.
+                //               MainActivity로 리턴한다.
+                Member member = new Member();
+                JSONObject data = jsonObject.getJSONObject("data");
+                member.setNo(data.getInt("no"));
+                member.setName(data.getString("name"));
+                member.setEmail(data.getString("email"));
 
-                Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_LONG).show();
+                ArrayList<String> photoList = new ArrayList<>();
+                JSONArray array = data.getJSONArray("photoList");
+                for (int i = 0; i < array.length(); i++) {
+                   photoList.add(array.getString(i));
+                }
+                member.setPhotoList(photoList);
+
+                // 다시 Member 객체를 Intent에 담는다.
+                Intent intent = new Intent();
+                intent.putExtra("member", member);
+
+                // Intent 객체를 LoginActivity를 실행한 "MainActivity"에게 리턴한다.
+                LoginActivity.this.setResult(RESULT_OK, intent);
 
             } catch (Exception e) {
                 Toast.makeText(LoginActivity.this,
