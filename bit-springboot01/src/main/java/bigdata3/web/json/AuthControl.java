@@ -15,7 +15,7 @@ import bigdata3.service.TeacherService;
 
 // 이 페이지 컨트롤러는 응답으로 JSON 데이터를 리턴하기 때문에
 // @RestController를 붙여야 한다.
-@RestController
+@RestController("json.AuthControl")
 @RequestMapping("/auth/json") // 기존의 페이지 컨트롤러와 구분하기 위해 URL을 변경한다.
 public class AuthControl {
   @Autowired TeacherService teacherService;
