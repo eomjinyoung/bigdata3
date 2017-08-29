@@ -1,7 +1,6 @@
 package bigdata3.web.json;
 
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,7 +21,7 @@ public class AuthControl {
   @Autowired TeacherService teacherService;
   
   @RequestMapping("login")
-  public String login(
+  public Object login(
       String email, 
       String password, 
       @RequestParam(defaultValue="teacher") String userType,
@@ -35,16 +34,16 @@ public class AuthControl {
     
     if (member != null) { 
       session.setAttribute("loginMember", member);
-      return "redirect:../teacher/list.do";
-    } else {
-      return "auth/fail";
-    }
+      return new JsonResult("success", member);
+    } 
+    
+    return new JsonResult("fail", null);
   }
   
   @RequestMapping("logout")
-  public String logout(HttpServletRequest req, HttpServletResponse res) throws Exception {
+  public Object logout(HttpServletRequest req, HttpServletResponse res) throws Exception {
     req.getSession().invalidate();  
-    return "redirect:../auth/login.do";
+    return new JsonResult("success", null);
   }  
 }
 
