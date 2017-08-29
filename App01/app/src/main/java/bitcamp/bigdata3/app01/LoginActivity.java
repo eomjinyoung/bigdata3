@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.v(TAG, photoList.getString(i));
                 }
 
+
                 Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_LONG).show();
 
             } catch (Exception e) {
