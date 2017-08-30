@@ -26,11 +26,10 @@ public class Member implements Parcelable {
 
     public Member() {}
 
-    public Member(int no, String name, String email, String password, ArrayList<String> photoList) {
+    public Member(int no, String name, String email, ArrayList<String> photoList) {
         this.no = no;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.photoList = photoList;
     }
 
