@@ -18,8 +18,20 @@ public class TeacherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
+        // => ListView 객체를 알아낸다.
         this.listView = (ListView) this.findViewById(R.id.list);
-        //this.listAdapter.
+
+        // => ListView 객체에 데이터와 그 데이터를 출력하는 뷰 공급자를 만든다.
+        this.listAdapter = new TeacherAdapter();
+        this.listAdapter.addItem(new Teacher(100, "홍길동", "hong@test.com", null));
+        this.listAdapter.addItem(new Teacher(101, "홍길동2", "hong2@test.com", null));
+        this.listAdapter.addItem(new Teacher(102, "홍길동3", "hong3@test.com", null));
+        this.listAdapter.addItem(new Teacher(103, "홍길동4", "hong4@test.com", null));
+        this.listAdapter.addItem(new Teacher(104, "홍길동5", "hong5@test.com", null));
+
+        // => ListView에 데이터 및 뷰 공급자를 설정한다.
+        this.listView.setAdapter(listAdapter);
+
     }
 
     public void onButton1Click(View v) {
@@ -57,6 +69,7 @@ public class TeacherActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             // 지정된 인덱스에 출력할 항목을 만들 때 출력한다.
             TeacherView itemView = new TeacherView(getApplicationContext());
+            itemView.setTeacher(items.get(position));
             return itemView;
         }
     }
