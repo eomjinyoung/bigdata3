@@ -3,12 +3,16 @@ package bitcamp.bigdata3.app01;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * Created by bit11 on 2017-08-30.
  */
 
 public class TeacherView extends LinearLayout {
+    TextView name;
+    TextView email;
+
     public TeacherView(Context context) {
         super(context);
 
@@ -21,5 +25,12 @@ public class TeacherView extends LinearLayout {
         //    이 LinearLayout에 붙인다.
         inflater.inflate(R.layout.view_teacher, this, true);
 
+        name = (TextView) this.findViewById(R.id.name);
+        email = (TextView) this.findViewById(R.id.email);
+    }
+
+    public void setTeacher(Teacher teacher) {
+        name.setText(teacher.getName());
+        email.setText(teacher.getEmail());
     }
 }

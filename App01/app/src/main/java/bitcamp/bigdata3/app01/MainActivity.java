@@ -1,9 +1,9 @@
-/* 스레드에서 UI 다루기 III - AsyncTask 객체를 활용하는 방법
-=> AsyncTask를 상속 받아 작업 코드와 UI 제어 코드를 함께 둔다.
-=> 별도의 스레드로 작업해야 하는 경우
-   1) AsyncTask.execute(아규먼트)를 호출한다.
-   2) 별도의 스레드가 실행되어 AsyncTask.doInnBackground() 호출한다.
-   3) 별도 스레드 작업 끝나면 main 스레드가 AsyncTask.onPostExecute() 호출한다.
+/* ListView를 이용하여 강사 목록 출력하기
+=> ListView에 출력할 UI와 데이터 클래스 추가
+   1) Teacher : 강사 데이터를 저장할 클래스
+   2) TeacherView : 강사 데이터를 출력할 ListView 항목
+   3) view_teacher.xml : 강사 데이터를 실제 출력하는 UI 컴포넌트
+
  */
 package bitcamp.bigdata3.app01;
 
