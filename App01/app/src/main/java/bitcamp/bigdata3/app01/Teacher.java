@@ -5,8 +5,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static android.R.attr.data;
-
 /**
  * Created by bit11 on 2017-08-30.
  */
@@ -57,6 +55,7 @@ public class Teacher extends Member {
 
     public static Teacher valueOf(JSONObject jsonObject) throws Exception {
         Teacher teacher = new Teacher();
+
         teacher.setNo(jsonObject.getInt("no"));
         teacher.setName(jsonObject.getString("name"));
         teacher.setTel(jsonObject.getString("tel"));

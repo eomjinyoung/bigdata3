@@ -1,6 +1,5 @@
 package bitcamp.bigdata3.app01;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -38,15 +37,12 @@ public class TeacherActivity extends AppCompatActivity {
 
         // => ListView 객체에 데이터와 그 데이터를 출력하는 뷰 공급자를 만든다.
         this.listAdapter = new TeacherAdapter();
-        this.listAdapter.addItem(new Teacher(100, "홍길동", "hong@test.com", null));
-        this.listAdapter.addItem(new Teacher(101, "홍길동2", "hong2@test.com", null));
-        this.listAdapter.addItem(new Teacher(102, "홍길동3", "hong3@test.com", null));
-        this.listAdapter.addItem(new Teacher(103, "홍길동4", "hong4@test.com", null));
-        this.listAdapter.addItem(new Teacher(104, "홍길동5", "hong5@test.com", null));
 
         // => ListView에 데이터 및 뷰 공급자를 설정한다.
         this.listView.setAdapter(listAdapter);
 
+        // => 서버에서 강사 데이터 목록을 가져온다.
+        new TeacherListTask().execute(1, 7);
     }
 
     public void onButton1Click(View v) {
@@ -55,6 +51,10 @@ public class TeacherActivity extends AppCompatActivity {
 
     class TeacherAdapter extends BaseAdapter {
         ArrayList<Teacher> items = new ArrayList<>();
+
+        public void reset() {
+            items.clear(); // ArrayList 객체에 저장된 것들을 비운다.
+        }
 
         public void addItem(Teacher teacher) {
             items.add(teacher);
@@ -133,36 +133,26 @@ public class TeacherActivity extends AppCompatActivity {
 
                 // JSONArray에서 한 개의 JSONObject를 꺼낸다.
                 // JSONObject에 있는 데이터를 Teacher 객체에 옮긴다.
-                // Teacher 객체를 teacherList에 보관한다.
-                ArrayList<Teacher> teacherList = new ArrayList<>();
-
+                // Teacher 객체를 TeacherAdapter에 저장한다.
+                listAdapter.reset(); // TeacherAdapter의 데이터를 초기화시킨다.
                 for (int i = 0; i < data.length(); i++) {
-                    JSONObject obj = data.getJSONObject(i);
-
-
-
-                    teacherList.add(teacher);
+                    listAdapter.addItem(Teacher.valueOf(data.getJSONObject(i)));
                 }
-                member.setPhotoList(photoList);
 
-                // 다시 Member 객체를 Intent에 담는다.
-                Intent intent = new Intent();
-                intent.putExtra("member", member);
-
-                // Intent 객체를 LoginActivity를 실행한 "MainActivity"에게 리턴한다.
-                LoginActivity.this.setResult(RESULT_OK, intent);
+                // TeacherAdapter에 저장된 새 데이터를 ListView에 다시 출력한다.
+                // => Adapter에 데이터가 추가, 삭제, 변경된 다음에는
+                //    반드시 ListView에게 알려 화면을 갱신하게 만들어야 한다.
+                listAdapter.notifyDataSetChanged();
 
             } catch (Exception e) {
-                Toast.makeText(LoginActivity.this,
-                        "로그인 오류!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),
+                        e.getMessage(), Toast.LENGTH_LONG).show();
 
                 // 어떤 오류인지 자세한 내용은 로그로 출력한다.
                 StringWriter out = new StringWriter();
                 e.printStackTrace(new PrintWriter(out));
                 Log.e(TAG, out.toString());
             }
-            LoginActivity.this.finish();
-
         }
     }
 
