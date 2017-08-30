@@ -13,12 +13,10 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Scanner;
+
+import bitcamp.bigdata3.app01.util.RESTful;
+import bitcamp.bigdata3.app01.util.Utils;
 
 public class TeacherActivity extends AppCompatActivity {
 
@@ -93,20 +91,12 @@ public class TeacherActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Integer... params) {
             try {
-                URL url = new URL(String.format(
+                return RESTful.get(String.format(
                         "http://192.168.0.6:8080/teacher/json/list?pageNo=%d&pageSize=%d",
                         params[0], params[1]));
-                URLConnection urlConnection = url.openConnection();
-
-                Scanner in = new Scanner(urlConnection.getInputStream());
-                StringBuffer buf = new StringBuffer();
-                while (in.hasNext()) {
-                    buf.append(in.nextLine());
-                }
-                return buf.toString();
 
             } catch (Exception e) {
-                Log.e(TAG, e.getMessage());
+                Log.e(TAG, Utils.toDetailMessage(e));
             }
 
             return null;
@@ -149,9 +139,7 @@ public class TeacherActivity extends AppCompatActivity {
                         e.getMessage(), Toast.LENGTH_LONG).show();
 
                 // 어떤 오류인지 자세한 내용은 로그로 출력한다.
-                StringWriter out = new StringWriter();
-                e.printStackTrace(new PrintWriter(out));
-                Log.e(TAG, out.toString());
+                Log.e(TAG, Utils.toDetailMessage(e));
             }
         }
     }
