@@ -8,6 +8,6 @@
 **/.class
 **/.log
 **/.DS_Store
-**/.settings
-**/.project
+**/Debug
+**/Release
 !build.gradle
