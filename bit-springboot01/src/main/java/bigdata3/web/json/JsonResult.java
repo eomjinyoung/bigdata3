@@ -1,6 +1,10 @@
 package bigdata3.web.json;
 
 public class JsonResult {
+  
+  public static final String STATE_SUCCESS = "success";
+  public static final String STATE_FAIL = "fail";
+  
   String state;
   Object data;
   

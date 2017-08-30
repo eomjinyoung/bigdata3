@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import bigdata3.domain.Member;
 import bigdata3.service.TeacherService;
 
+import static bigdata3.web.json.JsonResult.*;
+
 // 이 페이지 컨트롤러는 응답으로 JSON 데이터를 리턴하기 때문에
 // @RestController를 붙여야 한다.
 @RestController("json.AuthControl")
@@ -34,16 +36,16 @@ public class AuthControl {
     
     if (member != null) { 
       session.setAttribute("loginMember", member);
-      return new JsonResult("success", member);
+      return new JsonResult(STATE_SUCCESS, member);
     } 
     
-    return new JsonResult("fail", null);
+    return new JsonResult(STATE_FAIL, null);
   }
   
   @RequestMapping("logout")
   public Object logout(HttpServletRequest req, HttpServletResponse res) throws Exception {
     req.getSession().invalidate();  
-    return new JsonResult("success", null);
+    return new JsonResult(STATE_SUCCESS, null);
   }  
 }
 
