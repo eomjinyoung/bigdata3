@@ -1,6 +1,11 @@
 package bitcamp.bigdata3.app01;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+
+import static android.R.attr.data;
 
 /**
  * Created by bit11 on 2017-08-30.
@@ -48,6 +53,26 @@ public class Teacher extends Member {
 
     public void setTwitter(String twitter) {
         this.twitter = twitter;
+    }
+
+    public static Teacher valueOf(JSONObject jsonObject) throws Exception {
+        Teacher teacher = new Teacher();
+        teacher.setNo(jsonObject.getInt("no"));
+        teacher.setName(jsonObject.getString("name"));
+        teacher.setTel(jsonObject.getString("tel"));
+        teacher.setEmail(jsonObject.getString("email"));
+        teacher.setHomepage(jsonObject.getString("homepage"));
+        teacher.setFacebook(jsonObject.getString("facebook"));
+        teacher.setTwitter(jsonObject.getString("twitter"));
+
+        ArrayList<String> photoList = new ArrayList<>();
+        JSONArray array = jsonObject.getJSONArray("photoList");
+        for (int i = 0; i < array.length(); i++) {
+            photoList.add(array.getString(i));
+        }
+        teacher.setPhotoList(photoList);
+
+        return teacher;
     }
 }
 

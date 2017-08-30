@@ -1,15 +1,30 @@
 package bitcamp.bigdata3.app01;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TeacherActivity extends AppCompatActivity {
+
+    public static final String TAG = TeacherActivity.class.getName();
+
     ListView listView;
     TeacherAdapter listAdapter;
 
@@ -73,4 +88,82 @@ public class TeacherActivity extends AppCompatActivity {
             return itemView;
         }
     }
+
+    class TeacherListTask extends AsyncTask<Integer, Void, String> {
+        @Override
+        protected String doInBackground(Integer... params) {
+            try {
+                URL url = new URL(String.format(
+                        "http://192.168.0.6:8080/teacher/json/list?pageNo=%d&pageSize=%d",
+                        params[0], params[1]));
+                URLConnection urlConnection = url.openConnection();
+
+                Scanner in = new Scanner(urlConnection.getInputStream());
+                StringBuffer buf = new StringBuffer();
+                while (in.hasNext()) {
+                    buf.append(in.nextLine());
+                }
+                return buf.toString();
+
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage());
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String json) {
+            try {
+                if (json == null)
+                    throw new Exception("서버 요청 오류!");
+
+                JSONObject jsonObject = new JSONObject(json); // 문자열 ==> 자바 객체
+
+                // 요청 실패 => 안내 문구를 띄운다.
+                if (jsonObject.getString("state").equals("fail")) {
+                    Toast.makeText(getApplicationContext(),
+                            "강사 목록을 가져오는데 실패했습니다.",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // 성공 => 서버에서 받은 json 데이터를 JSONArray 객체에 담는다.
+                JSONArray data = jsonObject.getJSONArray("data");
+
+                // JSONArray에서 한 개의 JSONObject를 꺼낸다.
+                // JSONObject에 있는 데이터를 Teacher 객체에 옮긴다.
+                // Teacher 객체를 teacherList에 보관한다.
+                ArrayList<Teacher> teacherList = new ArrayList<>();
+
+                for (int i = 0; i < data.length(); i++) {
+                    JSONObject obj = data.getJSONObject(i);
+
+
+
+                    teacherList.add(teacher);
+                }
+                member.setPhotoList(photoList);
+
+                // 다시 Member 객체를 Intent에 담는다.
+                Intent intent = new Intent();
+                intent.putExtra("member", member);
+
+                // Intent 객체를 LoginActivity를 실행한 "MainActivity"에게 리턴한다.
+                LoginActivity.this.setResult(RESULT_OK, intent);
+
+            } catch (Exception e) {
+                Toast.makeText(LoginActivity.this,
+                        "로그인 오류!", Toast.LENGTH_LONG).show();
+
+                // 어떤 오류인지 자세한 내용은 로그로 출력한다.
+                StringWriter out = new StringWriter();
+                e.printStackTrace(new PrintWriter(out));
+                Log.e(TAG, out.toString());
+            }
+            LoginActivity.this.finish();
+
+        }
+    }
+
 }

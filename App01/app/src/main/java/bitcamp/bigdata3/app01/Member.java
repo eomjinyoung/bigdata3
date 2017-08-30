@@ -9,6 +9,7 @@ import java.util.List;
 public class Member implements Parcelable {
     int no;
     String name;
+    String tel;
     String email;
     String password;
     List<String> photoList;
@@ -18,6 +19,7 @@ public class Member implements Parcelable {
         return "Member{" +
                 "no=" + no +
                 ", name='" + name + '\'' +
+                ", tel='" + tel + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", photoList=" + photoList +
@@ -47,6 +49,14 @@ public class Member implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public String getEmail() {
