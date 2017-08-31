@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main07(void) {
+int main(void) {
 	int scores[5];
 	int a = 100;
 
@@ -27,6 +27,23 @@ int main07(void) {
 	printf("%d\n", scores[5]);
 
 	printf("%d\n", a);
+
+	// 배열 선언과 동시에 초기화시키기
+	int scores2[3] = {100, 90, 80};
+	int len = sizeof(scores2) / sizeof(int);
+	for (int i = 0; i < len; i++) {
+		printf("%d, ", scores2[i]);
+	}
+	printf("\n");
+
+	// => 배열 선언과 동시에 값을 초기화시킬 때는 배열의 개수를 생략해도 된다.
+	//    그러면 값의 개수에 따라 배열의 개수가 결정된다.
+	int scores3[] = {100, 90, 80};
+	len = sizeof(scores3) / sizeof(int);
+	for (int i = 0; i < len; i++) {
+		printf("%d, ", scores3[i]);
+	}
+	printf("\n");
 
 	return EXIT_SUCCESS;
 }
