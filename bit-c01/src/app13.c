@@ -8,9 +8,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main13(void) {
-	int scores[5];
-	//scores
+int main(void) {
+	int a1[] = {100, 100, 100, 100, 100};
+	int a2[] = {90, 90, 90, 90};
+	int v1 = 120;
+
+	int *p;
+
+	//1) 포인터 변수는 단일 변수의 주소를 저장한다.
+	p = &v1;
+	printf("%d\n", *p);
+
+
 
 	return EXIT_SUCCESS;
 }
