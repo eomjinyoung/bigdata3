@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void) {
+int main07(void) {
 	int scores[5];
 	int a = 100;
 
