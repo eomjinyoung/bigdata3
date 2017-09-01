@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(void) {
+int main20(void) {
 	// int 배열 메모리를 만든다.
 	// => char는 1바이트라서 그냥 크기를 지정하면 되지만,
 	//    다른 타입은 크기가 다르기 때문에 sizeof(타입)을 사용해서
