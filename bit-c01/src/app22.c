@@ -31,7 +31,7 @@ int app22_f1() {
 	return result;
 }
 
-int main(void) {
+int main22(void) {
 
 	char str[10];
 
