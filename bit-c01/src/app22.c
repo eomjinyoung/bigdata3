@@ -7,7 +7,7 @@
 
 int app22_f1() {
 	// 동적 메모리를 준비한다.
-	char* p = (char*) malloc(1000000);
+	char* p = (char*) malloc(10000000);
 
 	// 동적 메모리를 사용한다.
 	// => 여기 동적 메모리에 파일을 읽어 들이는 코드가 있다고 가정하자!
@@ -22,13 +22,17 @@ int app22_f1() {
 
 int main(void) {
 
+	char str[10];
+
 	// 이제 필요할 때마다 app22_f1()을 호출하여 작업을 수행하는 것을 표현해보겠다.
-	printf("작업결과=%d\n", app22_f1());
-	printf("작업결과=%d\n", app22_f1());
-	printf("작업결과=%d\n", app22_f1());
-	printf("작업결과=%d\n", app22_f1());
-	printf("작업결과=%d\n", app22_f1());
-	printf("작업결과=%d\n", app22_f1());
+	for (int i = 0; i < 10; i++) {
+		printf("result=%d\n", app22_f1());
+
+		puts("continue?(y/n)");
+		scanf("%s", str);
+		if (strcmp(str, "y") == 0)
+			break;
+	}
 
 	return EXIT_SUCCESS;
 }
