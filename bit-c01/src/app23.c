@@ -43,7 +43,7 @@ int app23_f6(int a, int b) {
 	return a + b; // 값을 리턴할 때는 return 명령을 사용한다.
 }
 
-int main(void) {
+int main23(void) {
 	app23_f1();
 	app23_f2();
 	app23_f3("홍길동", 24);
