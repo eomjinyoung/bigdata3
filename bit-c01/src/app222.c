@@ -6,7 +6,7 @@
 #include <string.h>
 
 
-int main(void) {
+int main222(void) {
 	char c = 'A';
 	int i = 100;
 	float f = 3.14;
