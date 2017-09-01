@@ -1,4 +1,4 @@
-/* 변수와 데이터형 - 포인터 변수의 배열
+/* 포인터 - 포인터 변수의 배열
  *
  */
 
@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(void) {
+int main16(void) {
 	// 고정 길이 2차원 배열
 	int scores[3][4] = { // 3행 4열의 배열
 			{91, 92, 93, 94},
