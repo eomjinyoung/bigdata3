@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(void) {
+int main36(void) {
 	int age = 5;
 
 	if (age < 19)
