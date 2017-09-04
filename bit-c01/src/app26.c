@@ -22,7 +22,7 @@ void app26_minus(int value) {app26_sum -= value;}
 void app26_multiple(int);
 void app26_divide(int);
 
-int main(void) {
+int main26(void) {
 	app26_plus(100);
 	app26_plus(27);
 	app26_plus(37);
