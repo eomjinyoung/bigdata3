@@ -28,12 +28,17 @@ struct app54_point *app54_f2() {
 	return p;
 }
 
-int main(void) {
+int main54(void) {
 
 	struct app54_point *p;
 
 	//p = app54_f1(); // 컴파일 오류! 로컬 변수의 주소를 리턴 받아서는 안된다.
 	p = app54_f2();
+
+	// 주의!
+	// => 함수를 만든 개발자가 따로 언급한 게 없다면,
+	//    함수가 리턴한 메모리의 주소는 사용 후 폐기해야 한다.
+	free(p);
 
 	printf("main() => (%d,%d)\n", p->x, p->y);
 
