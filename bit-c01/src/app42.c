@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(void) {
+int main42(void) {
 	int count = 0;
 
 	do {
