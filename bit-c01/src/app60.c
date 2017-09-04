@@ -9,14 +9,14 @@
 typedef struct member {
 	char name[50];
 	int age;
-	union option {
+	union option { // 4바이트 메모리를 한 개 만들어 놓고, int 또는 float 또는 char 변수로 사용하겠다!
 		int grade;
 		float score;
 		char working;
 	} opt;
 } Member, *PMember;
 
-int main(void) {
+int main60(void) {
 
 	printf("struct member의 크기=%d\n", sizeof(Member));
 
