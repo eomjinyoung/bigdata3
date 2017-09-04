@@ -17,7 +17,7 @@ struct app53_point app53_f1() {
 	return p; // 구조체 값을 리턴한다.
 }
 
-int main(void) {
+int main53(void) {
 
 	struct app53_point p;
 
