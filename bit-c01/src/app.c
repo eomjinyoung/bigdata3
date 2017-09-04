@@ -23,7 +23,7 @@ int main(void) {
 	case '/': result = a / (float)b; break;
 	case '%': result = a % b; break;
 	default:
-		printf("'%c' 연산자는 지원하지 않습니다.");
+		printf("'%c' 연산자는 지원하지 않습니다.", op);
 	}
 	printf("result: %f\n", result);
 
