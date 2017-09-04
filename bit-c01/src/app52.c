@@ -22,7 +22,7 @@ int main(void) {
 	p.x = 100;
 	p.y = 200;
 
-	app52_f1(&p); // 함수를 호출할 때 구조체의 주소를 넘긴다. "call by reference"
+	app52_f1(&p); // 함수를 호출할 때 구조체의 주소를 넘긴다. "call by reference" //
 
 	printf("main() => (%d,%d)\n", p.x, p.y);
 
