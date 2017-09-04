@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(void) {
+int main34(void) {
 
 	// a << x => a * 2**x
 	int a = 5; // 0000 0101
