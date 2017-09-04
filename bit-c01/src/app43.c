@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(void) {
+int main43(void) {
 
 	for (int i = 0; i < 10; i++) {
 		printf("%d,", i);
