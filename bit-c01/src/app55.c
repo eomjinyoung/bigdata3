@@ -24,7 +24,7 @@ PPoint app55_f2() {
 	return p;
 }
 
-int main(void) {
+int main55(void) {
 
 	PPoint p;
 
