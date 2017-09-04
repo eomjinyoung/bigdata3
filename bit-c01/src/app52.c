@@ -16,7 +16,7 @@ void app52_f1(struct app52_point *p) {
 	printf("app52_f1() => (%d,%d)\n", p->x, p->y);
 }
 
-int main(void) {
+int main52(void) {
 
 	struct app52_point p;
 	p.x = 100;
