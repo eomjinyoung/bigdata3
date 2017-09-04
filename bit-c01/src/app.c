@@ -10,6 +10,7 @@
 // 함수 프로토타입 선언
 void prompt(char *);
 void compute();
+void displayResult();
 
 // 여러 함수에서 사용할 수 있도록 글로벌 변수로 만든다.
 int a, b;
@@ -19,10 +20,8 @@ float result;
 int main(void) {
 
 	prompt("input: ");
-
 	compute();
-
-	printf("result: %f\n", result);
+	displayResult();
 
 	return EXIT_SUCCESS;
 }
@@ -44,6 +43,11 @@ void compute() {
 	}
 }
 
+void displayResult() {
+	puts("---------------------------");
+	printf("| %d %c %d = %.2f\n", a, op, b, result);
+	puts("---------------------------");
+}
 
 
 
