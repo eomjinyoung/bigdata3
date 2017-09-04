@@ -28,12 +28,19 @@ int main(void) {
 	// 문제점2 - 1과 0으로 표현되는 값을 넣고 빼내기가 번거롭다.
 
 	// 이렇게 작은 값을 보다 쉽게 다루고 메모리 또한 절약하기 위해 등장한 문법이 비트 필드이다.
-	struct flag {
-		unsigned int c;
-		unsigned int cpp;
-		unsigned int java;
-		unsigned int python;
-	} f1;
+	struct flag2 {
+		unsigned int c 		: 1;
+		unsigned int cpp 	: 1;
+		unsigned int java 	: 1;
+		unsigned int python : 1;
+	} f2;
+
+	printf("struct flag2의 크기=%d\n", sizeof(struct flag2));
+	f2.c = 1;
+	f2.cpp = 1;
+	f2.java = 1;
+	f2.python = 1;
+	printf("%d,%d,%d,%d\n", f2.c, f2.cpp, f2.java, f2.python);
 
 	return EXIT_SUCCESS;
 }
