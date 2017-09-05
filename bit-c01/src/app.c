@@ -8,9 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "view.h"
-
-// 함수 프로토타입 선언
-void compute();
+#include "calculator.h"
 
 // 여러 함수에서 사용할 수 있도록 글로벌 변수로 만든다.
 int a, b;
@@ -25,20 +23,3 @@ int main(void) {
 
 	return EXIT_SUCCESS;
 }
-
-void compute() {
-	switch (op) {
-	case '+': result = a + b; break;
-	case '-': result = a - b; break;
-	case '*': result = a * b; break;
-	case '/': result = a / (float)b; break;
-	case '%': result = a % b; break;
-	default:
-		printf("'%c' 연산자는 지원하지 않습니다.", op);
-	}
-}
-
-
-
-
-
