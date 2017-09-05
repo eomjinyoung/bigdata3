@@ -4,18 +4,14 @@
 #include <stdio.h>
 #include "calculator.h"
 
-// app.c에 선언된 글로벌 변수를 사용하겠다고 선언한다.
-// 어느 파일에 선언됐는지 지정할 필요는 없다. 다른 파일에 선언된 글로벌 변수를 찾기 때문이다.
-extern Expr exprVal;
-
-void prompt(char *message) {
+void prompt(char *message, PExpr pExpr) {
 	printf(message);
-	scanf("%d %c %d", &exprVal.a, &exprVal.op, &exprVal.b);
+	scanf("%d %c %d", &pExpr->a, &pExpr->op, &pExpr->b);
 }
 
-void displayResult() {
+void displayResult(PExpr pExpr) {
 	puts("---------------------------");
-	printf("| %d %c %d = %.2f\n", exprVal.a, exprVal.op, exprVal.b, exprVal.result);
+	printf("| %d %c %d = %.2f\n", pExpr->a, pExpr->op, pExpr->b, pExpr->result);
 	puts("---------------------------");
 }
 

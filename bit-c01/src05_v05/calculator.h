@@ -11,6 +11,6 @@ typedef struct expr {
 	float result;
 } Expr, *PExpr;
 
-void compute(PExpr);
+void compute();
 
 #endif /* CALCULATOR_H_ */
