@@ -4,9 +4,9 @@ package bigdata3.web.json;
 import static bigdata3.web.json.JsonResult.*;
 
 import javax.servlet.ServletContext;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +26,7 @@ public class ArduinoControl {
   }
   
   @RequestMapping("setLED/{state}")
-  public Object setLED(@PathParam("state") String state) throws Exception {
+  public Object setLED(@PathVariable String state) throws Exception {
     if (state.equals("on") || state.equals("off")) {
       application.setAttribute("led.state", state);
       return new JsonResult(STATE_SUCCESS, state);
