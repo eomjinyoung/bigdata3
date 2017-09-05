@@ -24,11 +24,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="로그인" />
-        <activity
-            android:name=".TeacherActivity"
-            android:label="강사관리" />
+            android:name=".LedActivity"
+            android:label="LED 제어"></activity>
     </application>
 
 </manifest>

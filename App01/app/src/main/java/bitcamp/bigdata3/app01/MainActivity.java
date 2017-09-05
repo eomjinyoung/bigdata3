@@ -10,7 +10,6 @@ package bitcamp.bigdata3.app01;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,30 +19,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setTitle("Main5");
         setContentView(R.layout.activity_main1);
     }
 
     public void onButton1Click(View v) {
-        Intent intent = new Intent(this, LoginActivity.class);
-        this.startActivityForResult(intent, REQ_LOGIN);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQ_LOGIN) {
-            Member member = data.getExtras().getParcelable("member");
-            Log.v(TAG, member.toString());
-
-            Intent intent = new Intent(this, TeacherActivity.class);
-            this.startActivity(intent);
-        }
-    }
-
-    public void onButton2Click(View v) {
-        Intent intent = new Intent(this, TeacherActivity.class);
+        Intent intent = new Intent(this, LedActivity.class);
         this.startActivity(intent);
     }
+
 }
