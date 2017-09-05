@@ -1,27 +1,6 @@
-/* 페이지 컨트롤러와 서비스 객체 준비
- * - Spring MVC에서 사용할 JSP 엔진 준비 
- *   => build.gradle에 톰캣 JSP 엔진 라이브러리 추가
- *      compile("org.apache.tomcat.embed:tomcat-embed-jasper");
- *   => build.gradle에 톰캣 JSTL 라이브러리 추가
- *      compile group: 'javax.servlet', name: 'jstl', version: '1.2'
- *   
- * - 서비스 객체 준비
- *   => bigdata3.service 패키지에 인터페이스 작성 
- *   => bigdata3.service.impl 패키지에 인터페이스 구현체 작성
- *   
- * - 페이지 컨트롤러 준비
- *   => bigdata3.web 패키지에 클래스 작성
- *   
- * - JSP 페이지 준비
- *   => /webapp/WEB-INF/jsp/ 폴더에 JSP 작성
+/* 아두이노 장비 제어를 위한 페이지 컨트롤러 추가
+ * => ArduinoControl 작성
  * 
- * - HTML 파일 준비
- *   => /resources/static 폴더에 HTML 작성
- *   
- * - JSP URL에 대해 접두사, 접미사 설정하기
- *   => application.properties 파일에 다음 프로퍼티를 추가한다.
- *      spring.mvc.view.prefix=/WEB-INF/jsp/
- *      spring.mvc.view.suffix=.jsp
  */
 
 package bigdata3;
