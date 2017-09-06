@@ -1,20 +1,11 @@
-/* 클래스 정의 - inline 함수
- * - 클래스를 정의하는 블록 안에 함수 정의하는 것.
- *
+/* 클래스 정의 - 헤더 파일과 소스 파일
+ * - 헤더파일 : 클래스를 정의하는 코드를 둔다.
+ * - 소스파일 : 클래스의 함수를 정의하는 코드를 둔다.
  */
 #include <iostream>
+#include "Calculator.h"
+
 using namespace std;
-
-class Calculator {
-private:
-	int result;
-
-public:
-	inline void plus(int value) {this->result += value;}
-	inline void minus(int value) {result -= value;}
-	inline void reset() {result = 0;}
-	inline int getResult() {return result;}
-};
 
 int main() {
 	// 클래스 인스턴스 생성
