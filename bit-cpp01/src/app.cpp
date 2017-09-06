@@ -1,5 +1,5 @@
-/* 클래스 - 인스턴스의 값 복사
- * => 인스턴스의 값 복사를 기본으로 제공한다.
+/* 클래스 - 인스턴스 참조(reference) II
+ * => 함수의 파라미터에서 참조를 사용하기
  *
  */
 #include <iostream>
@@ -7,20 +7,40 @@
 
 using namespace std;
 
+void swap1(int a, int b) {
+	int temp = a;
+	a = b;
+	b = temp;
+}
+
+void swap2(int* a, int* b) { // 변수의 주소를 받는 파라미터
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+void swap3(int& a, int& b) { // 변수에 추가로 이름을 붙이는 파라미터
+	// 파라미터로 레퍼런스를 사용하게 되면 포인터 변수보다 코드를 작성하기가 편리하다.
+	// 포인터 변수를 다룰 때는 항상 * 기호를 사용해야 했다.
+	int temp = a;
+	a = b;
+	b = temp;
+}
+
 int main() {
-	Calculator p1;
-	p1.plus(100);
-	p1.minus(77);
-	cout << "p1 결과: " << p1.getResult() << endl;
+	int a = 10;
+	int b = 20;
 
-	Calculator p2; // p1과 다른 새 인스턴스
-	p2 = p1; // p1의 값을 p2 인스턴스에 복사하는 것이다.
-	p2.plus(100);
-	p2.minus(77);
-	cout << "p2 결과: " << p2.getResult() << endl;
+	swap1(a, b);
+	cout << "a=" << a << "," << "b=" << b << endl;
 
-	cout << "p1 결과: " << p1.getResult() << endl;
+	a = 10, b = 20;
+	swap2(&a, &b);
+	cout << "a=" << a << "," << "b=" << b << endl;
 
+	a = 10, b = 20;
+	swap3(a, b);
+	cout << "a=" << a << "," << "b=" << b << endl;
 
 	return 0;
 }
