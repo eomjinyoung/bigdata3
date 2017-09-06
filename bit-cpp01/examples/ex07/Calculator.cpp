@@ -1,9 +1,9 @@
 #include <iostream>
 #include "Calculator.h"
 
-Calculator::Calculator(int value) {
-	std::cout << "Calculator(int)..." << std::endl;
-	result = value;
+Calculator::Calculator() {
+	std::cout << "Calculator()..." << std::endl;
+	result = 0;
 }
 
 void Calculator::plus(int value) {

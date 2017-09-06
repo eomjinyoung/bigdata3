@@ -1,11 +1,6 @@
-#include <iostream>
 #include "Calculator.h"
 
-Calculator::Calculator(int value) {
-	std::cout << "Calculator(int)..." << std::endl;
-	result = value;
-}
-
+// 클래스의 함수 정의
 void Calculator::plus(int value) {
 	result += value;
 }

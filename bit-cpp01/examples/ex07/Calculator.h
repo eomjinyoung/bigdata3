@@ -6,7 +6,7 @@ private:
 	int result;
 
 public:
-	Calculator(int);
+	Calculator(); // 持失切 識情
 	void plus(int);
 	void minus(int);
 	void reset();

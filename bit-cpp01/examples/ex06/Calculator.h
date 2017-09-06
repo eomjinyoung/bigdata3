@@ -6,7 +6,6 @@ private:
 	int result;
 
 public:
-	Calculator(int);
 	void plus(int);
 	void minus(int);
 	void reset();
