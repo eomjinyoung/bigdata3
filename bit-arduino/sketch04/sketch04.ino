@@ -1,4 +1,5 @@
 int outPin = 3;
+int currVol = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -6,9 +7,18 @@ void setup() {
 }
 
 void loop() {
-  // 리턴 값: 0 ~ 1023 
-  int value = analogRead(A0);
-  analogWrite(outPin, value / 4);
-  Serial.println(value);
+  int volume = map(analogRead(A0), 0, 1023, 0, 100);
+  if (currVol != volume) {
+    currVol = volume;
+    analogWrite(outPin, map(currVol, 0, 100, 0, 255));
+    Serial.println(currVol);
+  }
+  /*
+  if (Serial.available()) {
+    long value = Serial.readString().toInt();
+    analogWrite(outPin, value);
+    Serial.println(value);
+  }
+  */
   delay(100);
 }

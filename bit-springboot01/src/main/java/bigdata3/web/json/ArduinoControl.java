@@ -48,8 +48,12 @@ public class ArduinoControl {
   
   @RequestMapping("setVolume/{value}")
   public Object setVolume(@PathVariable int value) throws Exception {
-    application.setAttribute("volume", value);
-    return new JsonResult(STATE_SUCCESS, value);
+    if (value >= 0 && value <= 100) {
+      application.setAttribute("volume", value);
+      return new JsonResult(STATE_SUCCESS, value);
+    } else {
+      return new JsonResult(STATE_FAIL, "0 ~ 100 값만 유효합니다.");
+    }
   }
 }
 

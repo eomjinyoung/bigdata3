@@ -1,5 +1,7 @@
 package bitcamp.bigdata3.app01.util;
 
+import org.json.JSONObject;
+
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
@@ -19,5 +21,9 @@ public class RESTful {
             buf.append(in.nextLine());
         }
         return buf.toString();
+    }
+
+    public static JSONObject getJSON(String url) throws Exception {
+        return new JSONObject(get(url));
     }
 }
