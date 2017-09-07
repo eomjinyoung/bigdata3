@@ -35,6 +35,22 @@ public class ArduinoControl {
       return new JsonResult(STATE_FAIL, state);
     }
   }
+  
+  @RequestMapping("getVolume")
+  public Object getVolume() throws Exception {
+    Integer value = (Integer) application.getAttribute("volume");
+    if (value == null) {
+      value = 0;
+      application.setAttribute("volume", value);
+    }
+    return new JsonResult(STATE_SUCCESS, value);
+  }
+  
+  @RequestMapping("setVolume/{value}")
+  public Object setVolume(@PathVariable int value) throws Exception {
+    application.setAttribute("volume", value);
+    return new JsonResult(STATE_SUCCESS, value);
+  }
 }
 
 

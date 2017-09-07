@@ -27,4 +27,8 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity(intent);
     }
 
+    public void onButton2Click(View v) {
+        Intent intent = new Intent(this, SpeakerActivity.class);
+        this.startActivity(intent);
+    }
 }
