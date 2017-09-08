@@ -9,11 +9,10 @@ time.sleep(2) # 장비와 연결될 시간을 확보한다.
 print("시리얼 포트가 준비되었습니다.") 
 
 while True:
-    line = ser.readline()
-    value = str(line, 'utf-8').rstrip()
-    print("=> " + value)
-    
+    ser.write(b'vol')
+    value = str(ser.readline(), 'utf-8').rstrip()
     response = requests.get("http://localhost:8080/arduino/json/setVolume/" + value)
+    print("setVolume=" + value)
     
     #response = requests.get("http://localhost:8080/arduino/json/getVolume")
     #obj = json.loads(response.text)
@@ -22,7 +21,7 @@ while True:
     #line = ser.readline() # 장비로부터 바이트 배열을 받는다.
     #print(str(line, 'utf-8').rstrip()) # 바이트 배열을 string 객체로 변환한 후 출력한다.
 
-    #time.sleep(5)
+    time.sleep(5)
     
 ser.close()
 print("종료!")

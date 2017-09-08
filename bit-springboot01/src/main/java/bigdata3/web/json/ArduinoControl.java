@@ -55,6 +55,22 @@ public class ArduinoControl {
       return new JsonResult(STATE_FAIL, "0 ~ 100 값만 유효합니다.");
     }
   }
+  
+  @RequestMapping("setVolumeControl/{value}")
+  public Object setVolumeControl(@PathVariable String value) throws Exception {
+    application.setAttribute("volume.control", value);
+    return new JsonResult(STATE_SUCCESS, value);
+  }
+  
+  @RequestMapping("getVolumeControl")
+  public Object getVolumeControl() throws Exception {
+    String value = (String) application.getAttribute("volume.control");
+    if (value == null) {
+      value = "hardware";
+      application.setAttribute("volume.control", value);
+    }
+    return new JsonResult(STATE_SUCCESS, value);
+  }
 }
 
 
