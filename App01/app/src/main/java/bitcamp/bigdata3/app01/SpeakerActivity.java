@@ -48,9 +48,11 @@ public class SpeakerActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 if (checkedId == R.id.rbHardware) {
-                    Log.v(TAG, "Hardware");
+                    new VolumeControlTask().execute("hardware");
+                    Log.v(TAG, "hardware");
                 } else {
-                    Log.v(TAG, "Software");
+                    new VolumeControlTask().execute("software");
+                    Log.v(TAG, "software");
                 }
             }
         });
@@ -66,6 +68,7 @@ public class SpeakerActivity extends AppCompatActivity {
             try {
                 RESTful.get(String.format(
                         "http://192.168.0.6:8080/arduino/json/setVolume/%d", params[0]));
+                Log.v(TAG, "서버 요청: setVolume/" + params[0]);
 
             } catch (Exception e) {
                 Log.e(TAG, Utils.toDetailMessage(e));
@@ -101,6 +104,7 @@ public class SpeakerActivity extends AppCompatActivity {
             try {
                 JSONObject result = RESTful.getJSON(
                         "http://192.168.0.6:8080/arduino/json/setVolumeControl/" + params[0]);
+                Log.v(TAG, "서버 요청: setVolumeControl/" + params[0]);
 
             } catch (Exception e) {
                 Log.e(TAG, Utils.toDetailMessage(e));
