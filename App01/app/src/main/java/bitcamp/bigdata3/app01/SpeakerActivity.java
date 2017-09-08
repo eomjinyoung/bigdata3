@@ -16,6 +16,11 @@ import bitcamp.bigdata3.app01.util.Utils;
 
 public class SpeakerActivity extends AppCompatActivity {
     static final String TAG = SpeakerActivity.class.getName();
+    static final String REST_GET_URL =
+            "http://192.168.0.6:8080/arduino2/json/get/192.168.0.6/";
+    static final String REST_SET_URL =
+            "http://192.168.0.6:8080/arduino2/json/set/192.168.0.6/";
+
     SeekBar seekBar;
 
     @Override
@@ -66,9 +71,8 @@ public class SpeakerActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Integer... params) {
             try {
-                RESTful.get(String.format(
-                        "http://192.168.0.6:8080/arduino/json/setVolume/%d", params[0]));
-                Log.v(TAG, "서버 요청: setVolume/" + params[0]);
+                RESTful.get(REST_SET_URL + "volume/" + params[0]);
+                Log.v(TAG, "서버 요청: volume/" + params[0]);
 
             } catch (Exception e) {
                 Log.e(TAG, Utils.toDetailMessage(e));
@@ -81,8 +85,7 @@ public class SpeakerActivity extends AppCompatActivity {
         @Override
         protected Integer doInBackground(Void... params) {
             try {
-                JSONObject result = RESTful.getJSON(
-                        "http://192.168.0.6:8080/arduino/json/getVolume");
+                JSONObject result = RESTful.getJSON(REST_GET_URL + "volume");
 
                 return result.getInt("data");
 
@@ -102,9 +105,8 @@ public class SpeakerActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... params) {
             try {
-                JSONObject result = RESTful.getJSON(
-                        "http://192.168.0.6:8080/arduino/json/setVolumeControl/" + params[0]);
-                Log.v(TAG, "서버 요청: setVolumeControl/" + params[0]);
+                JSONObject result = RESTful.getJSON(REST_SET_URL + "volume_control/" + params[0]);
+                Log.v(TAG, "서버 요청: volume_control/" + params[0]);
 
             } catch (Exception e) {
                 Log.e(TAG, Utils.toDetailMessage(e));
