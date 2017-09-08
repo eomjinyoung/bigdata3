@@ -2,11 +2,12 @@ package bitcamp.bigdata3.app01;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
-import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -36,9 +37,22 @@ public class SpeakerActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 Log.v(TAG, "onStopTrackingTouch(): " + seekBar.getProgress());
-                new VolumeControlTask().execute(seekBar.getProgress());
+                new VolumeSizeTask().execute(seekBar.getProgress());
             }
 
+        });
+
+        // RadioButton의 상태가 변경되는 이벤트가 발생했을 때 처리할 객체 등록
+        RadioGroup radioGroup = (RadioGroup) this.findViewById(R.id.group1);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if (checkedId == R.id.rbHardware) {
+                    Log.v(TAG, "Hardware");
+                } else {
+                    Log.v(TAG, "Software");
+                }
+            }
         });
     }
 
@@ -46,7 +60,7 @@ public class SpeakerActivity extends AppCompatActivity {
         new VolumeReadTask().execute();
     }
 
-    class VolumeControlTask extends AsyncTask<Integer, Void, Void> {
+    class VolumeSizeTask extends AsyncTask<Integer, Void, Void> {
         @Override
         protected Void doInBackground(Integer... params) {
             try {
@@ -57,12 +71,6 @@ public class SpeakerActivity extends AppCompatActivity {
                 Log.e(TAG, Utils.toDetailMessage(e));
             }
             return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            Toast.makeText(getApplicationContext(),
-                    "서버 요청 완료!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -84,6 +92,20 @@ public class SpeakerActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer result) {
             SpeakerActivity.this.seekBar.setProgress(result);
+        }
+    }
+
+    class VolumeControlTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... params) {
+            try {
+                JSONObject result = RESTful.getJSON(
+                        "http://192.168.0.6:8080/arduino/json/setVolumeControl/" + params[0]);
+
+            } catch (Exception e) {
+                Log.e(TAG, Utils.toDetailMessage(e));
+            }
+            return null;
         }
     }
 }
