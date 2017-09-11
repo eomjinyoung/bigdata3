@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -15,17 +16,23 @@ import com.google.gson.Gson;
 public class FCMClient {
   public static void main(String[] args) throws Exception {
     //=> FCM 서버에 접속할 URL 준비
-    //URL url = new URL("https://fcm.googleapis.com/fcm/send");
+    URL url = new URL("https://fcm.googleapis.com/fcm/send");
     
     //=> URL에 접속
-    //HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+    HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+    
+    //=> 요청 헤더를 설정한다.
+    con.setRequestProperty("Content-Type", "application/json");
+    
+    //=> 요청 헤더에서 key 값은 FCM 서버에 설정된 키를 사용해야 한다.
+    con.setRequestProperty("Authorization", "key=");
     
     //=> POST로 데이터를 보내고 받겠다고 설정한다.
-    //con.setDoOutput(true);
-    //con.setDoInput(true);
+    con.setDoOutput(true);
+    con.setDoInput(true);
     
     //=> 출력 스트림을 준비한다.
-    //OutputStream out = con.getOutputStream();
+    OutputStream out = con.getOutputStream();
     
     //=> 보낼 데이터를 준비한다.
     //   FCM 서버로 데이터를 보낼 때는 JSON 형식의 문자열로 보내야 한다.
@@ -57,6 +64,20 @@ public class FCMClient {
     String json = new Gson().toJson(message);
     
     System.out.println(json);
+    
+    //=> 서버에 JSON 문자열을 전송한다.
+    out.write(json.getBytes());
+    out.flush(); // 버퍼에 찰 때까지 기다리지 말고 즉시 보낸다.
+    out.close();
+    
+    //=> 서버가 보낸 데이터를 읽는다.
+    Scanner in = new Scanner(con.getInputStream());
+    while (in.hasNext()) {
+      System.out.println(in.nextLine());
+    }
+    in.close();
+    
+    
     
   }
 }
