@@ -7,14 +7,12 @@
  */
 package bitcamp.bigdata3.app01;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
-    public static final int REQ_LOGIN = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +21,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButton1Click(View v) {
-        Intent intent = new Intent(this, LedActivity.class);
-        this.startActivity(intent);
+
     }
 
     public void onButton2Click(View v) {
-        Intent intent = new Intent(this, SpeakerActivity.class);
-        this.startActivity(intent);
+
     }
 }

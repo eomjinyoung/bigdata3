@@ -23,12 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LedActivity"
-            android:label="LED 제어" />
-        <activity
-            android:name=".SpeakerActivity"
-            android:label="스피커 소리제어"></activity>
     </application>
 
 </manifest>
