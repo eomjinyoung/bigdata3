@@ -1,14 +1,17 @@
-/* ListView를 이용하여 강사 목록 출력하기
-=> ListView에 출력할 UI와 데이터 클래스 추가
-   1) Teacher : 강사 데이터를 저장할 클래스
-   2) TeacherView : 강사 데이터를 출력할 ListView 항목
-   3) view_teacher.xml : 강사 데이터를 실제 출력하는 UI 컴포넌트
+/* 서비스 만들기
+=> 종류
+1) 일반 서비스
+   - startService()를 호출하여 서비스를 시작시킨다.
+2) 바인드된 서비스
+   - bindService()를 호출하여 서비스를 시작시킨다.
+
 
  */
 package bitcamp.bigdata3.app01;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +21,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1);
+
+        Log.d(TAG, "MainActivity.onCreate()");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "MainActivity.onStart()");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "MainActivity.onStop()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "MainActivity.onDestroy()");
     }
 
     public void onButton1Click(View v) {

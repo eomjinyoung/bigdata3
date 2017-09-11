@@ -13,9 +13,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import bitcamp.bigdata3.app01.util.RESTful;
 import bitcamp.bigdata3.app01.util.Utils;

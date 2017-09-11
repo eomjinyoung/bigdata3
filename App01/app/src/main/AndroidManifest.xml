@@ -23,6 +23,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".MyService1"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".SubActivity" />
+        <activity android:name=".ServiceActivity"></activity>
     </application>
 
 </manifest>
