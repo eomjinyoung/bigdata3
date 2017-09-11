@@ -1,18 +1,11 @@
-/* Activity 실행
-=> startActivity()를 호출할 때 마다 새 액티비티가 실행된다.
-   기본에 같은 이름의 액티비티가 있다하더라도 새로 액티비티를 중복 실행한다.
-=> 해결 방법?
-   FLAG 를 이용하여 액티비티 실행을 조정할 수 있다.
-=> Activity 플래그
-1) Intent.FLAG_ACTIVITY_SINGLE_TOP
-   - 현재 최상위 액티비티로 실행중에 있다면 다시 실행하지 않는다.
-   - 이미 최상위에 액티비티가 실행중에 있을 경우,
-     같은 액티비티를 중복 실행하지 않으려면 이 플래그를 붙여라!
-2) Intent.FLAG_ACTIVITY_CLEAR_TOP
-   - 최상위에는 없지만 다른 액티비티 아래에 깔린 상태일 때,
-     기존 액티비티를 다시 화면의 맨 위로 올리고 싶다면 이 플래그를 사용하라!
-   - 기존 액티비티를 출력하기 위해 그 위에 있던 모든 액티비티들이 제거된다.
+/* 서비스 만들고 실행하기
+=> 만드는 방법
+   - Service를 상속 받아 만든다.
+   - AndroidManifest.xml 파일에 <service> 태그를 추가한다.
 
+=> 실행하는 방법
+   방법 1) startService()를 호출한다.
+   방법 2) bindService()를 호출한다.
 
  */
 package bitcamp.bigdata3.app01;
@@ -67,6 +60,29 @@ public class MainActivity extends AppCompatActivity {
     public void onButton1Click(View v) {
         Intent intent = new Intent(getApplicationContext(), SubActivity.class);
         startActivity(intent);
+    }
+
+    public void onButton2Click(View v) {
+        // 서비스 객체 실행
+        Intent intent = new Intent(getApplicationContext(), MyService1.class);
+        startService(intent);
+
+        // => startService()를 호출하면
+        // 1) MyService1 객체가 없을 경우,
+        //    - 객체를 생성 ==> onCreate() ==> onStartCommand()
+        //
+        // 2) MyService1 객체가 있을 경우,
+        //    - onStartCommand()
+    }
+
+    public void onButton3Click(View v) {
+        // 서비스 객체 실행
+        Intent intent = new Intent(getApplicationContext(), MyService2.class);
+        startService(intent);
+
+        // MainActivity가 종료되었다 하더라도 MyService2는 밑단(background)에서
+        // 계속 실행할 것이다.
+        this.finish();
     }
 
 

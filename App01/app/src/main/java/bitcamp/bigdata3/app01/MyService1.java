@@ -20,18 +20,18 @@ public class MyService1 extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "MyService1.onCreate()...");
+        Log.d(TAG, ".onCreate()...");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "MyService1.onStartCommand()...");
+        Log.d(TAG, ".onStartCommand()...");
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "MyService1.onDestroy()...");
+        Log.d(TAG, ".onDestroy()...");
     }
 }
