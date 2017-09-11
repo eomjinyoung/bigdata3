@@ -24,8 +24,8 @@ public class FCMClient {
     //=> 요청 헤더를 설정한다.
     con.setRequestProperty("Content-Type", "application/json");
     
-    //=> 요청 헤더에서 key 값은 FCM 서버에 설정된 키를 사용해야 한다.
-    con.setRequestProperty("Authorization", "key=");
+    //=> 요청 헤더에서 key 값은 FCM 서버에 설정된 서버 키를 사용해야 한다.
+    con.setRequestProperty("Authorization", "key=AAAA-4_EgSE:APA91bGPjZ2tNnhad-G2PdMp7XS48T67hedDqP1UkFFIrL6Qg3PiJcT_zZneDvRbeU4s7N4BMl9PYylzkhhb8lZgoyGSxKTWkc5-063uE1zFHSsA6sme_49Y5j4rH0TH8_OjzlPm_9jX");
     
     //=> POST로 데이터를 보내고 받겠다고 설정한다.
     con.setDoOutput(true);
@@ -49,15 +49,31 @@ public class FCMClient {
     Map<String,Object> message = new HashMap<>();
     
     //=> 메시지를 받을 상대편 토큰 값 저장 
-    message.put("to", "dQ_NnNUrFww:APA91bGke4M87MneVw0ckgwabDMH8zfgQnvHthX_DdZKEZJS0vMQh67eZGuMc-pDpEAJCL1uQyP-WBO7UqwuXkTtO7Kb9O_HQG2Bz2btau0vTWRL1dQvQLaDurR8PgfQECuTzLV-iu5-");
+    //message.put("to", "dQ_NnNUrFww:APA91bGke4M87MneVw0ckgwabDMH8zfgQnvHthX_DdZKEZJS0vMQh67eZGuMc-pDpEAJCL1uQyP-WBO7UqwuXkTtO7Kb9O_HQG2Bz2btau0vTWRL1dQvQLaDurR8PgfQECuTzLV-iu5-");
+    message.put("to", "d3qFDBuuT64:APA91bFmHJkPcQORv0c-TFMX7uROx3ZJCBsVxJmH0veGTU1wFZ-j9q3tWeuupqqz7_BRLR8dI8NE7gEM3jrcwxUobrtyDyA73_Y7VvH3FSxcOCRmHGFNT_tIr1p4kXFFrzYUPrwBgDVd");
     
     //=> 상대편에서 보낼 데이터
-    Map<String,Object> data = new HashMap<>();
-    data.put("name", "홍길동");
-    data.put("age", "20");
-    
+    //Map<String,Object> data = new HashMap<>();
+    //data.put("name", "홍길동");
+    //data.put("age", "20");
+
     //=> message에 data를 담는다.
-    message.put("data", data);
+    //message.put("data", data);
+    
+    //=> 만약 알림 메시지만 띄우고 싶다면, 
+    /* data 대신 notification 값을 보내라!
+    "notification": {
+        "title": "Portugal vs. Denmark",
+        "text": "5 to 1"
+    },
+     */
+    
+    Map<String,Object> notification = new HashMap<>();
+    notification.put("title", "제목이래요..");
+    notification.put("text", "내용이래요...");
+    
+    //=> message에 notification을 담는다.
+    message.put("notification", notification);
     
     //=> message 객체에 저장된 값을 JSON 문자열로 뽑아낸다.
     //   구글 gson 라이브러리를 이용하여 JSON 문자열을 뽑는다.
