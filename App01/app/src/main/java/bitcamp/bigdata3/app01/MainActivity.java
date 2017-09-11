@@ -62,9 +62,11 @@ dQ_NnNUrFww:APA91bGke4M87MneVw0ckgwabDMH8zfgQnvHthX_DdZKEZJS0vMQh67eZGuMc-pDpEAJ
  */
 package bitcamp.bigdata3.app01;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getName();
@@ -76,5 +78,24 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, ".onCreate()");
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d(TAG, ".onResume()");
+
+        // 액티비티가 실행될 때 넘어온 인텐트 상자를 꺼낸다.
+        Intent intent = getIntent();
+
+        if (intent.getExtras() != null) {
+            // 인텐트 상자에서 저장된 name, age 값을 꺼내 토스트로 출력한다.
+            Toast.makeText(getApplicationContext(),
+                    "name=" + intent.getExtras().get("name") +
+                            ", age=" + intent.getExtras().get("age"),
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
 
 }
