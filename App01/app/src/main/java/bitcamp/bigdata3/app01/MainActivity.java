@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getName();
     EditText etEmail;
     EditText etPassword;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +31,20 @@ public class MainActivity extends AppCompatActivity {
         processData(intent);
     }
 
-    public void onButton1Click(View v) {
-        // => 공용 보관소를 얻는다.
-        SharedPreferences sharedPref = this.getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-
-        // => 공용 보관소에서 값을 꺼낸다.
-        String token = sharedPref.getString(getString(R.string.fcm_token), "");
-
-        Log.d(TAG, "token===> " + token);
-    }
-
     public void onButtonLoginClick(View v) {
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
         Log.d(TAG, "email=" + email + ", password=" + password);
+
+        // => 공용 보관소를 얻는다.
+        SharedPreferences sharedPref = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        // => 공용 보관소에서 값을 꺼낸다.
+        token = sharedPref.getString(getString(R.string.fcm_token), "");
+
+        Log.d(TAG, "token=" + token);
 
     }
 

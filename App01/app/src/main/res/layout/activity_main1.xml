@@ -8,24 +8,11 @@
     tools:context="bitcamp.bigdata3.app01.MainXActivity">
 
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onButton1Click"
-        android:text="Get Token"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline"
-        app:layout_constraintGuide_begin="143dp"
+        app:layout_constraintGuide_begin="121dp"
         android:orientation="vertical" />
 
     <TextView
@@ -42,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline2"
-        app:layout_constraintGuide_begin="123dp"
+        app:layout_constraintGuide_begin="93dp"
         android:orientation="horizontal" />
 
     <TextView
@@ -83,20 +70,23 @@
         android:id="@+id/etEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteY="143dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline" />
+        android:text="user6@test.com"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:layout_marginLeft="8dp"
+        android:text="1111"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
-        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 </android.support.constraint.ConstraintLayout>
