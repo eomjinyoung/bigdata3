@@ -47,9 +47,9 @@ public class AlarmControl {
     //=> FCM 서버에게 알림 메시지를 보낸다.
     String result = fcmAgent.send(new FcmMessage(
         user.getToken(), //=> to
-        "동작이 감지되었습니다.", //=> message 
+        message, //=> message 
         "IoT 경고", //=> title
-        "감지장치(" + serialId + ")의 변화가 감지되었습니다.")); //=> text
+        "감지장치(" + serialId + ")에 변화가 발생했습니다.")); //=> text
     
     return new JsonResult(STATE_SUCCESS, result);
   }
