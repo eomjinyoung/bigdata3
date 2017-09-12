@@ -25,7 +25,7 @@ public class Application {
   public DataSource dataSource() {
     return DataSourceBuilder.create().build();
   }
-
+  
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Application.class, args);
   }

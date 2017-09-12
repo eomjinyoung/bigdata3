@@ -1,4 +1,4 @@
-# 톰캣 서버로부터 Volume 설정 정보를 받아 USB로 보낸다.
+# 장비를 켰을 때 서버에 장비를 등록하는 예 
 import requests
 import json
 
@@ -13,7 +13,14 @@ def regUrl(email, serialNo):
 # 장비 등록 요청
 # http://localhost:8080/device/json/add/user6@test.com/192.168.0.6
 response = requests.get(regUrl(email, serialNo))
-print(response.text)
-#volumeControl = json.loads(response.text)
+result = json.loads(response.text)
+
+if result["state"] == "success":
+    regNo = result["data"]
+    print(regNo)
+
 
 print("종료!")
+
+
+
