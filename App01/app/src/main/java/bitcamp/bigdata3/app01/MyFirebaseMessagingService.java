@@ -21,10 +21,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (data.get("name") != null) {
-            intent.putExtra("name", data.get("name"));
-            intent.putExtra("age", data.get("age"));
+
+        if (data.get("message") != null) {
+            intent.putExtra("message", data.get("message"));
         }
+
         startActivity(intent);
     }
 }

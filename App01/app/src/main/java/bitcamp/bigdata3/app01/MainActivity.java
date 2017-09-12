@@ -64,10 +64,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void processData(Intent intent) {
-        if (intent.getStringExtra("name") != null) {
+        if (intent.getStringExtra("message") != null) {
             Toast.makeText(getApplicationContext(),
-                    "name=" + intent.getExtras().get("name") +
-                            ", age=" + intent.getExtras().get("age"),
+                    intent.getStringExtra("message"),
                     Toast.LENGTH_LONG).show();
         }
     }
