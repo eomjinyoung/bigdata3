@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "token=" + token);
 
+        // => 서버에 로그인 요청을 한다.
+        new UserControlTask().execute(email, password, token);
+
     }
 
     @Override
@@ -70,17 +73,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    class UserControlTask extends AsyncTask<String, Void, Void> {
+    class UserControlTask extends AsyncTask<String, Void, Boolean> {
         @Override
-        protected Void doInBackground(String... params) {
+        protected Boolean doInBackground(String... params) {
             try {
-                JSONObject result = RESTful.getJSON(REST_SET_URL + "volume_control/" + params[0]);
-                Log.v(TAG, "서버 요청: volume_control/" + params[0]);
+                String url = String.format(
+                    "http://192.168.0.6:8080/user/json/login?email=%s&password=%s&token=%s",
+                    params[0], params[1], params[2]);
+
+                JSONObject result = RESTful.getJSON(url);
+                Log.v(TAG, "로그인 결과: " + result.getString("state"));
+
+                if (result.getString("state").equals("success")) {
+                    return true;
+                } else {
+                    return false;
+                }
 
             } catch (Exception e) {
                 Log.e(TAG, Utils.toDetailMessage(e));
             }
-            return null;
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            if (result) {
+                Toast.makeText(getApplicationContext(),
+                        "로그인 성공!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(),
+                        "로그인 실패!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
