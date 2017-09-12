@@ -33,7 +33,7 @@ public class FcmAgent {
     
     Map<String,Object> message = new HashMap<>();
     message.put("to", topic.getTo());
-    
+     
     Map<String,Object> data = new HashMap<>();
     data.put("message", topic.getMessage());
     message.put("data", data);
