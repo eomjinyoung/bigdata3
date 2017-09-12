@@ -77,18 +77,30 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main1);
 
         Log.d(TAG, ".onCreate()");
+
+        // 화면이 없는 서비스에서 액티비티를 실행할 때 Intent로 넘긴 값을 받기
+        // 1) 새로 액티비티를 띄웠을 때,
+        //    => onCreate()에서 받는다.
+        // 2) 기존에 있는 액티비티를 실행할 때,
+        //    => onNewIntent()에서 받는다.
+        // 두 가지 경우를 모두 고려하라!
+
+        Intent intent = getIntent();
+        processData(intent);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onNewIntent(Intent intent) {
+        // 서비스에서 존재하는 액티비티에 대해 Intent를 넘길 때
+        // 이 메서드를 오버라이딩하여 intent 데이터를 처리해야 한다.
+        super.onNewIntent(intent);
+        processData(intent);
+    }
 
-        Log.d(TAG, ".onResume()");
+    protected void processData(Intent intent) {
+        Log.d(TAG, ".processData()");
 
-        // 액티비티가 실행될 때 넘어온 인텐트 상자를 꺼낸다.
-        Intent intent = getIntent();
-
-        if (intent.getExtras() != null) {
+        if (intent.getStringExtra("name") != null) {
             // 인텐트 상자에서 저장된 name, age 값을 꺼내 토스트로 출력한다.
             Toast.makeText(getApplicationContext(),
                     "name=" + intent.getExtras().get("name") +
