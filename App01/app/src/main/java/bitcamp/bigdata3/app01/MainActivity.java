@@ -5,12 +5,18 @@ package bitcamp.bigdata3.app01;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONObject;
+
+import bitcamp.bigdata3.app01.util.RESTful;
+import bitcamp.bigdata3.app01.util.Utils;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getName();
@@ -64,4 +70,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    class UserControlTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... params) {
+            try {
+                JSONObject result = RESTful.getJSON(REST_SET_URL + "volume_control/" + params[0]);
+                Log.v(TAG, "서버 요청: volume_control/" + params[0]);
+
+            } catch (Exception e) {
+                Log.e(TAG, Utils.toDetailMessage(e));
+            }
+            return null;
+        }
+    }
 }
