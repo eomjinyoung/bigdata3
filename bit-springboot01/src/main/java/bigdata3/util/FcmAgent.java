@@ -45,7 +45,7 @@ public class FcmAgent {
 
     String json = new Gson().toJson(message);
     
-    out.write(json.getBytes());
+    out.write(json.getBytes("UTF-8"));
     out.flush(); 
     out.close();
     
