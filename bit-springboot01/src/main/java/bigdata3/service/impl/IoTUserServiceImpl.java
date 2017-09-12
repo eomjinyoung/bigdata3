@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import bigdata3.dao.IoTUserDao;
 import bigdata3.domain.IoTUser;
-import bigdata3.domain.IoTUser;
 import bigdata3.service.IoTUserService;
 
 @Service
@@ -27,7 +26,7 @@ public class IoTUserServiceImpl implements IoTUserService {
     return userDao.selectOne(email);
   }
   
-  public IoTUser getByEmailPassword(String email, String password) throws Exception {
+  public IoTUser getByEmailPassword(String email, String password) {
     HashMap<String,Object> valueMap = new HashMap<>();
     valueMap.put("email", email);
     valueMap.put("password", password);
@@ -35,48 +34,16 @@ public class IoTUserServiceImpl implements IoTUserService {
     return userDao.selectOneByEmailPassword(valueMap);
   }
   
-  public void add(IoTUser user) throws Exception {
-    memberDao.insert(user);
+  public void add(IoTUser user) {
     userDao.insert(user);
-    this.insertPhoto(user.getNo(), user.getPhotoList()); // 강사 사진 추가
   }
   
-  public void update(IoTUser user) throws Exception {
-    int count = memberDao.update(user);
-    if (count < 1) {
-      throw new Exception(user.getNo() + "번 강사를 찾을 수 없습니다.");
-    }
-    
-    count = userDao.update(user);
-    if (count < 1) {
-      throw new Exception(user.getNo() + "번 강사를 찾을 수 없습니다.");
-    }
-    
-    // 강사 사진 갱신
-    userDao.deletePhoto(user.getNo()); // 강사의 모든 사진을 지운다.
-    this.insertPhoto(user.getNo(), user.getPhotoList()); // 강사 사진 추가
+  public void updateToken(IoTUser user) {
+    userDao.updateToken(user);
   }
   
-  private void insertPhoto(int userNo, List<String> photoPathList) {
-    HashMap<String,Object> valueMap = new HashMap<>();
-    valueMap.put("userNo", userNo);
-    
-    for (String photoPath : photoPathList) {
-      valueMap.put("photoPath", photoPath);
-      userDao.insertPhoto(valueMap);
-    }
-  }
-  
-  public void remove(int no) throws Exception {
-    userDao.deletePhoto(no);
-    int count = userDao.delete(no);
-    if (count < 1) {
-      throw new Exception(no + "번 강사를 찾을 수 없습니다.");
-    }
-    
-    try {
-      count = memberDao.delete(no);
-    } catch (Exception e) {}
+  public void remove(String email) {
+    userDao.delete(email);
   }
 }
 

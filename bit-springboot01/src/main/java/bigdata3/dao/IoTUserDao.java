@@ -11,5 +11,5 @@ public interface IoTUserDao {
   IoTUser selectOneByEmailPassword(Map<String,Object> valueMap);
   int insert(IoTUser user);
   int updateToken(IoTUser user);
-  int delete(String email) throws Exception;
+  int delete(String email);
 }
