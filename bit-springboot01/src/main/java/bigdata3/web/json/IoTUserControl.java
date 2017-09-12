@@ -4,9 +4,6 @@ package bigdata3.web.json;
 import static bigdata3.web.json.JsonResult.STATE_FAIL;
 import static bigdata3.web.json.JsonResult.STATE_SUCCESS;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
