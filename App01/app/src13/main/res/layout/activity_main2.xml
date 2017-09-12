@@ -44,5 +44,5 @@
         android:text="Button3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
 </android.support.constraint.ConstraintLayout>

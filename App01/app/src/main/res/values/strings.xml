@@ -2,6 +2,7 @@
     <string name="app_name">App01</string>
     <string name="title_activity_login">Sign in</string>
     <string name="preference_file_key">common</string>
+    <string name="fcm_token">token</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

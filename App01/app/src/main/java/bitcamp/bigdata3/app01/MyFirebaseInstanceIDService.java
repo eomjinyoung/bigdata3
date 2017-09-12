@@ -22,14 +22,14 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         // => 앱 전용 프로퍼티 값을 저장할 수 있는 보관소 준비하기
         // getSharedPreferences() : 앱의 모든 멤버가 사용할 수 있다.
         // getPreferences() : 앱의 특정 액티비티만 사용할 수 있다.
-        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(
+        SharedPreferences sharedPref = this.getSharedPreferences(
             getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         // => 보관소에 데이터를 저장하는 것을 도와줄 편집기를 준비한다.
         SharedPreferences.Editor editor = sharedPref.edit();
 
         // => 편집기를 사용하여 값을 저장/변경한다.
-        editor.putString("token", refreshedToken);
+        editor.putString(getString(R.string.fcm_token), refreshedToken);
 
         // => 편집기에서 작업한 것을 보관소에 저장한다.
         editor.commit();
