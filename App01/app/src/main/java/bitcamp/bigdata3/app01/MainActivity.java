@@ -59,6 +59,15 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {...}
    예)
 dQ_NnNUrFww:APA91bGke4M87MneVw0ckgwabDMH8zfgQnvHthX_DdZKEZJS0vMQh67eZGuMc-pDpEAJCL1uQyP-WBO7UqwuXkTtO7Kb9O_HQG2Bz2btau0vTWRL1dQvQLaDurR8PgfQECuTzLV-iu5-
 
+알림 메시지 와 데이터 페이로드
+1) FCM 서버에서 알림 메시지를 보낼 경우
+   => 액티비티가 실행 중일 때 : FirebaseMessagingService가 실행된다.
+   => 액티비티가 빌활성일 때 : 핸드폰의 알림으로 처리된다.
+2) FCM 서버에서 데이터 페이로드를 보낼 경우
+   => 무조건 FirebaseMessagingService가 실행된다.
+3) FCM 서버에서 알림메시지와 데이터 페이로드를 함께 보낼 경우,
+   => 액티비티가 실행 중일 때 : FirebaseMessagingService가 실행된다.
+   => 액티비티가 빌활성일 때 : 핸드폰의 알림으로 처리된다.
  */
 package bitcamp.bigdata3.app01;
 
