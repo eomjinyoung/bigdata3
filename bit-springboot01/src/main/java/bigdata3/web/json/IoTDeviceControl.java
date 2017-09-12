@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bigdata3.domain.IoTDevice;
 
-@RestController("json.DeviceControl")
+@RestController("json.IoTDeviceControl")
 @RequestMapping("/device/json")
-public class DeviceControl {
+public class IoTDeviceControl {
   @Autowired ServletContext application;
   
   @RequestMapping("add/{email}/{serialId:[\\.\\w]+}")

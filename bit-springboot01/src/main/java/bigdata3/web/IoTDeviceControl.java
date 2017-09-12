@@ -18,7 +18,7 @@ import bigdata3.util.EmailAgent;
 
 @Controller
 @RequestMapping("/device/")
-public class DeviceControl {
+public class IoTDeviceControl {
   @Autowired ServletContext application;
   @Autowired EmailAgent emailAgent;
   
@@ -46,6 +46,7 @@ public class DeviceControl {
     try {
       emailAgent.send(email, "장비등록 완료!", 
         String.format("고객님이 등록하신 장비의 등록번호는 %d 입니다.", regNo));
+      
     } catch (Exception e) {
       StringWriter out = new StringWriter();
       e.printStackTrace(new PrintWriter(out));
