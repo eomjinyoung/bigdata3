@@ -1,7 +1,9 @@
 package bigdata3.domain;
 
 public class IoTUser {
+  int no;
   String email;
+  String name;
   String password;
   String token;
   
@@ -15,7 +17,24 @@ public class IoTUser {
 
   @Override
   public String toString() {
-    return "IoTUser [email=" + email + ", password=" + password + ", token=" + token + "]";
+    return "IoTUser [no=" + no + ", email=" + email + ", name=" + name + ", password=" + password + ", token=" + token
+        + "]";
+  }
+
+  public int getNo() {
+    return no;
+  }
+
+  public void setNo(int no) {
+    this.no = no;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public String getEmail() {
