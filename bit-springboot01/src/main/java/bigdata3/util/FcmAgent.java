@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import com.google.gson.Gson;
 
 @Component
-public class FCMAgent {
+public class FcmAgent {
   
   public String send(FcmMessage topic) throws Exception {
     

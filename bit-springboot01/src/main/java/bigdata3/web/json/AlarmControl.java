@@ -1,7 +1,8 @@
 package bigdata3.web.json;
 
 
-import static bigdata3.web.json.JsonResult.*;
+import static bigdata3.web.json.JsonResult.STATE_FAIL;
+import static bigdata3.web.json.JsonResult.STATE_SUCCESS;
 
 import javax.servlet.ServletContext;
 
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bigdata3.domain.IoTUser;
 import bigdata3.service.IoTUserService;
+import bigdata3.util.FcmAgent;
+import bigdata3.util.FcmMessage;
 
 @RestController("json.AlarmControl")
 @RequestMapping("/alarm/json")
@@ -22,6 +25,8 @@ public class AlarmControl {
   
   @Autowired IoTUserService userService;
   
+  @Autowired FcmAgent fcmAgent;
+    
   @RequestMapping("change/{email}/{serialId:[\\.\\w]+}")
   public Object change(
       @PathVariable String email, 
@@ -40,8 +45,13 @@ public class AlarmControl {
     }
     
     //=> FCM 서버에게 알림 메시지를 보낸다.
+    String result = fcmAgent.send(new FcmMessage(
+        user.getToken(), //=> to
+        "동작이 감지되었습니다.", //=> message 
+        "IoT 경고", //=> title
+        "감지장치(" + serialId + ")의 변화가 감지되었습니다.")); //=> text
     
-    return new JsonResult(STATE_SUCCESS, email + "," + serialId + "," + message);
+    return new JsonResult(STATE_SUCCESS, result);
   }
   
  
