@@ -1,7 +1,8 @@
 package bigdata3.web.json;
 
 
-import static bigdata3.web.json.JsonResult.*;
+import static bigdata3.web.json.JsonResult.STATE_FAIL;
+import static bigdata3.web.json.JsonResult.STATE_SUCCESS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,6 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +22,8 @@ public class IoTUserControl {
   @Autowired ServletContext application;
   
   //@RequestMapping(path="add", method=RequestMethod.POST)
-  @GetMapping("add") //=> 위 애노테이션의 단축 표현 
+  //@PostMapping("add") //=> 위 애노테이션의 단축 표현 
+  @RequestMapping(path="add") //=> 테스트 할 때는 GET/POST 모두 가능하게 하자!
   public Object add(String email, String password, String token) throws Exception {
     
     //=> IoT 사용자 목록을 준비한다.
@@ -56,6 +57,27 @@ public class IoTUserControl {
     for (IoTUser user : users) {
       if (user.getEmail().equals(email)) {
         return new JsonResult(STATE_SUCCESS, user);
+      }
+    }
+    return new JsonResult(STATE_FAIL, "해당 사용자를 찾을 수 없습니다.");
+  }
+  
+  //@GetMapping("login")
+  @RequestMapping("login")
+  public Object login(String email, String password, String token) {
+    @SuppressWarnings("unchecked") 
+    List<IoTUser> users = (List<IoTUser>) application.getAttribute("users");
+    
+    if (users == null) { 
+      users = new ArrayList<>(); // 새로 만들고
+      application.setAttribute("users", users); // 보관소에 저장한다.
+      return new JsonResult(STATE_FAIL, "해당 사용자를 찾을 수 없습니다.");
+    }
+    
+    for (IoTUser user : users) {
+      if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+        user.setToken(token); // 로그인 성공하면 토큰 값을 갱신한다.
+        return new JsonResult(STATE_SUCCESS, "로그인 성공!");
       }
     }
     return new JsonResult(STATE_FAIL, "해당 사용자를 찾을 수 없습니다.");
