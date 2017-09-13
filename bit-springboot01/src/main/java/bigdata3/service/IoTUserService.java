@@ -11,4 +11,7 @@ public interface IoTUserService {
   IoTUser get(String email);
   void updateToken(IoTUser user);
   void remove(String email);
+
+  // 기존에 이미 구현한 클래스에 영향을 주지 않고 살며시 규칙을 추가하기  
+  default IoTUser get(int userNo) {return null;};
 }

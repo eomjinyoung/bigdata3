@@ -74,7 +74,7 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="user6@test.com"
+        android:text="user1@test.com"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 

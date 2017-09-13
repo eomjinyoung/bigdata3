@@ -52,12 +52,11 @@ public class AlarmControl {
     //=> 장비의 사용자 정보를 가져온다.
     IoTUser user = userService.get(device.getUserNo());
     
-    if (user == null) {
-      new JsonResult(STATE_FAIL, "등록되지 않은 이메일입니다.");
-    }
-    
+    //=> 사용자의 토큰 정보가 없으면,
     if (user.getToken() == null) {
-      new JsonResult(STATE_FAIL, "사용자의 토큰 값이 유효하지 않습니다.");
+      new JsonResult(STATE_FAIL, 
+          "사용자의 토큰 값이 유효하지 않습니다. 앱으로 다시 로그인 하거나, "
+          + "앱을 다시 설치하여 로그인 하시기 바랍니다.");
     }
     
     //=> FCM 서버에게 알림 메시지를 보낸다.
@@ -65,7 +64,7 @@ public class AlarmControl {
         user.getToken(), //=> to
         message, //=> message 
         "IoT 경고", //=> title
-        "감지장치(" + serialId + ")에 변화가 발생했습니다.")); //=> text
+        "감지장치(" + serialNo + ")에 변화가 발생했습니다.")); //=> text
     
     return new JsonResult(STATE_SUCCESS, result);
   }
@@ -76,7 +75,7 @@ public class AlarmControl {
 
 /* 사용법
 [센서의 입력 값이 변경되었을 때]
-=> http://localhost:8080/alarm/json/change/이메일/제품번호?message=내용
+=> http://localhost:8080/alarm/json/change/제품번호?message=내용
  */
 
 
