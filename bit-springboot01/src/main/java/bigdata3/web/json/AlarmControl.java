@@ -112,7 +112,7 @@ public class AlarmControl {
 
 5) 센서 변경 상태 알리기
    - 웹 브라우저에서 다음 URL을 실행한다.
-     => http://localhost:8080/alarm/json/change/시리얼번호
+     => http://localhost:8080/alarm/json/change/시리얼번호?message=간단한알림내용
    - 확인
      => 앱에서 알림 메시지가 왔는지 확인한다.
      => 앱이 떠 있는 상태일 때는 토스트가 즉시 출력될 것이다.
