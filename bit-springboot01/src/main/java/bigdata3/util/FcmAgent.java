@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 
 @Component
 public class FcmAgent {
-  
+
   public String send(FcmMessage topic) throws Exception {
     
     URL url = new URL("https://fcm.googleapis.com/fcm/send");
