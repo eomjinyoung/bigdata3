@@ -10,15 +10,20 @@
 <body>
 <h1>장비등록결과</h1>
 <c:choose>
-<c:when test="${empty error}">
-<p>장비를 성공적으로 등록하였습니다.<br>
-등록 번호가 고객님의 이메일로 발송되었으니 확인하시어 장비에 설정해 주시기 바랍니다.<br>
-장비에 등록 번호를 설정하는 방법은 제품에 첨부된 문서를 확인하세요.</p>
-</c:when>
-<c:otherwise>
-<h2>메일 전송 오류!</h2>
-<pre>${error}</pre>
-</c:otherwise> 
+	<c:when test="${result == 0}">
+	<p>장비를 성공적으로 등록하였습니다.</p>
+	</c:when>
+	<c:when test="${result == 1}">
+	<p>회원이 아닙니다. 회원 가입을 하신 후 장비를 등록하세요.</p>
+	</c:when>
+	
+	<c:when test="${result == 2}">
+  <p>이미 등록된 장비입니다. 장비를 재설정 하신 후 등록하세요.</p>
+  </c:when>
+  
+  <c:when test="${result == 3}">
+  <p>장비를 찾을 수 없습니다. 먼저 장비를 재설정 하신 후 등록하세요.</p>
+  </c:when>
 </c:choose>
 </body>
 </html>
