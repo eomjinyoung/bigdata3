@@ -79,6 +79,11 @@ public class AlarmControl {
  */
 
 /* 전체 테스트 하는 순서
+0) DB 초기화
+   - 부모 테이블의 데이터를 지우기 전에 자식 테이블의 데이터부터 제거 한다.
+   - 데이터 삭제
+     => delete from iot_device;
+     => delete from iot_user;
 1) 장비 등록
    - reset.py를 실행하여 장비를 재등록한다.
    - 또는 웹 브라우저에서 다음 URL을 직접 실행해도 된다.
