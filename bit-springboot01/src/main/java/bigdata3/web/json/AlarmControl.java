@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import bigdata3.domain.IoTDevice;
 import bigdata3.domain.IoTUser;
+import bigdata3.service.IoTDeviceService;
 import bigdata3.service.IoTUserService;
 import bigdata3.util.FcmAgent;
 import bigdata3.util.FcmMessage;
@@ -25,16 +27,30 @@ public class AlarmControl {
   
   @Autowired IoTUserService userService;
   
+  @Autowired IoTDeviceService deviceService;
+  
   @Autowired FcmAgent fcmAgent;
     
-  @RequestMapping("change/{email}/{serialId:[\\.\\w]+}")
+  @RequestMapping("change/{serialNo:[\\.\\w]+}")
   public Object change(
-      @PathVariable String email, 
-      @PathVariable String serialId,
+      @PathVariable String serialNo,
       @RequestParam String message) throws Exception {
-        
-    //=> email 사용자의 토큰 값을 가져온다.
-    IoTUser user = userService.get(email);
+    
+    //=> 제품 번호를 이용하여 장비 정보를 가져온다.
+    IoTDevice device = deviceService.get(serialNo);
+
+    //=> 장비가 등록되어 있지 않다면,
+    if (device == null) {
+      return new JsonResult(STATE_FAIL, "등록되지 않은 장비입니다.");
+    }
+    
+    //=> 장비의 주인이 등록되어 있지 않다면,
+    if (device.getUserNo() < 1) {
+      return new JsonResult(STATE_FAIL, "장비의 사용자가 설정되지 않았습니다.");
+    }
+    
+    //=> 장비의 사용자 정보를 가져온다.
+    IoTUser user = userService.get(device.getUserNo());
     
     if (user == null) {
       new JsonResult(STATE_FAIL, "등록되지 않은 이메일입니다.");
