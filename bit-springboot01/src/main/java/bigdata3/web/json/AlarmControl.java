@@ -54,7 +54,7 @@ public class AlarmControl {
     
     //=> 사용자의 토큰 정보가 없으면,
     if (user.getToken() == null) {
-      new JsonResult(STATE_FAIL, 
+      return new JsonResult(STATE_FAIL, 
           "사용자의 토큰 값이 유효하지 않습니다. 앱으로 다시 로그인 하거나, "
           + "앱을 다시 설치하여 로그인 하시기 바랍니다.");
     }
@@ -78,7 +78,25 @@ public class AlarmControl {
 => http://localhost:8080/alarm/json/change/제품번호?message=내용
  */
 
+/* 전체 테스트 하는 순서
+1) 장비 등록
+   - reset.py를 실행하여 장비를 재등록한다.
+   - 또는 웹 브라우저에서 다음 URL을 직접 실행해도 된다.
+     => http://localhost:8080/device/json/reset/시리얼번호
+2) 사용자 등록
+   - 웹 브라우저에서 다음 URL을 직접 실행한다.
+     => http://localhost:8080/user/json/add?email=이메일&name=이름&password=암호
+3) FCM 서버로부터 알림을 받을 수 있도록 토큰 등록
+   - 앱에서 로그인을 수행한다.
+   - 다음 SQL 문을 이용하여 정상적으로 토큰이 등록되었는지 확인한다.
+     select * from iot_user where email='이메일'
+4) 장비의 소유주 설정
+   - 웹 브라우저에서 다음 URL을 실행하여 장비를 등록한다.
+     => http://localhost:8080/device/form.html 
+     => 로그인할 때 사용한 이메일과 장비의 시리얼번호를 입력한 후 등록한다.
+     
 
+ */
 
 
 
