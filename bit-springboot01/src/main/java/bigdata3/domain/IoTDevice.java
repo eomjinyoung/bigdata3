@@ -2,15 +2,20 @@ package bigdata3.domain;
 
 public class IoTDevice {
   long no;
-  String email;
+  int userNo;
   String serialNo;
   
   public IoTDevice() {}
   
-  public IoTDevice(long no, String email, String serialNo) {
+  public IoTDevice(long no, int userNo, String serialNo) {
     this.no = no;
-    this.email = email;
+    this.userNo = userNo;
     this.serialNo = serialNo;
+  }
+
+  @Override
+  public String toString() {
+    return "IoTDevice [no=" + no + ", userNo=" + userNo + ", serialNo=" + serialNo + "]";
   }
 
   public long getNo() {
@@ -21,12 +26,12 @@ public class IoTDevice {
     this.no = no;
   }
 
-  public String getEmail() {
-    return email;
+  public int getUserNo() {
+    return userNo;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public void setUserNo(int userNo) {
+    this.userNo = userNo;
   }
 
   public String getSerialNo() {
@@ -36,6 +41,6 @@ public class IoTDevice {
   public void setSerialNo(String serialNo) {
     this.serialNo = serialNo;
   }
-  
+
   
 }
