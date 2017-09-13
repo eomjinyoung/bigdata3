@@ -14,13 +14,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import bigdata3.domain.IoTDevice;
+import bigdata3.service.IoTDeviceService;
 import bigdata3.util.EmailAgent;
 
 @Controller
 @RequestMapping("/device/")
 public class IoTDeviceControl {
+  
   @Autowired ServletContext application;
+  
   @Autowired EmailAgent emailAgent;
+  
+  @Autowired IoTDeviceService deviceService;
+  
   
   @RequestMapping("add")
   public void add(String email, String serialId, Model model) throws Exception {

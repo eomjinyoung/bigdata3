@@ -14,6 +14,7 @@ import bigdata3.service.IoTDeviceService;
 public class IoTDeviceServiceImpl implements IoTDeviceService {
   @Autowired IoTDeviceDao deviceDao;
   
+  @Override
   public List<IoTDevice> list(int pageNo, int pageSize) {
     HashMap<String,Object> valueMap = new HashMap<>();
     valueMap.put("startIndex", (pageNo - 1) * pageSize);
@@ -22,28 +23,24 @@ public class IoTDeviceServiceImpl implements IoTDeviceService {
     return deviceDao.selectList(valueMap);
   }
   
-  public IoTDevice get(String email) {
-    return deviceDao.selectOne(email);
+  @Override
+  public IoTDevice get(String serialNo) {
+    return deviceDao.selectOne(serialNo);
   }
   
-  public IoTDevice getByEmailPassword(String email, String password) {
-    HashMap<String,Object> valueMap = new HashMap<>();
-    valueMap.put("email", email);
-    valueMap.put("password", password);
-    
-    return deviceDao.selectOneByEmailPassword(valueMap);
+  @Override
+  public void add(IoTDevice device) {
+    deviceDao.insert(device);
   }
   
-  public void add(IoTDevice user) {
-    deviceDao.insert(user);
+  @Override
+  public void changeOwner(IoTDevice device) {
+    deviceDao.updateUserNo(device);
   }
   
-  public void updateToken(IoTDevice user) {
-    deviceDao.updateToken(user);
-  }
-  
-  public void remove(String email) {
-    deviceDao.delete(email);
+  @Override
+  public void remove(String serialNo) {
+    deviceDao.delete(serialNo);
   }
 }
 
