@@ -38,7 +38,10 @@ public class IoTDeviceControl {
   
 }
 
-
+/* 사용법
+[장비등록]
+=> http://localhost:8080/device/json/reset/시리얼번호
+ */
 
 
 

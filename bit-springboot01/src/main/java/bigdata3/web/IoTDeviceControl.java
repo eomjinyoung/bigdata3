@@ -26,7 +26,7 @@ public class IoTDeviceControl {
   
   @Autowired IoTUserService userService;
   
-  @RequestMapping("add/{email}/{serialNo:[\\.\\w]+}")
+  @RequestMapping("add")
   public void add(String email, String serialNo, Model model) throws Exception {
     
     //=> 회원정보를 가져온다.
