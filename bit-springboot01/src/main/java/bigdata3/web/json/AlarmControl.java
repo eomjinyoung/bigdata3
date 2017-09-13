@@ -84,23 +84,38 @@ public class AlarmControl {
    - 데이터 삭제
      => delete from iot_device;
      => delete from iot_user;
+     
 1) 장비 등록
    - reset.py를 실행하여 장비를 재등록한다.
    - 또는 웹 브라우저에서 다음 URL을 직접 실행해도 된다.
      => http://localhost:8080/device/json/reset/시리얼번호
+   - DB 확인
+     => select * from iot_device;
+     
 2) 사용자 등록
    - 웹 브라우저에서 다음 URL을 직접 실행한다.
      => http://localhost:8080/user/json/add?email=이메일&name=이름&password=암호
+   - DB 확인
+     => select * from iot_user;
+     
 3) FCM 서버로부터 알림을 받을 수 있도록 토큰 등록
    - 앱에서 로그인을 수행한다.
-   - 다음 SQL 문을 이용하여 정상적으로 토큰이 등록되었는지 확인한다.
-     select * from iot_user where email='이메일'
+   - DB 확인
+     => select * from iot_user where email='이메일'
+     
 4) 장비의 소유주 설정
    - 웹 브라우저에서 다음 URL을 실행하여 장비를 등록한다.
      => http://localhost:8080/device/form.html 
      => 로그인할 때 사용한 이메일과 장비의 시리얼번호를 입력한 후 등록한다.
-     
+   - DB 확인
+     => select * from iot_device;
 
+5) 센서 변경 상태 알리기
+   - 웹 브라우저에서 다음 URL을 실행한다.
+     => http://localhost:8080/alarm/json/change/시리얼번호
+   - 확인
+     => 앱에서 알림 메시지가 왔는지 확인한다.
+     => 앱이 떠 있는 상태일 때는 토스트가 즉시 출력될 것이다.
  */
 
 
