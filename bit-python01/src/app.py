@@ -14,4 +14,8 @@ while True:
         result = iot.reset(serialNo)
         print(result)
     
+    if value[0] == "motion" and value[1] == "1":
+        result = iot.alarm(serialNo)
+        print(result)
+    
     time.sleep(5)
