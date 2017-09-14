@@ -9,7 +9,7 @@ def reset(serialNo):
     response = requests.get(url.format(serialNo))
     return json.loads(response.text)
 
-def alarm(serialNo):
-    url = serverUrl + "/alarm/json/change/{0}"
-    response = requests.get(url.format(serialNo))
+def alarm(serialNo, message):
+    url = serverUrl + "/alarm/json/change/{0}?message={1}"
+    response = requests.get(url.format(serialNo, message))
     return json.loads(response.text)
