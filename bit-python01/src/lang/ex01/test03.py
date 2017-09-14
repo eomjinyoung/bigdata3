@@ -1,4 +1,5 @@
 # 값을 표현하는 방법
+from math import inf
 
 # 문자열 표현
 print("Hello")
@@ -30,6 +31,25 @@ print(12_3456)
 print(0b0110_0001) # 97
 
 # 부동 소수점값 표현
+print(3.14)
+print(3.0)
+print(3.)
+print(0.14)
+print(.14)
+print(314e-2)
+print(314E-2)
+print(0.314e1)
+print(0.314e+1)
+print(0.314E1)
+
+print(inf) # + 무한대, 모듈 import가 필요하다.
+print(-inf) # - 무한대
+
+# 논리값 표현
+print(True)
+print(False)
+#print(true) # 실행 오류!
+#print(false) # 실행 오류!
 
 
 
