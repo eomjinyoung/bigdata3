@@ -129,10 +129,7 @@ print(arr)
 arr3[0] = "오호라"
 print(arr)
 
-print(type("홍길동").__name__)
-print(type(10).__name__)
-print(type(3.14).__name__)
-print(type(True).__name__)
+
 
 
 
