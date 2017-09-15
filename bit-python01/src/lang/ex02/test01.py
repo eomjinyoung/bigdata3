@@ -1,5 +1,16 @@
 # 함수 - 정의하기
 
+# => 함수를 정의할 때 첫 번째 줄에 
+#    document string(docstring)으로 
+#    함수에 대한 간단한 설명을 적는 것이 관례다.
+
+def f1():
+    '''함수에 대한 간단한 설명'''
+    print("Hello, world!")
+
+f1()
+
+
 # => 파라미터와 리턴 값 없는 함수
 def hello():
     print("Hello!")
