@@ -3,13 +3,6 @@
 const http = require('http')
 const url = require('url')
 
-function hello(request, response) {
-
-}
-
-function error(request, response) {
-
-}
 
 const server = http.createServer(function(request, response) {
     let urlInfo = url.parse(request.url)
