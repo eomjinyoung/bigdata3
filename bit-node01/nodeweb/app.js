@@ -51,40 +51,41 @@ app.get('/webhook', function(req, res) {
 // 5) 사용자의 메신저에 응답 내용을 출력된다.
 // Message processing
 app.post('/webhook', function (req, res) {
-    console.log(req.body);
-    var data = req.body;
+  var data = req.body;
   
-    // Make sure this is a page subscription
-    if (data.object === 'page') {
-      
-      // Iterate over each entry - there may be multiple if batched
-      data.entry.forEach(function(entry) {
-        var pageID = entry.id;
-        var timeOfEvent = entry.time;
-  
-        // Iterate over each messaging event
-        entry.messaging.forEach(function(event) {
-          if (event.message) {
-            receivedMessage(event);
-          } else if (event.postback) {
-            receivedPostback(event);   
-          } else {
-            console.log("Webhook received unknown event: ", event);
-          }
-        });
+  // Make sure this is a page subscription
+  if (data.object === 'page') {
+    
+    // Iterate over each entry - there may be multiple if batched
+    data.entry.forEach(function(entry) {
+      var pageID = entry.id;
+      var timeOfEvent = entry.time;
+
+      // Iterate over each messaging event
+      entry.messaging.forEach(function(event) {
+        if (event.message) {
+          console.log('event.message===> ', event.message)
+          receivedMessage(event);
+        } else if (event.postback) {
+          console.log('event.postback===> ', event.postback)
+          receivedPostback(event);   
+        } else {
+          //console.log("unknown event===> ", event);
+        }
       });
+    });
   
-      // Assume all went well.
-      //
-      // You must send back a 200, within 20 seconds, to let us know
-      // you've successfully received the callback. Otherwise, the request
-      // will time out and we will keep trying to resend.
-      res.sendStatus(200);
-    }
-  });
+    // Assume all went well.
+    //
+    // You must send back a 200, within 20 seconds, to let us know
+    // you've successfully received the callback. Otherwise, the request
+    // will time out and we will keep trying to resend.
+    res.sendStatus(200);
+  }
+});
   
-  // Incoming events handling
-  function receivedMessage(event) {
+// Incoming events handling
+function receivedMessage(event) {
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;
@@ -92,30 +93,37 @@ app.post('/webhook', function (req, res) {
   
     console.log("Received message for user %d and page %d at %d with message:", 
       senderID, recipientID, timeOfMessage);
-    console.log(JSON.stringify(message));
-  
+
     var messageId = message.mid;
-  
     var messageText = message.text;
     var messageAttachments = message.attachments;
   
     if (messageText) {
       // If we receive a text message, check to see if it matches a keyword
       // and send back the template example. Otherwise, just echo the text we received.
-      switch (messageText) {
-        case 'generic':
-          sendGenericMessage(senderID);
-          break;
-  
-        default:
-          sendTextMessage(senderID, messageText + '********');
+      
+      if (messageText.startsWith("op:")) {
+        var arr = messageText.substring(3).split(',')
+        var result = 0;
+        switch (arr[0]) {
+          case 'plus': 
+            result = parseInt(arr[1]) + parseInt(arr[2]); 
+            break;
+        }
+        sendTextMessage(senderID, "결과=" + result);
+
+      } else if (messageText == 'generic') {
+        sendGenericMessage(senderID);
+
+      } else {
+        sendTextMessage(senderID, "올바른 명령이 아닙니다.");
       }
     } else if (messageAttachments) {
       sendTextMessage(senderID, "Message with attachment received");
     }
-  }
+}
   
-  function receivedPostback(event) {
+function receivedPostback(event) {
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
     var timeOfPostback = event.timestamp;
@@ -130,12 +138,12 @@ app.post('/webhook', function (req, res) {
     // When a postback is called, we'll send a message back to the sender to 
     // let them know it was successful
     sendTextMessage(senderID, "Postback called");
-  }
+}
   
   //////////////////////////
   // Sending helpers
   //////////////////////////
-  function sendTextMessage(recipientId, messageText) {
+function sendTextMessage(recipientId, messageText) {
     var messageData = {
       recipient: {
         id: recipientId
@@ -146,9 +154,9 @@ app.post('/webhook', function (req, res) {
     };
   
     callSendAPI(messageData);
-  }
+}
   
-  function sendGenericMessage(recipientId) {
+function sendGenericMessage(recipientId) {
     var messageData = {
       recipient: {
         id: recipientId
@@ -193,9 +201,9 @@ app.post('/webhook', function (req, res) {
     };  
   
     callSendAPI(messageData);
-  }
+}
   
-  function callSendAPI(messageData) {
+function callSendAPI(messageData) {
     request({
       uri: 'https://graph.facebook.com/v2.6/me/messages',
       qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
@@ -211,11 +219,11 @@ app.post('/webhook', function (req, res) {
           messageId, recipientId);
       } else {
         console.error("Unable to send message.");
-        console.error(response);
+        //console.error(response);
         console.error(error);
       }
     });  
-  }
+}
 
 https.createServer(options, app).listen(9999, function() {
     console.log('서버가 시작되었습니다!')
