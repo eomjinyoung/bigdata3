@@ -1,71 +1,71 @@
 -- 사용자
-DROP TABLE IF EXISTS iot_user RESTRICT;
+drop table if exists iot_user restrict;
 
 -- 장비
-DROP TABLE IF EXISTS iot_device RESTRICT;
+drop table if exists iot_device restrict;
 
 -- 사용자
-CREATE TABLE iot_user (
-  uno   INTEGER      NOT NULL COMMENT '일련번호', -- 일련번호
-  email VARCHAR(40)  NULL     COMMENT '이메일', -- 이메일
-  name  VARCHAR(50)  NULL     COMMENT '이름', -- 이름
-  pwd   VARCHAR(50)  NULL     COMMENT '암호', -- 암호
-  token VARCHAR(255) NULL     COMMENT '토큰' -- 토큰
+create table iot_user (
+  uno   integer      not null comment '일련번호', -- 일련번호
+  email varchar(40)  null     comment '이메일', -- 이메일
+  name  varchar(50)  null     comment '이름', -- 이름
+  pwd   varchar(50)  null     comment '암호', -- 암호
+  token varchar(255) null     comment '토큰' -- 토큰
 )
-COMMENT '사용자';
+comment '사용자';
 
 -- 사용자
-ALTER TABLE iot_user
-  ADD CONSTRAINT PK_iot_user -- 사용자 기본키
-    PRIMARY KEY (
+alter table iot_user
+  add constraint pk_iot_user -- 사용자 기본키
+    primary key (
       uno -- 일련번호
     );
 
 -- 사용자 유니크 인덱스
-CREATE UNIQUE INDEX UIX_iot_user
-  ON iot_user ( -- 사용자
-    email ASC -- 이메일
+create unique index uix_iot_user
+  on iot_user ( -- 사용자
+    email asc -- 이메일
   );
 
 -- 사용자 유니크 인덱스2
-CREATE UNIQUE INDEX UIX_iot_user2
-  ON iot_user ( -- 사용자
-    token ASC -- 토큰
+create unique index uix_iot_user2
+  on iot_user ( -- 사용자
+    token asc -- 토큰
   );
 
-ALTER TABLE iot_user
-  MODIFY COLUMN uno INTEGER NOT NULL AUTO_INCREMENT COMMENT '일련번호';
+alter table iot_user
+  modify column uno integer not null auto_increment comment '일련번호';
 
 -- 장비
-CREATE TABLE iot_device (
-  dno INTEGER     NOT NULL COMMENT '일련번호', -- 일련번호
-  sno VARCHAR(20) NULL     COMMENT '시리얼번호', -- 시리얼번호
-  uno INTEGER     NULL     COMMENT '일련번호2' -- 일련번호2
+create table iot_device (
+  dno integer     not null comment '일련번호', -- 일련번호
+  sno varchar(20) null     comment '시리얼번호', -- 시리얼번호
+  uno integer     null     comment '일련번호2' -- 일련번호2
 )
-COMMENT '장비';
+comment '장비';
 
 -- 장비
-ALTER TABLE iot_device
-  ADD CONSTRAINT PK_iot_device -- 장비 기본키
-    PRIMARY KEY (
+alter table iot_device
+  add constraint pk_iot_device -- 장비 기본키
+    primary key (
       dno -- 일련번호
     );
 
 -- 장비 유니크 인덱스
-CREATE UNIQUE INDEX UIX_iot_device
-  ON iot_device ( -- 장비
-    sno ASC -- 시리얼번호
+create unique index uix_iot_device
+  on iot_device ( -- 장비
+    sno asc -- 시리얼번호
   );
 
-ALTER TABLE iot_device
-  MODIFY COLUMN dno INTEGER NOT NULL AUTO_INCREMENT COMMENT '일련번호';
+alter table iot_device
+  modify column dno integer not null auto_increment comment '일련번호';
 
 -- 장비
-ALTER TABLE iot_device
-  ADD CONSTRAINT FK_iot_user_TO_iot_device -- 사용자 -> 장비
-    FOREIGN KEY (
+alter table iot_device
+  add constraint fk_iot_user_to_iot_device -- 사용자 -> 장비
+    foreign key (
       uno -- 일련번호2
     )
-    REFERENCES iot_user ( -- 사용자
+    references iot_user ( -- 사용자
       uno -- 일련번호
     );

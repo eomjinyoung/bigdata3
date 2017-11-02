@@ -1,730 +1,730 @@
 -- 수강신청
-DROP TABLE IF EXISTS LECT_APPY RESTRICT;
+drop table if exists lect_appy restrict;
 
 -- 강의
-DROP TABLE IF EXISTS LECT RESTRICT;
+drop table if exists lect restrict;
 
 -- 강사
-DROP TABLE IF EXISTS TCHER RESTRICT;
+drop table if exists tcher restrict;
 
 -- 매니저
-DROP TABLE IF EXISTS MGR RESTRICT;
+drop table if exists mgr restrict;
 
 -- 강의실
-DROP TABLE IF EXISTS CROOM RESTRICT;
+drop table if exists croom restrict;
 
 -- 학생
-DROP TABLE IF EXISTS STUD RESTRICT;
+drop table if exists stud restrict;
 
 -- 강의실사진
-DROP TABLE IF EXISTS CROOM_PHOT RESTRICT;
+drop table if exists croom_phot restrict;
 
 -- 강사사진
-DROP TABLE IF EXISTS TCH_PHOT RESTRICT;
+drop table if exists tch_phot restrict;
 
 -- 강사배정
-DROP TABLE IF EXISTS TCHR_LECT RESTRICT;
+drop table if exists tchr_lect restrict;
 
 -- 회원
-DROP TABLE IF EXISTS MEMB RESTRICT;
+drop table if exists memb restrict;
 
 -- 코드조각
-DROP TABLE IF EXISTS CODE RESTRICT;
+drop table if exists code restrict;
 
 -- 콘텐츠
-DROP TABLE IF EXISTS CONTENT RESTRICT;
+drop table if exists content restrict;
 
 -- 게시판
-DROP TABLE IF EXISTS BOARD RESTRICT;
+drop table if exists board restrict;
 
 -- 피드
-DROP TABLE IF EXISTS FEED RESTRICT;
+drop table if exists feed restrict;
 
 -- 태그
-DROP TABLE IF EXISTS TAG RESTRICT;
+drop table if exists tag restrict;
 
 -- 팔로잉
-DROP TABLE IF EXISTS FOLLOW RESTRICT;
+drop table if exists follow restrict;
 
 -- 프로젝트
-DROP TABLE IF EXISTS PROJ RESTRICT;
+drop table if exists proj restrict;
 
 -- 프로젝트회원
-DROP TABLE IF EXISTS PROJ_MEMB RESTRICT;
+drop table if exists proj_memb restrict;
 
 -- 자료실
-DROP TABLE IF EXISTS DOWNLOAD RESTRICT;
+drop table if exists download restrict;
 
 -- 할일
-DROP TABLE IF EXISTS TODO RESTRICT;
+drop table if exists todo restrict;
 
 -- 콘텐츠파일링크
-DROP TABLE IF EXISTS FIL_LK RESTRICT;
+drop table if exists fil_lk restrict;
 
 -- 수강신청
-CREATE TABLE LECT_APPY (
-	LANO INTEGER  NOT NULL COMMENT '수강신청일련번호', -- 수강신청일련번호
-	LNO  INTEGER  NOT NULL COMMENT '강의일련번호', -- 강의일련번호
-	SNO  INTEGER  NOT NULL COMMENT '학생일련번호', -- 학생일련번호
-	RDT  DATETIME NOT NULL COMMENT '신청일', -- 신청일
-	STAT INTEGER  NULL     COMMENT '상태' -- 상태
+create table lect_appy (
+	lano integer  not null comment '수강신청일련번호', -- 수강신청일련번호
+	lno  integer  not null comment '강의일련번호', -- 강의일련번호
+	sno  integer  not null comment '학생일련번호', -- 학생일련번호
+	rdt  datetime not null comment '신청일', -- 신청일
+	stat integer  null     comment '상태' -- 상태
 )
-COMMENT '수강신청';
+comment '수강신청';
 
 -- 수강신청
-ALTER TABLE LECT_APPY
-	ADD CONSTRAINT PK_LECT_APPY -- 수강신청 Primary key
-		PRIMARY KEY (
-			LANO -- 수강신청일련번호
+alter table lect_appy
+	add constraint pk_lect_appy -- 수강신청 primary key
+		primary key (
+			lano -- 수강신청일련번호
 		);
 
--- 수강신청 Unique Index
-CREATE UNIQUE INDEX UIX_LECT_APPY
-	ON LECT_APPY ( -- 수강신청
-		LNO ASC, -- 강의일련번호
-		SNO ASC  -- 학생일련번호
+-- 수강신청 unique index
+create unique index uix_lect_appy
+	on lect_appy ( -- 수강신청
+		lno asc, -- 강의일련번호
+		sno asc  -- 학생일련번호
 	);
 
-ALTER TABLE LECT_APPY
-	MODIFY COLUMN LANO INTEGER NOT NULL AUTO_INCREMENT COMMENT '수강신청일련번호';
+alter table lect_appy
+	modify column lano integer not null auto_increment comment '수강신청일련번호';
 
 -- 강의
-CREATE TABLE LECT (
-	LNO   INTEGER      NOT NULL COMMENT '강의일련번호', -- 강의일련번호
-	CRMNO INTEGER      NULL     COMMENT '강의실일련번호', -- 강의실일련번호
-	MRNO  INTEGER      NULL     COMMENT '매니저일련번호', -- 매니저일련번호
-	TITL  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
-	DSCP  TEXT         NOT NULL COMMENT '설명', -- 설명
-	SDT   DATE         NOT NULL COMMENT '시작일', -- 시작일
-	EDT   DATE         NOT NULL COMMENT '종료일', -- 종료일
-	QTY   INTEGER      NOT NULL COMMENT '수강가능인원', -- 수강가능인원
-	PRIC  INTEGER      NULL     COMMENT '수업료', -- 수업료
-	THRS  INTEGER      NOT NULL COMMENT '총시간' -- 총시간
+create table lect (
+	lno   integer      not null comment '강의일련번호', -- 강의일련번호
+	crmno integer      null     comment '강의실일련번호', -- 강의실일련번호
+	mrno  integer      null     comment '매니저일련번호', -- 매니저일련번호
+	titl  varchar(255) not null comment '제목', -- 제목
+	dscp  text         not null comment '설명', -- 설명
+	sdt   date         not null comment '시작일', -- 시작일
+	edt   date         not null comment '종료일', -- 종료일
+	qty   integer      not null comment '수강가능인원', -- 수강가능인원
+	pric  integer      null     comment '수업료', -- 수업료
+	thrs  integer      not null comment '총시간' -- 총시간
 )
-COMMENT '강의';
+comment '강의';
 
 -- 강의
-ALTER TABLE LECT
-	ADD CONSTRAINT PK_LECT -- 강의 Primary key
-		PRIMARY KEY (
-			LNO -- 강의일련번호
+alter table lect
+	add constraint pk_lect -- 강의 primary key
+		primary key (
+			lno -- 강의일련번호
 		);
 
--- 강의 Index
-CREATE INDEX IX_LECT
-	ON LECT( -- 강의
-		TITL ASC -- 제목
+-- 강의 index
+create index ix_lect
+	on lect( -- 강의
+		titl asc -- 제목
 	);
 
-ALTER TABLE LECT
-	MODIFY COLUMN LNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '강의일련번호';
+alter table lect
+	modify column lno integer not null auto_increment comment '강의일련번호';
 
 -- 강사
-CREATE TABLE TCHER (
-	TNO  INTEGER      NOT NULL COMMENT '강사일련번호', -- 강사일련번호
-	HMPG VARCHAR(255) NULL     COMMENT '홈페이지', -- 홈페이지
-	FCBK VARCHAR(255) NULL     COMMENT '페이스북', -- 페이스북
-	TWIT VARCHAR(255) NULL     COMMENT '트위터' -- 트위터
+create table tcher (
+	tno  integer      not null comment '강사일련번호', -- 강사일련번호
+	hmpg varchar(255) null     comment '홈페이지', -- 홈페이지
+	fcbk varchar(255) null     comment '페이스북', -- 페이스북
+	twit varchar(255) null     comment '트위터' -- 트위터
 )
-COMMENT '강사';
+comment '강사';
 
 -- 강사
-ALTER TABLE TCHER
-	ADD CONSTRAINT PK_TCHER -- 강사 Primary key
-		PRIMARY KEY (
-			TNO -- 강사일련번호
+alter table tcher
+	add constraint pk_tcher -- 강사 primary key
+		primary key (
+			tno -- 강사일련번호
 		);
 
 -- 매니저
-CREATE TABLE MGR (
-	MRNO INTEGER      NOT NULL COMMENT '매니저일련번호', -- 매니저일련번호
-	POSI VARCHAR(100) NULL     COMMENT '직급', -- 직급
-	FAX  VARCHAR(30)  NULL     COMMENT '팩스', -- 팩스
-	PATH VARCHAR(255) NOT NULL COMMENT '사진파일경로' -- 사진파일경로
+create table mgr (
+	mrno integer      not null comment '매니저일련번호', -- 매니저일련번호
+	posi varchar(100) null     comment '직급', -- 직급
+	fax  varchar(30)  null     comment '팩스', -- 팩스
+	path varchar(255) not null comment '사진파일경로' -- 사진파일경로
 )
-COMMENT '매니저';
+comment '매니저';
 
 -- 매니저
-ALTER TABLE MGR
-	ADD CONSTRAINT PK_MGR -- 매니저 Primary key
-		PRIMARY KEY (
-			MRNO -- 매니저일련번호
+alter table mgr
+	add constraint pk_mgr -- 매니저 primary key
+		primary key (
+			mrno -- 매니저일련번호
 		);
 
 -- 강의실
-CREATE TABLE CROOM (
-	CRMNO INTEGER      NOT NULL COMMENT '강의실일련번호', -- 강의실일련번호
-	NAME  VARCHAR(100) NOT NULL COMMENT '이름' -- 이름
+create table croom (
+	crmno integer      not null comment '강의실일련번호', -- 강의실일련번호
+	name  varchar(100) not null comment '이름' -- 이름
 )
-COMMENT '강의실';
+comment '강의실';
 
 -- 강의실
-ALTER TABLE CROOM
-	ADD CONSTRAINT PK_CROOM -- 강의실 Primary key
-		PRIMARY KEY (
-			CRMNO -- 강의실일련번호
+alter table croom
+	add constraint pk_croom -- 강의실 primary key
+		primary key (
+			crmno -- 강의실일련번호
 		);
 
--- 강의실 Unique Index
-CREATE UNIQUE INDEX UIX_CROOM
-	ON CROOM ( -- 강의실
-		NAME ASC -- 이름
+-- 강의실 unique index
+create unique index uix_croom
+	on croom ( -- 강의실
+		name asc -- 이름
 	);
 
-ALTER TABLE CROOM
-	MODIFY COLUMN CRMNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '강의실일련번호';
+alter table croom
+	modify column crmno integer not null auto_increment comment '강의실일련번호';
 
 -- 학생
-CREATE TABLE STUD (
-	SNO      INTEGER      NOT NULL COMMENT '학생일련번호', -- 학생일련번호
-	WORK     CHAR(1)      NOT NULL COMMENT '재직여부', -- 재직여부
-	LST_SCHL VARCHAR(100) NULL     COMMENT '최종학력', -- 최종학력
-	SCHL_NM  VARCHAR(100) NULL     COMMENT '학교명', -- 학교명
-	PST_NO   VARCHAR(10)  NULL     COMMENT '우편번호', -- 우편번호
-	BAS_ADR  VARCHAR(255) NULL     COMMENT '기본주소', -- 기본주소
-	DET_ADR  VARCHAR(255) NULL     COMMENT '상세주소', -- 상세주소
-	PATH     VARCHAR(255) NULL     COMMENT '사진파일경로' -- 사진파일경로
+create table stud (
+	sno      integer      not null comment '학생일련번호', -- 학생일련번호
+	work     char(1)      not null comment '재직여부', -- 재직여부
+	lst_schl varchar(100) null     comment '최종학력', -- 최종학력
+	schl_nm  varchar(100) null     comment '학교명', -- 학교명
+	pst_no   varchar(10)  null     comment '우편번호', -- 우편번호
+	bas_adr  varchar(255) null     comment '기본주소', -- 기본주소
+	det_adr  varchar(255) null     comment '상세주소', -- 상세주소
+	path     varchar(255) null     comment '사진파일경로' -- 사진파일경로
 )
-COMMENT '학생';
+comment '학생';
 
 -- 학생
-ALTER TABLE STUD
-	ADD CONSTRAINT PK_STUD -- 학생 Primary key
-		PRIMARY KEY (
-			SNO -- 학생일련번호
+alter table stud
+	add constraint pk_stud -- 학생 primary key
+		primary key (
+			sno -- 학생일련번호
 		);
 
 -- 강의실사진
-CREATE TABLE CROOM_PHOT (
-	CPNO  INTEGER      NOT NULL COMMENT '강의실사진일련번호', -- 강의실사진일련번호
-	CRMNO INTEGER      NOT NULL COMMENT '강의실일련번호', -- 강의실일련번호
-	PATH  VARCHAR(255) NOT NULL COMMENT '파일경로' -- 파일경로
+create table croom_phot (
+	cpno  integer      not null comment '강의실사진일련번호', -- 강의실사진일련번호
+	crmno integer      not null comment '강의실일련번호', -- 강의실일련번호
+	path  varchar(255) not null comment '파일경로' -- 파일경로
 )
-COMMENT '강의실사진';
+comment '강의실사진';
 
 -- 강의실사진
-ALTER TABLE CROOM_PHOT
-	ADD CONSTRAINT PK_CROOM_PHOT -- 강의실사진 Primary key
-		PRIMARY KEY (
-			CPNO -- 강의실사진일련번호
+alter table croom_phot
+	add constraint pk_croom_phot -- 강의실사진 primary key
+		primary key (
+			cpno -- 강의실사진일련번호
 		);
 
-ALTER TABLE CROOM_PHOT
-	MODIFY COLUMN CPNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '강의실사진일련번호';
+alter table croom_phot
+	modify column cpno integer not null auto_increment comment '강의실사진일련번호';
 
 -- 강사사진
-CREATE TABLE TCH_PHOT (
-	TPNO INTEGER      NOT NULL COMMENT '강사사진일련번호', -- 강사사진일련번호
-	TNO  INTEGER      NOT NULL COMMENT '강사일련번호', -- 강사일련번호
-	PATH VARCHAR(255) NOT NULL COMMENT '파일경로' -- 파일경로
+create table tch_phot (
+	tpno integer      not null comment '강사사진일련번호', -- 강사사진일련번호
+	tno  integer      not null comment '강사일련번호', -- 강사일련번호
+	path varchar(255) not null comment '파일경로' -- 파일경로
 )
-COMMENT '강사사진';
+comment '강사사진';
 
 -- 강사사진
-ALTER TABLE TCH_PHOT
-	ADD CONSTRAINT PK_TCH_PHOT -- 강사사진 Primary key
-		PRIMARY KEY (
-			TPNO -- 강사사진일련번호
+alter table tch_phot
+	add constraint pk_tch_phot -- 강사사진 primary key
+		primary key (
+			tpno -- 강사사진일련번호
 		);
 
-ALTER TABLE TCH_PHOT
-	MODIFY COLUMN TPNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '강사사진일련번호';
+alter table tch_phot
+	modify column tpno integer not null auto_increment comment '강사사진일련번호';
 
 -- 강사배정
-CREATE TABLE TCHR_LECT (
-	LNO INTEGER NOT NULL COMMENT '강의일련번호', -- 강의일련번호
-	TNO INTEGER NOT NULL COMMENT '강사일련번호' -- 강사일련번호
+create table tchr_lect (
+	lno integer not null comment '강의일련번호', -- 강의일련번호
+	tno integer not null comment '강사일련번호' -- 강사일련번호
 )
-COMMENT '강사배정';
+comment '강사배정';
 
 -- 강사배정
-ALTER TABLE TCHR_LECT
-	ADD CONSTRAINT PK_TCHR_LECT -- 강사배정 Primary key
-		PRIMARY KEY (
-			LNO, -- 강의일련번호
-			TNO  -- 강사일련번호
+alter table tchr_lect
+	add constraint pk_tchr_lect -- 강사배정 primary key
+		primary key (
+			lno, -- 강의일련번호
+			tno  -- 강사일련번호
 		);
 
 -- 회원
-CREATE TABLE MEMB (
-	MNO   INTEGER      NOT NULL COMMENT '회원일련번호', -- 회원일련번호
-	NAME  VARCHAR(100) NOT NULL COMMENT '이름', -- 이름
-	TEL   VARCHAR(30)  NOT NULL COMMENT '전화', -- 전화
-	EMAIL VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
-	PWD   VARCHAR(50)  NOT NULL COMMENT '암호' -- 암호
+create table memb (
+	mno   integer      not null comment '회원일련번호', -- 회원일련번호
+	name  varchar(100) not null comment '이름', -- 이름
+	tel   varchar(30)  not null comment '전화', -- 전화
+	email varchar(40)  not null comment '이메일', -- 이메일
+	pwd   varchar(50)  not null comment '암호' -- 암호
 )
-COMMENT '회원';
+comment '회원';
 
 -- 회원
-ALTER TABLE MEMB
-	ADD CONSTRAINT PK_MEMB -- 회원 Primary key
-		PRIMARY KEY (
-			MNO -- 회원일련번호
+alter table memb
+	add constraint pk_memb -- 회원 primary key
+		primary key (
+			mno -- 회원일련번호
 		);
 
--- 회원 Unique Index
-CREATE UNIQUE INDEX UIX_MEMB
-	ON MEMB ( -- 회원
-		EMAIL ASC -- 이메일
+-- 회원 unique index
+create unique index uix_memb
+	on memb ( -- 회원
+		email asc -- 이메일
 	);
 
--- 회원 Index
-CREATE INDEX IX_MEMB
-	ON MEMB( -- 회원
-		NAME ASC -- 이름
+-- 회원 index
+create index ix_memb
+	on memb( -- 회원
+		name asc -- 이름
 	);
 
-ALTER TABLE MEMB
-	MODIFY COLUMN MNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원일련번호';
+alter table memb
+	modify column mno integer not null auto_increment comment '회원일련번호';
 
 -- 코드조각
-CREATE TABLE CODE (
-	CDNO  INTEGER     NOT NULL COMMENT '콘텐츠일련번호', -- 콘텐츠일련번호
-	CONTS TEXT        NOT NULL COMMENT '코드', -- 코드
-	PL    VARCHAR(10) NULL     COMMENT '프로그래밍언어' -- 프로그래밍언어
+create table code (
+	cdno  integer     not null comment '콘텐츠일련번호', -- 콘텐츠일련번호
+	conts text        not null comment '코드', -- 코드
+	pl    varchar(10) null     comment '프로그래밍언어' -- 프로그래밍언어
 )
-COMMENT '코드조각';
+comment '코드조각';
 
 -- 코드조각
-ALTER TABLE CODE
-	ADD CONSTRAINT PK_CODE -- 코드조각 Primary key
-		PRIMARY KEY (
-			CDNO -- 콘텐츠일련번호
+alter table code
+	add constraint pk_code -- 코드조각 primary key
+		primary key (
+			cdno -- 콘텐츠일련번호
 		);
 
 -- 콘텐츠
-CREATE TABLE CONTENT (
-	CONO   INTEGER  NOT NULL COMMENT '콘텐츠일련번호', -- 콘텐츠일련번호
-	MNO    INTEGER  NOT NULL COMMENT '회원일련번호', -- 회원일련번호
-	RDT    DATETIME NOT NULL COMMENT '등록일', -- 등록일
-	VW_CNT INTEGER  NOT NULL COMMENT '조회수' -- 조회수
+create table content (
+	cono   integer  not null comment '콘텐츠일련번호', -- 콘텐츠일련번호
+	mno    integer  not null comment '회원일련번호', -- 회원일련번호
+	rdt    datetime not null comment '등록일', -- 등록일
+	vw_cnt integer  not null comment '조회수' -- 조회수
 )
-COMMENT '콘텐츠';
+comment '콘텐츠';
 
 -- 콘텐츠
-ALTER TABLE CONTENT
-	ADD CONSTRAINT PK_CONTENT -- 콘텐츠 Primary key
-		PRIMARY KEY (
-			CONO -- 콘텐츠일련번호
+alter table content
+	add constraint pk_content -- 콘텐츠 primary key
+		primary key (
+			cono -- 콘텐츠일련번호
 		);
 
-ALTER TABLE CONTENT
-	MODIFY COLUMN CONO INTEGER NOT NULL AUTO_INCREMENT COMMENT '콘텐츠일련번호';
+alter table content
+	modify column cono integer not null auto_increment comment '콘텐츠일련번호';
 
 -- 게시판
-CREATE TABLE BOARD (
-	BDNO  INTEGER      NOT NULL COMMENT '콘텐츠일련번호', -- 콘텐츠일련번호
-	TITL  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
-	CONTS TEXT         NOT NULL COMMENT '내용' -- 내용
+create table board (
+	bdno  integer      not null comment '콘텐츠일련번호', -- 콘텐츠일련번호
+	titl  varchar(255) not null comment '제목', -- 제목
+	conts text         not null comment '내용' -- 내용
 )
-COMMENT '게시판';
+comment '게시판';
 
 -- 게시판
-ALTER TABLE BOARD
-	ADD CONSTRAINT PK_BOARD -- 게시판 Primary key
-		PRIMARY KEY (
-			BDNO -- 콘텐츠일련번호
+alter table board
+	add constraint pk_board -- 게시판 primary key
+		primary key (
+			bdno -- 콘텐츠일련번호
 		);
 
 -- 피드
-CREATE TABLE FEED (
-	FDNO  INTEGER NOT NULL COMMENT '콘텐츠일련번호', -- 콘텐츠일련번호
-	CONTS TEXT    NOT NULL COMMENT '피드내용' -- 피드내용
+create table feed (
+	fdno  integer not null comment '콘텐츠일련번호', -- 콘텐츠일련번호
+	conts text    not null comment '피드내용' -- 피드내용
 )
-COMMENT '피드';
+comment '피드';
 
 -- 피드
-ALTER TABLE FEED
-	ADD CONSTRAINT PK_FEED -- 피드 Primary key
-		PRIMARY KEY (
-			FDNO -- 콘텐츠일련번호
+alter table feed
+	add constraint pk_feed -- 피드 primary key
+		primary key (
+			fdno -- 콘텐츠일련번호
 		);
 
 -- 태그
-CREATE TABLE TAG (
-	TGNO   INTEGER     NOT NULL COMMENT '태그일련번호', -- 태그일련번호
-	CONO   INTEGER     NOT NULL COMMENT '콘텐츠일련번호', -- 콘텐츠일련번호
-	TAG_NM VARCHAR(50) NOT NULL COMMENT '태그명' -- 태그명
+create table tag (
+	tgno   integer     not null comment '태그일련번호', -- 태그일련번호
+	cono   integer     not null comment '콘텐츠일련번호', -- 콘텐츠일련번호
+	tag_nm varchar(50) not null comment '태그명' -- 태그명
 )
-COMMENT '태그';
+comment '태그';
 
 -- 태그
-ALTER TABLE TAG
-	ADD CONSTRAINT PK_TAG -- 태그 Primary key
-		PRIMARY KEY (
-			TGNO -- 태그일련번호
+alter table tag
+	add constraint pk_tag -- 태그 primary key
+		primary key (
+			tgno -- 태그일련번호
 		);
 
--- 태그 Index
-CREATE INDEX IX_TAG
-	ON TAG( -- 태그
-		TAG_NM ASC -- 태그명
+-- 태그 index
+create index ix_tag
+	on tag( -- 태그
+		tag_nm asc -- 태그명
 	);
 
-ALTER TABLE TAG
-	MODIFY COLUMN TGNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '태그일련번호';
+alter table tag
+	modify column tgno integer not null auto_increment comment '태그일련번호';
 
 -- 팔로잉
-CREATE TABLE FOLLOW (
-	FOWR_NO INTEGER NOT NULL COMMENT '회원일련번호', -- 회원일련번호
-	FWNG_NO INTEGER NOT NULL COMMENT '팔로잉대상회원일련번호' -- 팔로잉대상회원일련번호
+create table follow (
+	fowr_no integer not null comment '회원일련번호', -- 회원일련번호
+	fwng_no integer not null comment '팔로잉대상회원일련번호' -- 팔로잉대상회원일련번호
 )
-COMMENT '팔로잉';
+comment '팔로잉';
 
 -- 팔로잉
-ALTER TABLE FOLLOW
-	ADD CONSTRAINT PK_FOLLOW -- 팔로잉 Primary key
-		PRIMARY KEY (
-			FOWR_NO, -- 회원일련번호
-			FWNG_NO  -- 팔로잉대상회원일련번호
+alter table follow
+	add constraint pk_follow -- 팔로잉 primary key
+		primary key (
+			fowr_no, -- 회원일련번호
+			fwng_no  -- 팔로잉대상회원일련번호
 		);
 
 -- 프로젝트
-CREATE TABLE PROJ (
-	PJNO  INTEGER      NOT NULL COMMENT '콘텐츠일련번호', -- 콘텐츠일련번호
-	TITL  VARCHAR(255) NOT NULL COMMENT '프로젝트명', -- 프로젝트명
-	CONTS TEXT         NOT NULL COMMENT '내용', -- 내용
-	SDT   DATE         NOT NULL COMMENT '시작일', -- 시작일
-	EDT   DATE         NOT NULL COMMENT '종료일', -- 종료일
-	PATH  VARCHAR(255) NULL     COMMENT '로고' -- 로고
+create table proj (
+	pjno  integer      not null comment '콘텐츠일련번호', -- 콘텐츠일련번호
+	titl  varchar(255) not null comment '프로젝트명', -- 프로젝트명
+	conts text         not null comment '내용', -- 내용
+	sdt   date         not null comment '시작일', -- 시작일
+	edt   date         not null comment '종료일', -- 종료일
+	path  varchar(255) null     comment '로고' -- 로고
 )
-COMMENT '프로젝트';
+comment '프로젝트';
 
 -- 프로젝트
-ALTER TABLE PROJ
-	ADD CONSTRAINT PK_PROJ -- 프로젝트 Primary key
-		PRIMARY KEY (
-			PJNO -- 콘텐츠일련번호
+alter table proj
+	add constraint pk_proj -- 프로젝트 primary key
+		primary key (
+			pjno -- 콘텐츠일련번호
 		);
 
--- 프로젝트 Index
-CREATE INDEX IX_PROJ
-	ON PROJ( -- 프로젝트
-		TITL ASC -- 프로젝트명
+-- 프로젝트 index
+create index ix_proj
+	on proj( -- 프로젝트
+		titl asc -- 프로젝트명
 	);
 
 -- 프로젝트회원
-CREATE TABLE PROJ_MEMB (
-	MNO  INTEGER     NOT NULL COMMENT '회원일련번호', -- 회원일련번호
-	PJNO INTEGER     NOT NULL COMMENT '콘텐츠일련번호', -- 콘텐츠일련번호
-	ROL  VARCHAR(10) NULL     COMMENT '역할' -- 역할
+create table proj_memb (
+	mno  integer     not null comment '회원일련번호', -- 회원일련번호
+	pjno integer     not null comment '콘텐츠일련번호', -- 콘텐츠일련번호
+	rol  varchar(10) null     comment '역할' -- 역할
 )
-COMMENT '프로젝트회원';
+comment '프로젝트회원';
 
 -- 프로젝트회원
-ALTER TABLE PROJ_MEMB
-	ADD CONSTRAINT PK_PROJ_MEMB -- 프로젝트회원 Primary key
-		PRIMARY KEY (
-			MNO,  -- 회원일련번호
-			PJNO  -- 콘텐츠일련번호
+alter table proj_memb
+	add constraint pk_proj_memb -- 프로젝트회원 primary key
+		primary key (
+			mno,  -- 회원일련번호
+			pjno  -- 콘텐츠일련번호
 		);
 
 -- 자료실
-CREATE TABLE DOWNLOAD (
-	DNNO INTEGER      NOT NULL COMMENT '콘텐츠일련번호', -- 콘텐츠일련번호
-	PATH VARCHAR(255) NOT NULL COMMENT '파일경로' -- 파일경로
+create table download (
+	dnno integer      not null comment '콘텐츠일련번호', -- 콘텐츠일련번호
+	path varchar(255) not null comment '파일경로' -- 파일경로
 )
-COMMENT '자료실';
+comment '자료실';
 
 -- 자료실
-ALTER TABLE DOWNLOAD
-	ADD CONSTRAINT PK_DOWNLOAD -- 자료실 Primary key
-		PRIMARY KEY (
-			DNNO -- 콘텐츠일련번호
+alter table download
+	add constraint pk_download -- 자료실 primary key
+		primary key (
+			dnno -- 콘텐츠일련번호
 		);
 
 -- 할일
-CREATE TABLE TODO (
-	TDNO  INTEGER      NOT NULL COMMENT '할일일련번호', -- 할일일련번호
-	MNO   INTEGER      NULL     COMMENT '회원일련번호', -- 회원일련번호
-	SEQ   INTEGER      NOT NULL COMMENT '순서', -- 순서
-	CONTS VARCHAR(255) NOT NULL COMMENT '내용', -- 내용
-	STAT  VARCHAR(10)  NULL     COMMENT '상태', -- 상태
-	STDT  DATETIME     NULL     COMMENT '상태설정일', -- 상태설정일
-	PJNO  INTEGER      NULL     COMMENT '콘텐츠일련번호' -- 콘텐츠일련번호
+create table todo (
+	tdno  integer      not null comment '할일일련번호', -- 할일일련번호
+	mno   integer      null     comment '회원일련번호', -- 회원일련번호
+	seq   integer      not null comment '순서', -- 순서
+	conts varchar(255) not null comment '내용', -- 내용
+	stat  varchar(10)  null     comment '상태', -- 상태
+	stdt  datetime     null     comment '상태설정일', -- 상태설정일
+	pjno  integer      null     comment '콘텐츠일련번호' -- 콘텐츠일련번호
 )
-COMMENT '할일';
+comment '할일';
 
 -- 할일
-ALTER TABLE TODO
-	ADD CONSTRAINT PK_TODO -- 할일 Primary key
-		PRIMARY KEY (
-			TDNO -- 할일일련번호
+alter table todo
+	add constraint pk_todo -- 할일 primary key
+		primary key (
+			tdno -- 할일일련번호
 		);
 
 -- 콘텐츠파일링크
-CREATE TABLE FIL_LK (
-	CONO INTEGER NOT NULL COMMENT '콘텐츠일련번호', -- 콘텐츠일련번호
-	DNNO INTEGER NOT NULL COMMENT '자료실파일일련번호' -- 자료실파일일련번호
+create table fil_lk (
+	cono integer not null comment '콘텐츠일련번호', -- 콘텐츠일련번호
+	dnno integer not null comment '자료실파일일련번호' -- 자료실파일일련번호
 )
-COMMENT '콘텐츠파일링크';
+comment '콘텐츠파일링크';
 
 -- 콘텐츠파일링크
-ALTER TABLE FIL_LK
-	ADD CONSTRAINT PK_FIL_LK -- 콘텐츠파일링크 Primary key
-		PRIMARY KEY (
-			CONO, -- 콘텐츠일련번호
-			DNNO  -- 자료실파일일련번호
+alter table fil_lk
+	add constraint pk_fil_lk -- 콘텐츠파일링크 primary key
+		primary key (
+			cono, -- 콘텐츠일련번호
+			dnno  -- 자료실파일일련번호
 		);
 
 -- 수강신청
-ALTER TABLE LECT_APPY
-	ADD CONSTRAINT FK_LECT_TO_LECT_APPY -- 강의 -> 수강신청
-		FOREIGN KEY (
-			LNO -- 강의일련번호
+alter table lect_appy
+	add constraint fk_lect_to_lect_appy -- 강의 -> 수강신청
+		foreign key (
+			lno -- 강의일련번호
 		)
-		REFERENCES LECT ( -- 강의
-			LNO -- 강의일련번호
+		references lect ( -- 강의
+			lno -- 강의일련번호
 		);
 
 -- 수강신청
-ALTER TABLE LECT_APPY
-	ADD CONSTRAINT FK_STUD_TO_LECT_APPY -- 학생 -> 수강신청
-		FOREIGN KEY (
-			SNO -- 학생일련번호
+alter table lect_appy
+	add constraint fk_stud_to_lect_appy -- 학생 -> 수강신청
+		foreign key (
+			sno -- 학생일련번호
 		)
-		REFERENCES STUD ( -- 학생
-			SNO -- 학생일련번호
+		references stud ( -- 학생
+			sno -- 학생일련번호
 		);
 
 -- 강의
-ALTER TABLE LECT
-	ADD CONSTRAINT FK_MGR_TO_LECT -- 매니저 -> 강의
-		FOREIGN KEY (
-			MRNO -- 매니저일련번호
+alter table lect
+	add constraint fk_mgr_to_lect -- 매니저 -> 강의
+		foreign key (
+			mrno -- 매니저일련번호
 		)
-		REFERENCES MGR ( -- 매니저
-			MRNO -- 매니저일련번호
+		references mgr ( -- 매니저
+			mrno -- 매니저일련번호
 		);
 
 -- 강의
-ALTER TABLE LECT
-	ADD CONSTRAINT FK_CROOM_TO_LECT -- 강의실 -> 강의
-		FOREIGN KEY (
-			CRMNO -- 강의실일련번호
+alter table lect
+	add constraint fk_croom_to_lect -- 강의실 -> 강의
+		foreign key (
+			crmno -- 강의실일련번호
 		)
-		REFERENCES CROOM ( -- 강의실
-			CRMNO -- 강의실일련번호
+		references croom ( -- 강의실
+			crmno -- 강의실일련번호
 		);
 
 -- 강사
-ALTER TABLE TCHER
-	ADD CONSTRAINT FK_MEMB_TO_TCHER -- 회원 -> 강사
-		FOREIGN KEY (
-			TNO -- 강사일련번호
+alter table tcher
+	add constraint fk_memb_to_tcher -- 회원 -> 강사
+		foreign key (
+			tno -- 강사일련번호
 		)
-		REFERENCES MEMB ( -- 회원
-			MNO -- 회원일련번호
+		references memb ( -- 회원
+			mno -- 회원일련번호
 		);
 
 -- 매니저
-ALTER TABLE MGR
-	ADD CONSTRAINT FK_MEMB_TO_MGR -- 회원 -> 매니저
-		FOREIGN KEY (
-			MRNO -- 매니저일련번호
+alter table mgr
+	add constraint fk_memb_to_mgr -- 회원 -> 매니저
+		foreign key (
+			mrno -- 매니저일련번호
 		)
-		REFERENCES MEMB ( -- 회원
-			MNO -- 회원일련번호
+		references memb ( -- 회원
+			mno -- 회원일련번호
 		);
 
 -- 학생
-ALTER TABLE STUD
-	ADD CONSTRAINT FK_MEMB_TO_STUD -- 회원 -> 학생
-		FOREIGN KEY (
-			SNO -- 학생일련번호
+alter table stud
+	add constraint fk_memb_to_stud -- 회원 -> 학생
+		foreign key (
+			sno -- 학생일련번호
 		)
-		REFERENCES MEMB ( -- 회원
-			MNO -- 회원일련번호
+		references memb ( -- 회원
+			mno -- 회원일련번호
 		);
 
 -- 강의실사진
-ALTER TABLE CROOM_PHOT
-	ADD CONSTRAINT FK_CROOM_TO_CROOM_PHOT -- 강의실 -> 강의실사진
-		FOREIGN KEY (
-			CRMNO -- 강의실일련번호
+alter table croom_phot
+	add constraint fk_croom_to_croom_phot -- 강의실 -> 강의실사진
+		foreign key (
+			crmno -- 강의실일련번호
 		)
-		REFERENCES CROOM ( -- 강의실
-			CRMNO -- 강의실일련번호
+		references croom ( -- 강의실
+			crmno -- 강의실일련번호
 		);
 
 -- 강사사진
-ALTER TABLE TCH_PHOT
-	ADD CONSTRAINT FK_TCHER_TO_TCH_PHOT -- 강사 -> 강사사진
-		FOREIGN KEY (
-			TNO -- 강사일련번호
+alter table tch_phot
+	add constraint fk_tcher_to_tch_phot -- 강사 -> 강사사진
+		foreign key (
+			tno -- 강사일련번호
 		)
-		REFERENCES TCHER ( -- 강사
-			TNO -- 강사일련번호
+		references tcher ( -- 강사
+			tno -- 강사일련번호
 		);
 
 -- 강사배정
-ALTER TABLE TCHR_LECT
-	ADD CONSTRAINT FK_TCHER_TO_TCHR_LECT -- 강사 -> 강사배정
-		FOREIGN KEY (
-			TNO -- 강사일련번호
+alter table tchr_lect
+	add constraint fk_tcher_to_tchr_lect -- 강사 -> 강사배정
+		foreign key (
+			tno -- 강사일련번호
 		)
-		REFERENCES TCHER ( -- 강사
-			TNO -- 강사일련번호
+		references tcher ( -- 강사
+			tno -- 강사일련번호
 		);
 
 -- 강사배정
-ALTER TABLE TCHR_LECT
-	ADD CONSTRAINT FK_LECT_TO_TCHR_LECT -- 강의 -> 강사배정
-		FOREIGN KEY (
-			LNO -- 강의일련번호
+alter table tchr_lect
+	add constraint fk_lect_to_tchr_lect -- 강의 -> 강사배정
+		foreign key (
+			lno -- 강의일련번호
 		)
-		REFERENCES LECT ( -- 강의
-			LNO -- 강의일련번호
+		references lect ( -- 강의
+			lno -- 강의일련번호
 		);
 
 -- 코드조각
-ALTER TABLE CODE
-	ADD CONSTRAINT FK_CONTENT_TO_CODE -- 콘텐츠 -> 코드조각
-		FOREIGN KEY (
-			CDNO -- 콘텐츠일련번호
+alter table code
+	add constraint fk_content_to_code -- 콘텐츠 -> 코드조각
+		foreign key (
+			cdno -- 콘텐츠일련번호
 		)
-		REFERENCES CONTENT ( -- 콘텐츠
-			CONO -- 콘텐츠일련번호
+		references content ( -- 콘텐츠
+			cono -- 콘텐츠일련번호
 		);
 
 -- 콘텐츠
-ALTER TABLE CONTENT
-	ADD CONSTRAINT FK_MEMB_TO_CONTENT -- 회원 -> 콘텐츠
-		FOREIGN KEY (
-			MNO -- 회원일련번호
+alter table content
+	add constraint fk_memb_to_content -- 회원 -> 콘텐츠
+		foreign key (
+			mno -- 회원일련번호
 		)
-		REFERENCES MEMB ( -- 회원
-			MNO -- 회원일련번호
+		references memb ( -- 회원
+			mno -- 회원일련번호
 		);
 
 -- 게시판
-ALTER TABLE BOARD
-	ADD CONSTRAINT FK_CONTENT_TO_BOARD -- 콘텐츠 -> 게시판
-		FOREIGN KEY (
-			BDNO -- 콘텐츠일련번호
+alter table board
+	add constraint fk_content_to_board -- 콘텐츠 -> 게시판
+		foreign key (
+			bdno -- 콘텐츠일련번호
 		)
-		REFERENCES CONTENT ( -- 콘텐츠
-			CONO -- 콘텐츠일련번호
+		references content ( -- 콘텐츠
+			cono -- 콘텐츠일련번호
 		);
 
 -- 피드
-ALTER TABLE FEED
-	ADD CONSTRAINT FK_CONTENT_TO_FEED -- 콘텐츠 -> 피드
-		FOREIGN KEY (
-			FDNO -- 콘텐츠일련번호
+alter table feed
+	add constraint fk_content_to_feed -- 콘텐츠 -> 피드
+		foreign key (
+			fdno -- 콘텐츠일련번호
 		)
-		REFERENCES CONTENT ( -- 콘텐츠
-			CONO -- 콘텐츠일련번호
+		references content ( -- 콘텐츠
+			cono -- 콘텐츠일련번호
 		);
 
 -- 태그
-ALTER TABLE TAG
-	ADD CONSTRAINT FK_CONTENT_TO_TAG -- 콘텐츠 -> 태그
-		FOREIGN KEY (
-			CONO -- 콘텐츠일련번호
+alter table tag
+	add constraint fk_content_to_tag -- 콘텐츠 -> 태그
+		foreign key (
+			cono -- 콘텐츠일련번호
 		)
-		REFERENCES CONTENT ( -- 콘텐츠
-			CONO -- 콘텐츠일련번호
+		references content ( -- 콘텐츠
+			cono -- 콘텐츠일련번호
 		);
 
 -- 팔로잉
-ALTER TABLE FOLLOW
-	ADD CONSTRAINT FK_MEMB_TO_FOLLOW -- 회원 -> 팔로잉
-		FOREIGN KEY (
-			FOWR_NO -- 회원일련번호
+alter table follow
+	add constraint fk_memb_to_follow -- 회원 -> 팔로잉
+		foreign key (
+			fowr_no -- 회원일련번호
 		)
-		REFERENCES MEMB ( -- 회원
-			MNO -- 회원일련번호
+		references memb ( -- 회원
+			mno -- 회원일련번호
 		);
 
 -- 팔로잉
-ALTER TABLE FOLLOW
-	ADD CONSTRAINT FK_MEMB_TO_FOLLOW2 -- 회원 -> 팔로잉2
-		FOREIGN KEY (
-			FWNG_NO -- 팔로잉대상회원일련번호
+alter table follow
+	add constraint fk_memb_to_follow2 -- 회원 -> 팔로잉2
+		foreign key (
+			fwng_no -- 팔로잉대상회원일련번호
 		)
-		REFERENCES MEMB ( -- 회원
-			MNO -- 회원일련번호
+		references memb ( -- 회원
+			mno -- 회원일련번호
 		);
 
 -- 프로젝트
-ALTER TABLE PROJ
-	ADD CONSTRAINT FK_CONTENT_TO_PROJ -- 콘텐츠 -> 프로젝트
-		FOREIGN KEY (
-			PJNO -- 콘텐츠일련번호
+alter table proj
+	add constraint fk_content_to_proj -- 콘텐츠 -> 프로젝트
+		foreign key (
+			pjno -- 콘텐츠일련번호
 		)
-		REFERENCES CONTENT ( -- 콘텐츠
-			CONO -- 콘텐츠일련번호
+		references content ( -- 콘텐츠
+			cono -- 콘텐츠일련번호
 		);
 
 -- 프로젝트회원
-ALTER TABLE PROJ_MEMB
-	ADD CONSTRAINT FK_PROJ_TO_PROJ_MEMB -- 프로젝트 -> 프로젝트회원
-		FOREIGN KEY (
-			PJNO -- 콘텐츠일련번호
+alter table proj_memb
+	add constraint fk_proj_to_proj_memb -- 프로젝트 -> 프로젝트회원
+		foreign key (
+			pjno -- 콘텐츠일련번호
 		)
-		REFERENCES PROJ ( -- 프로젝트
-			PJNO -- 콘텐츠일련번호
+		references proj ( -- 프로젝트
+			pjno -- 콘텐츠일련번호
 		);
 
 -- 프로젝트회원
-ALTER TABLE PROJ_MEMB
-	ADD CONSTRAINT FK_MEMB_TO_PROJ_MEMB -- 회원 -> 프로젝트회원
-		FOREIGN KEY (
-			MNO -- 회원일련번호
+alter table proj_memb
+	add constraint fk_memb_to_proj_memb -- 회원 -> 프로젝트회원
+		foreign key (
+			mno -- 회원일련번호
 		)
-		REFERENCES MEMB ( -- 회원
-			MNO -- 회원일련번호
+		references memb ( -- 회원
+			mno -- 회원일련번호
 		);
 
 -- 자료실
-ALTER TABLE DOWNLOAD
-	ADD CONSTRAINT FK_CONTENT_TO_DOWNLOAD -- 콘텐츠 -> 자료실
-		FOREIGN KEY (
-			DNNO -- 콘텐츠일련번호
+alter table download
+	add constraint fk_content_to_download -- 콘텐츠 -> 자료실
+		foreign key (
+			dnno -- 콘텐츠일련번호
 		)
-		REFERENCES CONTENT ( -- 콘텐츠
-			CONO -- 콘텐츠일련번호
+		references content ( -- 콘텐츠
+			cono -- 콘텐츠일련번호
 		);
 
 -- 할일
-ALTER TABLE TODO
-	ADD CONSTRAINT FK_PROJ_MEMB_TO_TODO -- 프로젝트회원 -> 할일
-		FOREIGN KEY (
-			MNO,  -- 회원일련번호
-			PJNO  -- 콘텐츠일련번호
+alter table todo
+	add constraint fk_proj_memb_to_todo -- 프로젝트회원 -> 할일
+		foreign key (
+			mno,  -- 회원일련번호
+			pjno  -- 콘텐츠일련번호
 		)
-		REFERENCES PROJ_MEMB ( -- 프로젝트회원
-			MNO,  -- 회원일련번호
-			PJNO  -- 콘텐츠일련번호
+		references proj_memb ( -- 프로젝트회원
+			mno,  -- 회원일련번호
+			pjno  -- 콘텐츠일련번호
 		);
 
 -- 할일
-ALTER TABLE TODO
-	ADD CONSTRAINT FK_CONTENT_TO_TODO -- 콘텐츠 -> 할일
-		FOREIGN KEY (
-			TDNO -- 할일일련번호
+alter table todo
+	add constraint fk_content_to_todo -- 콘텐츠 -> 할일
+		foreign key (
+			tdno -- 할일일련번호
 		)
-		REFERENCES CONTENT ( -- 콘텐츠
-			CONO -- 콘텐츠일련번호
+		references content ( -- 콘텐츠
+			cono -- 콘텐츠일련번호
 		);
 
 -- 콘텐츠파일링크
-ALTER TABLE FIL_LK
-	ADD CONSTRAINT FK_CONTENT_TO_FIL_LK -- 콘텐츠 -> 콘텐츠파일링크
-		FOREIGN KEY (
-			CONO -- 콘텐츠일련번호
+alter table fil_lk
+	add constraint fk_content_to_fil_lk -- 콘텐츠 -> 콘텐츠파일링크
+		foreign key (
+			cono -- 콘텐츠일련번호
 		)
-		REFERENCES CONTENT ( -- 콘텐츠
-			CONO -- 콘텐츠일련번호
+		references content ( -- 콘텐츠
+			cono -- 콘텐츠일련번호
 		);
 
 -- 콘텐츠파일링크
-ALTER TABLE FIL_LK
-	ADD CONSTRAINT FK_DOWNLOAD_TO_FIL_LK -- 자료실 -> 콘텐츠파일링크
-		FOREIGN KEY (
-			DNNO -- 자료실파일일련번호
+alter table fil_lk
+	add constraint fk_download_to_fil_lk -- 자료실 -> 콘텐츠파일링크
+		foreign key (
+			dnno -- 자료실파일일련번호
 		)
-		REFERENCES DOWNLOAD ( -- 자료실
-			DNNO -- 콘텐츠일련번호
+		references download ( -- 자료실
+			dnno -- 콘텐츠일련번호
 		);
