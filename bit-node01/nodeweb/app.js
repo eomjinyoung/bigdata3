@@ -115,6 +115,15 @@ function receivedMessage(event) {
       } else if (messageText == 'generic') {
         sendGenericMessage(senderID);
 
+      } else if (messageText == 'image') {
+        sendImageMessage(senderID);
+
+      } else if (messageText == 'button1') {
+        sendButton1Message(senderID);
+
+      } else if (messageText == 'button2') {
+        sendButton2Message(senderID);
+
       } else {
         sendTextMessage(senderID, "올바른 명령이 아닙니다.");
       }
@@ -155,7 +164,88 @@ function sendTextMessage(recipientId, messageText) {
   
     callSendAPI(messageData);
 }
-  
+
+function sendImageMessage(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      "attachment":{
+        "type":"image", 
+        "payload":{
+          "url":"http://ppss.kr/wp-content/uploads/2016/04/%ED%8A%B8%EB%9F%BC%ED%94%8401-549x411.jpg", 
+          "is_reusable":true
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function sendButton1Message(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"button",
+          "text":"검색 사이트를 선택하세요!",
+          "buttons":[
+            {
+              "type":"web_url",
+              "url":"https://www.google.com",
+              "title":"구글"
+            },
+            {
+              "type":"web_url",
+              "url":"https://www.bing.com",
+              "title":"빙"
+            },
+            {
+              "type":"web_url",
+              "url":"https://www.yahoo.com",
+              "title":"야후"
+            }
+          ]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function sendButton2Message(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"button",
+          "text":"전화걸기예",
+          "buttons":[
+            {
+              "type":"phone_number",
+              "title":"내전화번호",
+              "payload":"+821011112222"
+            }
+          ]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
 function sendGenericMessage(recipientId) {
     var messageData = {
       recipient: {
