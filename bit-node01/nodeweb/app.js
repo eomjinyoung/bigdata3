@@ -1,89 +1,41 @@
-const https = require('https')
+const https = require('https') // 운영 서버용
+const http = require('http') // 로컬 테스트용
 const express = require('express')
 const fs = require('fs')
 const bodyParser = require('body-parser');
 const request = require('request')
 
-var jsonParser = bodyParser.json()
-var urlParser = bodyParser.urlencoded({extended: true})
-
 // .env 파일의 내용을 로딩한다.
 require('dotenv').config()
 
 const app = express()
-app.use(jsonParser);
-app.use(urlParser);
 
-// 인증서 데이터를 로딩
-var options = {
-    key: fs.readFileSync('custom.key'),
-    cert: fs.readFileSync('www_eomcs_com.crt'),
-    ca: fs.readFileSync('www_eomcs_com.ca-bundle') 
-}
+// JSON 형식으로 클라이언트가 보낸 데이터를 처리하는 객체 등록
+// => 이 객체를 등록하지 않으면 JSON 형식으로 전달 받은 데이터를 다룰 수 없다.
+app.use(bodyParser.json()); 
 
+// URL 인코딩 형식으로 클라이언트가 보낸 데이터를 처리하는 객체 등록
+// => 이 객체를 등록하지 않으면 URL 인코딩 형식으로 전달 받은 데이터를 다룰 수 없다.
+app.use(bodyParser.urlencoded({extended: true})); 
+
+// 클라이언트에서 정적 웹자원을 요청했을 때 그 자원을 찾을 폴더를 지정한다.
+// 정적 웹자원:
+// => 실행하지 않고 그대로 읽어서 클라이언트에게 보내는 파일
+// => .html, .gif, .jpg, .css, .js 등 
 app.use(express.static('public'))
 
-app.get('/hello', function(request, response) {
-    response.writeHead(200, {
-        'Content-Type': 'text/plain;charset=UTF-8'
-    })
-    response.write('Hello, 안녕하세요!\n')
-    response.end()
-})
+// 클라이언트 요청을 처리할 모듈을 가져온다.
+//import root from './routes/root.js';
+//import webhook from './routes/webhook.js';
+//import hello from './routes/hello.js';
 
-// 페이스북 서버에서 이 서버의 유효성을 검사하기 위해 요청 
-app.get('/webhook', function(req, res) {
-    if (req.query['hub.mode'] === 'subscribe' &&
-        req.query['hub.verify_token'] === process.env.VERIFY_TOKEN) {
-        console.log("Validating webhook");
-        res.status(200).send(req.query['hub.challenge']);
-    } else {
-        console.error("Failed validation. Make sure the validation tokens match.");
-        res.sendStatus(403);          
-    }
-});
+// URL와 그 URL의 요청을 처리할 모듈을 설정한다.
+// => /webhook/ 으로 시작하는 요청이 들어오면 webhook.js에서 처리
+// => / 로 시작하는 요청이 들어오면 root.js에서 처리 
+app.use('/', require('./routes/root'));
+app.use('/webhook', require('./routes/webhook'));
+app.use('/hello', require('./routes/hello'));
 
-// 메시지 처리 
-// 1) 사용자가 페이지북 페이지로 메시지를 보낸다.
-// 2) 페이스북 메신저 서버가 이 서버의 '/webhook' URL POST 요청한다.
-// 3) 이 서버는 이 POST 요청을 처리한 후 응답한다.
-// 4) 페이브북 메신저 서버가 사용자에게 메시지를 보낸다.
-// 5) 사용자의 메신저에 응답 내용을 출력된다.
-// Message processing
-app.post('/webhook', function (req, res) {
-  var data = req.body;
-  
-  // Make sure this is a page subscription
-  if (data.object === 'page') {
-    
-    // Iterate over each entry - there may be multiple if batched
-    data.entry.forEach(function(entry) {
-      var pageID = entry.id;
-      var timeOfEvent = entry.time;
-
-      // Iterate over each messaging event
-      entry.messaging.forEach(function(event) {
-        if (event.message) {
-          console.log('event.message===> ', event.message)
-          receivedMessage(event);
-        } else if (event.postback) {
-          console.log('event.postback===> ', event.postback)
-          receivedPostback(event);   
-        } else {
-          //console.log("unknown event===> ", event);
-        }
-      });
-    });
-  
-    // Assume all went well.
-    //
-    // You must send back a 200, within 20 seconds, to let us know
-    // you've successfully received the callback. Otherwise, the request
-    // will time out and we will keep trying to resend.
-    res.sendStatus(200);
-  }
-});
-  
 // Incoming events handling
 function receivedMessage(event) {
     var senderID = event.sender.id;
@@ -124,6 +76,9 @@ function receivedMessage(event) {
       } else if (messageText == 'button2') {
         sendButton2Message(senderID);
 
+      } else if (messageText == 'led') {
+        sendLedMessage(senderID);
+
       } else {
         sendTextMessage(senderID, "올바른 명령이 아닙니다.");
       }
@@ -146,7 +101,32 @@ function receivedPostback(event) {
   
     // When a postback is called, we'll send a message back to the sender to 
     // let them know it was successful
-    sendTextMessage(senderID, "Postback called");
+    if (payload == 'led_on') {
+      sendTextMessage(senderID, "전구를 켜겠습니다.");
+      request({
+        uri: 'http://eomcs.com:8080/chatbot/json/led/on',
+        qs: {'senderID': senderID},
+        method: 'POST'
+      }, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          console.log('SpringBoot 응답 ===>', body)
+          var obj = JSON.parse(body);
+          var senderID = obj.data.senderID;
+          if (obj.state == 'success') {
+            sendTextMessage(senderID, "전구-" + obj.data.state);
+          } else {
+            sendTextMessage(senderID, "전구제어 실패!");
+          }
+        } else {
+          console.log('SpringBoot 요청 오류!')
+          console.log(error)
+        }
+      })
+    } else if (payload == 'led_off') {
+      sendTextMessage(senderID, "전구를 끄겠습니다.");
+    } else {
+      sendTextMessage(senderID, "실행할 수 없는 명령입니다.");
+    }
 }
   
   //////////////////////////
@@ -246,6 +226,37 @@ function sendButton2Message(recipientId) {
   callSendAPI(messageData);
 }
 
+function sendLedMessage(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"button",
+          "text":"LED 동작 제어",
+          "buttons":[
+            {
+              "type":"postback",
+              "title":"Led ON",
+              "payload":"led_on"
+            },
+            {
+              "type":"postback",
+              "title":"Led OFF",
+              "payload":"led_off"
+            }
+          ]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
 function sendGenericMessage(recipientId) {
     var messageData = {
       recipient: {
@@ -315,11 +326,25 @@ function callSendAPI(messageData) {
     });  
 }
 
+// 인증서 데이터를 로딩
+// => 다음 객체는 node HTTPS 서버를 실행할 때 사용한다.
+// 운영 서버용
+/*
+var options = {
+  key: fs.readFileSync('custom.key'),
+  cert: fs.readFileSync('www_eomcs_com.crt'),
+  ca: fs.readFileSync('www_eomcs_com.ca-bundle') 
+}
+
 https.createServer(options, app).listen(9999, function() {
     console.log('서버가 시작되었습니다!')
 })
+*/
 
-
+// 로컬 테스트용
+http.createServer(app).listen(9999, function() {
+  console.log('서버가 시작되었습니다!')
+})
 
 
 
