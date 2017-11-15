@@ -4,8 +4,12 @@
 //import express from 'express';
 const express = require('express');
 
+// 메시지 이벤트를 처리할 API를 가져온다.
+const receiveAPI = require('../messenger-api-helpers/receive');
+
 // 클라이언트 요청이 들어왔을 때 함수를 호출해주는 객체 
 const router = express.Router();
+
 
 // 페이스북 서버에서 이 서버의 유효성을 검사하기 위해 요청 
 // => webhook.js는 클라이언트에서 URL '/webhook'으로 요청이 들어 왔을 때 실행한다.
@@ -29,39 +33,53 @@ router.get('/', (req, res) => {
 // 4) 페이브북 메신저 서버가 사용자에게 메시지를 보낸다.
 // 5) 사용자의 메신저에 응답 내용을 출력된다.
 router.post('/', (req, res) => {
-    /*
-    var data = req.body;
-    
-    // Make sure this is a page subscription
-    if (data.object === 'page') {
+
+  // 메신저 서버에서 요청을 받으면 일단 응답한다.
+  // 이유? 
+  // - 20초 이내에 응답을 해야한다.
+  // - 일단 응답한 후 요청 처리 작업을 해도 된다.
+  res.sendStatus(200);
+
+  // 응답한 후 요청을 처리하는 작업을 수행한다.
+  // => 메신저 서버가 보낸 데이터를 꺼낸다.
+  var data = req.body;
+
+  // 챗봇에 연결된 페이지가 받을 메시지인지 검사한다.
+  if (data.object === 'page') {
+
+    // 페이지가 받은 데이터 덩어리(entry)가 여러 개일 수 있기 때문에
+    // 반복적으로 처리해야 한다.
+    data.entry.forEach(function(entry) {
       
-      // Iterate over each entry - there may be multiple if batched
-      data.entry.forEach(function(entry) {
-        var pageID = entry.id;
-        var timeOfEvent = entry.time;
+      // 메시지 관련 데이터가 들어 있지 않다면 요청 처리를 종료한다.
+      if (!entry.messaging) {
+        return;
+      }
+
+      var pageID = entry.id;
+      var timeOfEvent = entry.time;
+
+      // 메시지에 들어있는 각각의 이벤트를 처리한다.
+      entry.messaging.forEach(function(event) {
+
+        if (event.message) {
+          console.log('event.message===> ', event.message)
+          receiveAPI.handleReceiveMessage(event);
+
+        } else if (event.postback) {
+          console.log('event.postback===> ', event.postback)
+          receiveAPI.handleReceivePostback(event);  
+
+        } else {
+          console.log("unknown event===> ", event);
+        }
+
+      }); // entry.messaging.forEach()
+
+    }); // data.entry.forEach()
+
+  } // if (data.object === 'page') {}
   
-        // Iterate over each messaging event
-        entry.messaging.forEach(function(event) {
-          if (event.message) {
-            console.log('event.message===> ', event.message)
-            receivedMessage(event);
-          } else if (event.postback) {
-            console.log('event.postback===> ', event.postback)
-            receivedPostback(event);   
-          } else {
-            //console.log("unknown event===> ", event);
-          }
-        });
-      });
-    
-      // Assume all went well.
-      //
-      // You must send back a 200, within 20 seconds, to let us know
-      // you've successfully received the callback. Otherwise, the request
-      // will time out and we will keep trying to resend.
-      res.sendStatus(200);
-    }
-    */
-});
+}); // router.post('/', ...)
     
 module.exports = router;

@@ -1,5 +1,5 @@
 const https = require('https') // 운영 서버용
-const http = require('http') // 로컬 테스트용
+//const http = require('http') // 로컬 테스트용
 const express = require('express')
 const fs = require('fs')
 const bodyParser = require('body-parser');
@@ -329,7 +329,6 @@ function callSendAPI(messageData) {
 // 인증서 데이터를 로딩
 // => 다음 객체는 node HTTPS 서버를 실행할 때 사용한다.
 // 운영 서버용
-/*
 var options = {
   key: fs.readFileSync('custom.key'),
   cert: fs.readFileSync('www_eomcs_com.crt'),
@@ -339,13 +338,13 @@ var options = {
 https.createServer(options, app).listen(9999, function() {
     console.log('서버가 시작되었습니다!')
 })
-*/
 
 // 로컬 테스트용
+/*
 http.createServer(app).listen(9999, function() {
   console.log('서버가 시작되었습니다!')
 })
-
+*/
 
 
 
