@@ -71,7 +71,7 @@ router.post('/', (req, res) => {
           receiveAPI.handleReceivePostback(event);  
 
         } else {
-          console.log("unknown event===> ", event);
+          //console.log("unknown event===> ", event);
         }
 
       }); // entry.messaging.forEach()

@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const request = require('request')
 
 // .env 파일의 내용을 로딩한다.
-require('dotenv').config()
+require('dotenv').config({path: '/home/ec2-user/vars/.env'})
 
 const app = express()
 
@@ -40,9 +40,9 @@ app.use('/hello', require('./routes/hello'));
 // => 다음 객체는 node HTTPS 서버를 실행할 때 사용한다.
 // 운영 서버용
 var options = {
-  key: fs.readFileSync('custom.key'),
-  cert: fs.readFileSync('www_eomcs_com.crt'),
-  ca: fs.readFileSync('www_eomcs_com.ca-bundle') 
+  key: fs.readFileSync('/home/ec2-user/vars/custom.key'),
+  cert: fs.readFileSync('/home/ec2-user/vars/www_eomcs_com.crt'),
+  ca: fs.readFileSync('/home/ec2-user/vars/www_eomcs_com.ca-bundle') 
 }
 
 https.createServer(options, app).listen(9999, function() {
