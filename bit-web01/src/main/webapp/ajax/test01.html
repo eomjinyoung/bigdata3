@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<select id="select1">
+  <option value="none">선택하세요!</option>
+  <option value="c1">aaa1</option>
+  <option value="c2">aaa2</option>
+  <option value="c3">aaa3</option>
+  <option value="c4">aaa4</option>
+  <option value="c5">aaa5</option>
+  <option value="c6">aaa6</option>
+</select>
+
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+$('#select1').on('change', function() {
+  console.log($(this).prop('value'))
+  $.getJSON('list1.jsp', {
+	    category: $(this).prop('value')
+	  }, function(data) {
+		  console.log("===========>")
+	    console.log(data);
+  }).fail(function(jqxhr, textStatus, error) {
+    console.log(textStatus + ", " + error);
+  });
+});
+
+</script>
+
+
+</body>
+</html>
